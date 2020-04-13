@@ -72,7 +72,7 @@ public class HomePageActivity extends AppCompatActivity {
         });
         fl_container = findViewById(R.id.fl_container);
         bnv_menu = findViewById(R.id.bnv_menu);
-
+//test
         bnv_menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
