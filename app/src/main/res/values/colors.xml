@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorMenuSelected">@color/colorGreen</color>
+    <color name="colorMenuUnSelected">#1a1a1a</color>
+    <color name="colorGreen">#1ea383</color>
+    <color name="colorTransparentBlack">#67000000</color>
+
+    <color name="colorYellowRating">#ff9900</color>
+    <string name="true_tick">\u2713</string>
+
+
+    <color name="startBlue">#09c6df</color>
+    <color name="endBlue">#0bcce6</color>
+</resources>
