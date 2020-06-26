@@ -24,14 +24,14 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder> {
+public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyViewHolder> {
 
     private List<CourseListModel> courseListModelList;
     private Context mCtx;
     String result = "";
     private AlertDialog progressDialog;
 
-    public CourseAdapter(Context baseContext, List<CourseListModel> courseListModelList) {
+    public MyCourseAdapter(Context baseContext, List<CourseListModel> courseListModelList) {
         this.courseListModelList = courseListModelList;
         this.mCtx = baseContext;
 
@@ -56,8 +56,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.Courseid.setText(String.valueOf(n.CourseID));
         String date=n.getStartsFrom().split("T")[0];
         String Pdate=n.getCreatedOn().split("T")[0];
-       /* holder.bodyNoti.setText("Start From : " +date);
-        holder.pdate.setText("Date" +Pdate);*/
         holder.bodyNoti.setText("Price " +n.Price+"₹");
         holder.pdate.setText("Duration " +n.Duration);
         try {
@@ -68,19 +66,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.Cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cname= n.getCourseName().toString();
-                String descript= n.getDescription().toString();
-                String price = String.valueOf(n.getPrice());
                 String cid = String.valueOf(n.getCourseID());
-                String duration = n.getDuration();
-                String startdate=n.getStartsFrom().toString();
                 Intent intent = new Intent(mCtx, CourseDetailActivity.class);
-                intent.putExtra("Cname",cname);
-                intent.putExtra("Descript",descript);
-                intent.putExtra("Price",price);
                 intent.putExtra("Cid",cid);
-                intent.putExtra("Duration",duration);
-                intent.putExtra("Startdate",startdate);
                 mCtx.startActivity(intent);
             }
         });
@@ -98,7 +86,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.course_list_adapter, parent, false);
+                .inflate(R.layout.my_course_list_adapter, parent, false);
 
         return new MyViewHolder(v);
     }

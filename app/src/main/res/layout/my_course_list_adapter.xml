@@ -56,29 +56,29 @@
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
                         android:textColor="#2F7732"
-                        android:textSize="18dp" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:orientation="horizontal">
-    <TextView
-        android:id="@+id/bodyNotice"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:hint="date"
-        android:textColor="#56C86F"
-        android:textSize="12dp" />
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:hint="date"
-        android:textColor="#56C86F"
-        android:textSize="12dp" />
-</LinearLayout>
+                        android:textSize="17dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/bodyNotice"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:hint="price"
+                            android:textColor="#56C86F"
+                            android:textSize="12dp" />
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="2dp"
+                            android:hint="date"
+                            android:textColor="#56C86F"
+                            android:textSize="12dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
