@@ -1,24 +1,22 @@
-package com.example.e_learning;
+package com.example.e_learning.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.e_learning.AppConfig.AppConfig;
+import com.example.e_learning.Activity.LearningActivity;
 import com.example.e_learning.Model.CourseListModel;
+import com.example.e_learning.R;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
@@ -67,7 +65,7 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
             @Override
             public void onClick(View v) {
                 String cid = String.valueOf(n.getCourseID());
-                Intent intent = new Intent(mCtx, CourseDetailActivity.class);
+                Intent intent = new Intent(mCtx, LearningActivity.class);
                 intent.putExtra("Cid",cid);
                 mCtx.startActivity(intent);
             }

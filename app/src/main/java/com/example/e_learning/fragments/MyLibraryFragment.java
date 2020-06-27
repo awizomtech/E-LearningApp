@@ -14,9 +14,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.Model.CourseListModel;
-import com.example.e_learning.MyCourseAdapter;
+import com.example.e_learning.Adapter.MyCourseAdapter;
 import com.example.e_learning.R;
-import com.example.e_learning.SharedPrefManager;
+import com.example.e_learning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

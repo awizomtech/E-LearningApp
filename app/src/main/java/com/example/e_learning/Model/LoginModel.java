@@ -1,4 +1,4 @@
-package com.example.e_learning;
+package com.example.e_learning.Model;
 
 public class LoginModel {
     public String UserName ;

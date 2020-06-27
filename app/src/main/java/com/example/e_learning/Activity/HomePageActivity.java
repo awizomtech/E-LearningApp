@@ -1,4 +1,4 @@
-package com.example.e_learning;
+package com.example.e_learning.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.e_learning.R;
 import com.example.e_learning.fragments.LiveFragment;
 import com.example.e_learning.fragments.MyLibraryFragment;
 import com.example.e_learning.fragments.ProfileFragment;

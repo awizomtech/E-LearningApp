@@ -1,14 +1,12 @@
-package com.example.e_learning;
+package com.example.e_learning.Activity;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toolbar;
 
+import com.example.e_learning.Adapter.CourseAdapter;
 import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.Model.CourseListModel;
+import com.example.e_learning.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

@@ -1,25 +1,18 @@
-package com.example.e_learning;
+package com.example.e_learning.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.e_learning.AppConfig.AppConfig;
-import com.example.e_learning.Model.CourseListModel;
 import com.example.e_learning.Model.PaymentModel;
+import com.example.e_learning.R;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
@@ -58,6 +51,11 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
         String date = n.getPaymentDate().split("T")[0];
         holder.Date.setText("Date " + date);
         holder.Price.setText(String.valueOf("Pay Amount " + n.Amount + "₹"));
+
+        holder.Duration.setText("Duration " +n.EMIDuration.toString());
+        holder.Emitype.setText("EMI Type " +n.EMIType.toString());
+        holder.Interest.setText("Interest Amount " +n.EmiIntrest.toString());
+       holder.Mothlypay.setText("Monthly Pay " + n.Amount + "₹");
         if (!n.PaymentStatus == true) {
             holder.Verified.setVisibility(CardView.GONE);
             holder.Verify.setVisibility(CardView.VISIBLE);
@@ -82,7 +80,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Coursename, Courseid, Price, Date, PayAmt;
+        TextView Coursename, Courseid, Price, Date, Emitype,Interest,Duration,PayableAmt,Mothlypay;
         ImageView imageView;
         CardView Cardview, Verify, Verified;
 
@@ -93,9 +91,15 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
             Coursename = view.findViewById(R.id.coursename);
             Date = view.findViewById(R.id.date);
             Price = view.findViewById(R.id.price);
-            PayAmt = view.findViewById(R.id.payAmt);
             imageView = view.findViewById(R.id.image);
             Cardview = view.findViewById(R.id.cardview);
+            Verify = view.findViewById(R.id.virify);
+            Emitype = view.findViewById(R.id.emitype);
+            Interest = view.findViewById(R.id.interest);
+            Duration = view.findViewById(R.id.duration);
+            PayableAmt = view.findViewById(R.id.payableAmt);
+            Mothlypay = view.findViewById(R.id.mothlypay);
+
             Verify = view.findViewById(R.id.virify);
             Verified = view.findViewById(R.id.virified);
         }

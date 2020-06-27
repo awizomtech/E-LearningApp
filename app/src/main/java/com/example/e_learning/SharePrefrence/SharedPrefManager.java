@@ -1,7 +1,9 @@
-package com.example.e_learning;
+package com.example.e_learning.SharePrefrence;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.e_learning.Model.LoginModel;
 
 public class SharedPrefManager {
 

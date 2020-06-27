@@ -1,17 +1,19 @@
-package com.example.e_learning;
+package com.example.e_learning.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_learning.Helper.AccountHelper;
+import com.example.e_learning.Model.LoginModel;
+import com.example.e_learning.R;
+import com.example.e_learning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

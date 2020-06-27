@@ -1,6 +1,8 @@
-package com.example.e_learning;
+package com.example.e_learning.Activity;
 
 import android.os.Bundle;
+
+import com.example.e_learning.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,9 +1,11 @@
-package com.example.e_learning;
+package com.example.e_learning.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.example.e_learning.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
