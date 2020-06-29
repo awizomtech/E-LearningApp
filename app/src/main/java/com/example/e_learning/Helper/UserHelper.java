@@ -201,6 +201,51 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
+    public static final class POSTPayment extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String usetid = params[0];
+            String cid = params[1];
+            String price = params[2];
+            String transactionid = params[3];
+
+        String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"paymenntpost?UserId="+usetid+"&CourseId="+cid+"&cprice="+price+"&TransactionID="+transactionid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                //builder.addHeader("Authorization", "Bearer " + accesstoken);
+                FormBody.Builder parameters = new FormBody.Builder();
+                /*parameters.add("UserId", usetid);
+                parameters.add("CourseId", cid);
+                parameters.add("cprice", price);
+                parameters.add("TransactionID", transactionid);*/
+                builder.post(parameters.build());
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
 
 
+        }
+
+    }
 }

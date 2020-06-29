@@ -58,7 +58,61 @@ public class AccountHelper extends AppCompatActivity {
         }
 
     }
-    public static final class GetProfile extends AsyncTask<String, Void, String> {
+    public static final class PostRegister extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            //     InputStream inputStream
+            String fname = params[0];
+            String lname = params[1];
+            String mob = params[2];
+            String email = params[3];
+            String pass = params[4];
+            String gender = params[5];
+
+
+            String json = "";
+            try {
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"Register");
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                FormBody.Builder parameters = new FormBody.Builder();
+                parameters.add("FirstName", fname);
+                parameters.add("LastName", lname);
+                parameters.add("MobileNumber", mob);
+                parameters.add("EmailAddrss", email);
+                parameters.add("Gender", gender);
+                parameters.add("Password", pass);
+
+                builder.post(parameters.build());
+
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+    public static final class Profile extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
 
@@ -68,7 +122,7 @@ public class AccountHelper extends AppCompatActivity {
 
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder.url(AppConfig.BASE_URL_API + "MyProfile/"+userid);
+                builder.url(AppConfig.BASE_URL_API+"GetProfile?UserId="+userid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
                 okhttp3.Response response = client.newCall(builder.build()).execute();

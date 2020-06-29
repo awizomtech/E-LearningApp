@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".Activity.LoginActivity">
+    tools:context=".Activity.RegisterActivity">
 
     <TextView
         android:id="@+id/tv_title"
@@ -15,7 +15,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
-        android:text="Login"
+        android:text="Register"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"/>
@@ -41,13 +41,64 @@
         android:layout_marginTop="12dp">
 
         <EditText
-            android:id="@+id/et_usename"
+            android:id="@+id/et_fname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLines="1"
             android:textSize="14sp"
-            android:hint="user Name" />
+            android:hint="First Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_lname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/et_lname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:hint="Last Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_mob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/et_mob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:hint="Mobile Number" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:hint="Email" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_password"
@@ -66,8 +117,27 @@
             android:textSize="14sp"
             android:hint="Password" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_cpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="12dp">
+
+        <EditText
+            android:id="@+id/et_cpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:hint="Confirm Password" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
-        android:id="@+id/ll_submit"
+        android:id="@+id/ll_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
@@ -89,16 +159,15 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tv_register"
+        android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:paddingTop="20dp"
         android:textSize="12sp"
-        android:text="You Have not Account ? Click Here"/>
+        android:text="You Have  Account ? Click Here"/>
 
     <LinearLayout
         android:id="@+id/ll_switch"

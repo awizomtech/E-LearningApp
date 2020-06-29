@@ -20,6 +20,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.e_learning.R;
+import com.example.e_learning.SharePrefrence.SharedPrefManager;
 import com.example.e_learning.fragments.LiveFragment;
 import com.example.e_learning.fragments.MyLibraryFragment;
 import com.example.e_learning.fragments.ProfileFragment;
@@ -45,7 +46,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,R.id.nav_courses)
+                R.id.profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -56,15 +57,29 @@ public class HomePageActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if (id == R.id.nav_gallery) {
-                    Toast.makeText(getApplicationContext(), "Gallery cliekce", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(HomePageActivity.this, MainActivity.class);
+                if (id == R.id.nav_profile) {
+
+                    Intent intent = new Intent(HomePageActivity.this, ProfileActivity.class);
                     startActivity(intent);
 
-                } else if (id == R.id.nav_courses) {
-                    Toast.makeText(getApplicationContext(), "course", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(HomePageActivity.this, CourseDetailActivity.class);
+                } else if (id == R.id.nav_my_courses) {
+                    Intent intent = new Intent(HomePageActivity.this, MyCourseActivity.class);
                     startActivity(intent);
+                }
+                else if (id == R.id.nav_payment) {
+                    Intent intent = new Intent(HomePageActivity.this, MyPaymentActivity.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.nav_course) {
+                    Intent intent = new Intent(HomePageActivity.this, CourseListActivity.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.nav_share) {
+
+                }else if (id == R.id.nav_logout) {
+                    SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
+                    sp.logout();
+                    startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);

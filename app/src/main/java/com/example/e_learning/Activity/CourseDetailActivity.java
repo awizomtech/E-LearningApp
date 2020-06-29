@@ -1,7 +1,9 @@
 package com.example.e_learning.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.e_learning.Helper.UserHelper;
@@ -28,7 +30,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     RecyclerView recyclerview;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String result;
-
+String cname,descript,price,cid,duration,startdate,date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +49,13 @@ public class CourseDetailActivity extends AppCompatActivity {
         recyclerview = findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
-        String cname = getIntent().getExtras().getString("Cname");
-        String descript = getIntent().getExtras().getString("Descript");
-        String price = getIntent().getExtras().getString("Price");
-        String cid = getIntent().getExtras().getString("Cid");
-        String duration = getIntent().getExtras().getString("Duration");
-        String startdate = getIntent().getExtras().getString("Startdate");
-        String date = startdate.split("T")[0];
+        cname = getIntent().getExtras().getString("Cname");
+        descript = getIntent().getExtras().getString("Descript");
+        price = getIntent().getExtras().getString("Price");
+        cid = getIntent().getExtras().getString("Cid");
+        duration = getIntent().getExtras().getString("Duration");
+        startdate = getIntent().getExtras().getString("Startdate");
+        date = startdate.split("T")[0];
         Price.setText(price + "₹");
         startDate.setText(date);
         CourseName.setText(cname);
@@ -68,6 +70,18 @@ public class CourseDetailActivity extends AppCompatActivity {
             public void onRefresh() {
                 GetCourseDetail();
                 mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        Enroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CourseDetailActivity.this, SubscriptionActivity.class);
+                intent.putExtra("Cname",cname);
+                intent.putExtra("Price",price);
+                intent.putExtra("Cid",cid);
+                intent.putExtra("Duration",duration);
+              startActivity(intent);
             }
         });
 

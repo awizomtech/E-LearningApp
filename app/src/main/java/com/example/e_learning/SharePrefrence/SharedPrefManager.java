@@ -18,9 +18,6 @@ public class SharedPrefManager {
     private static final String Key_UserName = "UserName";
     private static final String Key_ID = "Id";
     private static final String Key_Name = "Name";
-  /*  private static final String Key_Photo = "Photo";
-    private static final String Key_AdvanceAmount = "Advance";
-    private static final String Key_AdvancePaidDate = "AdvanceDate";*/
 
     public SharedPrefManager(Context context) {
         mCtx = context;

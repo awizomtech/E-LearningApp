@@ -356,55 +356,55 @@
         </RelativeLayout>
 
 
-     <!--   <RelativeLayout
-            android:id="@+id/StFifthLayout"
-            android:layout_below="@+id/StFourthLayout"
-            android:layout_width="match_parent"
-            android:clickable="true"
-            android:background="?attr/selectableItemBackground"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:padding="5dp"
-            android:gravity="center_vertical"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/StImage32"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_privacy"
-                android:tint="@color/colorPrimary"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="5dp"
-                android:scaleType="centerCrop" />
-            <TextView
-                android:id="@+id/St_32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#444"
-                android:layout_toEndOf="@+id/StImage32"
-                android:layout_marginEnd="15dp"
-                android:text="Course"
-                android:gravity="start"
-                android:layout_marginStart="5dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
-            <TextView
-                android:id="@+id/d_32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#777"
-                android:layout_toEndOf="@+id/StImage32"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="25dp"
-                android:text="course"
-                android:gravity="start"
-                android:layout_marginStart="5dp"
-                android:textSize="14sp"
-                android:layout_marginBottom="0dp" />
-        </RelativeLayout>-->
+        <!--   <RelativeLayout
+               android:id="@+id/StFifthLayout"
+               android:layout_below="@+id/StFourthLayout"
+               android:layout_width="match_parent"
+               android:clickable="true"
+               android:background="?attr/selectableItemBackground"
+               android:layout_marginEnd="10dp"
+               android:layout_marginStart="10dp"
+               android:layout_marginTop="15dp"
+               android:padding="5dp"
+               android:gravity="center_vertical"
+               android:layout_height="wrap_content">
+               <ImageView
+                   android:id="@+id/StImage32"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:src="@drawable/ic_privacy"
+                   android:tint="@color/colorPrimary"
+                   android:layout_marginEnd="10dp"
+                   android:layout_marginTop="0dp"
+                   android:layout_centerVertical="true"
+                   android:layout_alignParentStart="true"
+                   android:layout_marginStart="5dp"
+                   android:scaleType="centerCrop" />
+               <TextView
+                   android:id="@+id/St_32"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColor="#444"
+                   android:layout_toEndOf="@+id/StImage32"
+                   android:layout_marginEnd="15dp"
+                   android:text="Course"
+                   android:gravity="start"
+                   android:layout_marginStart="5dp"
+                   android:textSize="14sp"
+                   android:layout_marginBottom="0dp" />
+               <TextView
+                   android:id="@+id/d_32"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColor="#777"
+                   android:layout_toEndOf="@+id/StImage32"
+                   android:layout_marginEnd="15dp"
+                   android:layout_marginTop="25dp"
+                   android:text="course"
+                   android:gravity="start"
+                   android:layout_marginStart="5dp"
+                   android:textSize="14sp"
+                   android:layout_marginBottom="0dp" />
+           </RelativeLayout>-->
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

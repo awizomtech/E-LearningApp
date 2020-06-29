@@ -1,0 +1,59 @@
+package com.example.e_learning.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.TextView;
+
+import com.example.e_learning.Helper.AccountHelper;
+import com.example.e_learning.Model.ProfileModel;
+import com.example.e_learning.R;
+import com.example.e_learning.SharePrefrence.SharedPrefManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.concurrent.ExecutionException;
+
+public class ProfileActivity extends AppCompatActivity {
+    String result;
+    TextView Username, Name,Mob,Address,Email;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_profile);
+        Inintview();
+    }
+    private void Inintview() {
+
+        Username =findViewById(R.id.username);
+        Name=findViewById(R.id.name);
+        Address=findViewById(R.id.address);
+        Mob=findViewById(R.id.mob);
+        Email=findViewById(R.id.email);
+
+
+        try {
+            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            result = new AccountHelper.Profile().execute(userid.toString()).get();
+            if (result.isEmpty()) {
+            } else {
+
+                Type listType = new TypeToken<ProfileModel>() {
+                }.getType();
+                ProfileModel profileModel = new Gson().fromJson(result, listType);
+                Username.setText(profileModel.getFirstName().toString());
+                Name.setText(profileModel.getFirstName().toString()+" "+profileModel.getLastName().toString());
+                Mob.setText(profileModel.getMobileNumber().toString());
+                Email.setText(profileModel.getEmailAddrss().toString());
+                String date=profileModel.getRegistrationDate().toString();
+                String ne=date.split("T")[0];
+                Address.setText(ne);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        };
+    }
+}

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.e_learning.Model.PaymentModel;
@@ -52,10 +53,16 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
         holder.Date.setText("Date " + date);
         holder.Price.setText(String.valueOf("Pay Amount " + n.Amount + "₹"));
 
-        holder.Duration.setText("Duration " +n.EMIDuration.toString());
-        holder.Emitype.setText("EMI Type " +n.EMIType.toString());
-        holder.Interest.setText("Interest Amount " +n.EmiIntrest.toString());
-       holder.Mothlypay.setText("Monthly Pay " + n.Amount + "₹");
+        holder.Duration.setText("Duration " + n.EMIDuration.toString());
+        holder.Emitype.setText("EMI Type " + n.EMIType.toString());
+        holder.Interest.setText("Interest Amount " + n.EmiIntrest.toString());
+        holder.Mothlypay.setText("Monthly Pay " + n.Amount + "₹");
+        if (n.EMIID > 0) {
+            holder.Emisection.setVisibility(LinearLayout.VISIBLE);
+        }else {
+            holder.Emisection.setVisibility(LinearLayout.GONE);
+        }
+
         if (!n.PaymentStatus == true) {
             holder.Verified.setVisibility(CardView.GONE);
             holder.Verify.setVisibility(CardView.VISIBLE);
@@ -80,9 +87,10 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Coursename, Courseid, Price, Date, Emitype,Interest,Duration,PayableAmt,Mothlypay;
+        TextView Coursename, Courseid, Price, Date, Emitype, Interest, Duration, PayableAmt, Mothlypay;
         ImageView imageView;
         CardView Cardview, Verify, Verified;
+        LinearLayout Emisection;
 
         @RequiresApi(api = Build.VERSION_CODES.M)
         public MyViewHolder(View view) {
@@ -99,7 +107,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
             Duration = view.findViewById(R.id.duration);
             PayableAmt = view.findViewById(R.id.payableAmt);
             Mothlypay = view.findViewById(R.id.mothlypay);
-
+            Emisection = view.findViewById(R.id.emisection);
             Verify = view.findViewById(R.id.virify);
             Verified = view.findViewById(R.id.virified);
         }

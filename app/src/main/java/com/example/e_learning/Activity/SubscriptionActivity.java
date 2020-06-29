@@ -1,24 +1,39 @@
 package com.example.e_learning.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.e_learning.Helper.AccountHelper;
+import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.Model.CourseListModel;
+import com.example.e_learning.Model.LoginModel;
 import com.example.e_learning.R;
+import com.example.e_learning.SharePrefrence.SharedPrefManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-public class SubscriptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner SelectPay, SelectEmi;
-    String  result;
-    private List<CourseListModel> courseListModels;
+public class SubscriptionActivity extends AppCompatActivity {
+
+    String cname, price, cid, duration;
+    TextView Tv_coursename, Tv_price, Tv_duration,PayableAmt;
+EditText Transactionid;
+CardView Next;
+String result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,80 +42,47 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void InitView() {
-        SelectPay  = (Spinner) findViewById(R.id.selectpaymenttype);
-        SelectEmi  = (Spinner) findViewById(R.id.selectemi);
-        SelectPay.setOnItemSelectedListener(SubscriptionActivity.this);
+      /*  SelectPay  = (Spinner) findViewById(R.id.selectpaymenttype);
+        SelectEmi  = (Spinner) findViewById(R.id.selectemi);*/
+        Tv_coursename = findViewById(R.id.tv_course_name);
+        Tv_price = findViewById(R.id.tv_price);
+        Tv_duration = findViewById(R.id.tv_duration);
+        Next = findViewById(R.id.enroll);
+        Transactionid = findViewById(R.id.transactionid);
+        PayableAmt = findViewById(R.id.tv_payable);
+        cname = getIntent().getExtras().getString("Cname");
+        price = getIntent().getExtras().getString("Price");
+        cid = getIntent().getExtras().getString("Cid");
+        duration = getIntent().getExtras().getString("Duration");
 
-        try {
-          /*  result = new UserHelper.GetCourseList().execute().get();
-            if (result.isEmpty()) {
-            } else {
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<CourseListModel>>() {
-                }.getType();
-                courseListModels= new Gson().fromJson(result, listType);
-               *//* Log.d("Error", courseListModels.toString());
-                adapter = new CourseAdapter(CourseListActivity.this, courseListModels);
-                recyclerView.setAdapter(adapter);*//*
-            }*/
-        } catch (Exception e) {
-            e.printStackTrace();
+        Tv_coursename.setText(cname.toString());
+        Tv_price.setText(price.toString()+"₹");
+        Tv_duration.setText(duration.toString());
+        PayableAmt.setText(price.toString()+"₹");
+        Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Transactionid.getText().toString().isEmpty()){
+                    Transactionid.setError("Required !");
+                }else{
+                    try {
+                        String transactionid=Transactionid.getText().toString();
+                        String usetid=SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getUserID();
+                        result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString()).get();
+                        if (result.isEmpty()) {
 
-        }
-        List<String> categories = new ArrayList<String>();
-      /*  for(int i=0;i>=courseListModels.size();i++){
-            CourseListModel madel = new CourseListModel();
-            categories.add(String.valueOf(madel.getCourseName()));
-        }*/
-        // Spinner Drop down elements
-
-        categories.add("Cash");
-        categories.add("EMI");
-        categories.add("Item 3");
-        categories.add("Item 4");
-        categories.add("Item 5");
-        categories.add("Item 6");
-        // Creating adapter for spinner
-        ArrayAdapter<String> PayTypeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        PayTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        SelectPay.setAdapter(PayTypeAdapter);
-
-        SelectEmi.setOnItemSelectedListener(SubscriptionActivity.this);
-
-        // Spinner Drop down elements
-        List<String> emi = new ArrayList<String>();
-        emi.add("Emi ");
-        emi.add("Item 2");
-        emi.add("Item 3");
-        emi.add("Item 4");
-        emi.add("Item 5");
-        emi.add("Item 6");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> emiAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, emi);
-
-        // Drop down layout style - list view with radio button
-        emiAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        SelectEmi.setAdapter(emiAdapter);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+                        } else {
+                                Intent intent = new Intent(SubscriptionActivity.this, MyCourseActivity.class);
+                                startActivity(intent);
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    };
+                }
+            }
+        });
 
     }
 }
