@@ -2,6 +2,7 @@ package com.example.e_learning.ui.home;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +11,31 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.e_learning.Activity.CourseListActivity;
 import com.example.e_learning.Activity.MyCourseActivity;
 import com.example.e_learning.Activity.MyPaymentActivity;
 import com.example.e_learning.Activity.ProfileActivity;
+import com.example.e_learning.Adapter.CourseAdapter;
+import com.example.e_learning.Adapter.HomeCourseAdapter;
+import com.example.e_learning.Helper.UserHelper;
+import com.example.e_learning.Model.CourseListModel;
 import com.example.e_learning.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    HomeCourseAdapter adapter;
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    private List<CourseListModel> courseListModels;
+    private String result = "";
     private HomeViewModel homeViewModel;
+    androidx.recyclerview.widget.RecyclerView recyclerView;
     View root;
     CardView Course,Mycourse,Myprofile,Mypayment;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -40,7 +56,7 @@ public class HomeFragment extends Fragment {
 
     private void Initview() {
 
-        Mycourse=root.findViewById(R.id.mycourse);
+      /*  Mycourse=root.findViewById(R.id.mycourse);
         Mypayment=root.findViewById(R.id.mypayment);
         Myprofile=root.findViewById(R.id.profile);
         Course=root.findViewById(R.id.course);
@@ -71,6 +87,44 @@ public class HomeFragment extends Fragment {
                 Intent intent= new Intent(getContext(), ProfileActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
+
+
+
+        recyclerView=root.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+      /*  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+       /* mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                GetCourselist();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });*/
+
+        GetCourselist();
+    }
+
+    private void GetCourselist() {
+        try {
+            result = new UserHelper.GetCourseList().execute().get();
+            if (result.isEmpty()) {
+            } else {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<CourseListModel>>() {
+                }.getType();
+                courseListModels= new Gson().fromJson(result, listType);
+                Log.d("Error", courseListModels.toString());
+                adapter = new HomeCourseAdapter(getContext(), courseListModels);
+                recyclerView.setAdapter(adapter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 }

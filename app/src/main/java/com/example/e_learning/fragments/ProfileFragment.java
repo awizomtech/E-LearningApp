@@ -1,5 +1,6 @@
 package com.example.e_learning.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,55 +32,63 @@ public class ProfileFragment extends Fragment {
     Context context;
     View rootView;
     String result;
-    TextView Username, Name,Mob,Address,Email;
+    TextView Username, Name, Mob, Address, Email;
     LinearLayout ll_login_signup;
+    ProgressDialog progressDialog;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context=getActivity();
+        context = getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
-Inintview();
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Inintview();
 
         return rootView;
     }
 
     private void Inintview() {
 
-        Username =rootView.findViewById(R.id.username);
-        Name=rootView.findViewById(R.id.name);
-        Address=rootView.findViewById(R.id.address);
-        Mob=rootView.findViewById(R.id.mob);
-        Email=rootView.findViewById(R.id.email);
+        Username = rootView.findViewById(R.id.username);
+        Name = rootView.findViewById(R.id.name);
+        Address = rootView.findViewById(R.id.address);
+        Mob = rootView.findViewById(R.id.mob);
+        Email = rootView.findViewById(R.id.email);
 
 
         try {
-            String userid=SharedPrefManager.getInstance(context).getUser().getUserID();
+            String userid = SharedPrefManager.getInstance(context).getUser().getUserID();
             result = new AccountHelper.Profile().execute(userid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
 
                 Type listType = new TypeToken<ProfileModel>() {
                 }.getType();
+                progressDialog.dismiss();
                 ProfileModel profileModel = new Gson().fromJson(result, listType);
-Username.setText(profileModel.getFirstName().toString());
-Name.setText(profileModel.getFirstName().toString()+" "+profileModel.getLastName().toString());
-Mob.setText(profileModel.getMobileNumber().toString());
-Email.setText(profileModel.getEmailAddrss().toString());
-String date=profileModel.getRegistrationDate().toString();
-String ne=date.split("T")[0];
-Address.setText(ne);
+                Username.setText(profileModel.getFirstName().toString());
+                Name.setText(profileModel.getFirstName().toString() + " " + profileModel.getLastName().toString());
+                Mob.setText(profileModel.getMobileNumber().toString());
+                Email.setText(profileModel.getEmailAddrss().toString());
+                String date = profileModel.getRegistrationDate().toString();
+                String ne = date.split("T")[0];
+                Address.setText(ne);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        };
+        }
+        ;
     }
-    }
+}
 
 

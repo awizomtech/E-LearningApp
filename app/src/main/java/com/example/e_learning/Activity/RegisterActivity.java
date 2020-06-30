@@ -2,6 +2,7 @@ package com.example.e_learning.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -25,10 +28,14 @@ public class RegisterActivity extends AppCompatActivity {
     LinearLayout ll_submit;
     TextView login;
     String result;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
         InitView();
     }
     private void InitView() {
@@ -44,6 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
         ll_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String cpass=conpass.getText().toString();
+                String pass=password.getText().toString();
                 if(firtname.getText().toString().isEmpty()){
                     firtname.setError("Required !");
                 }else if(lastname.getText().toString().isEmpty()){
@@ -51,13 +60,20 @@ public class RegisterActivity extends AppCompatActivity {
                 }else if(emailaddress.getText().toString().isEmpty()){
                     emailaddress.setError("Required !");
                 }
-                else if(mobile.getText().toString().isEmpty()){
+                else if(mobile.getText().toString().isEmpty()||mobile.getText().toString().length()!=10){
                     mobile.setError("Required !");
                 }
-                else if(password.getText().toString().isEmpty()){
+                else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
                     password.setError("Required !");
+                }else if(conpass.getText().toString().isEmpty()){
+                    conpass.setError("Required !");
+                }else if(!pass.contains(cpass)){
+                    password.setError("Password are not match !");
                 }
                 else {
+                    progressDialog.show();
+                    new Timer().schedule(new TimerTask() {
+                        public void run() {
                     String fname = firtname.getText().toString();
                     String pass = password.getText().toString();
                     String lname = lastname.getText().toString();
@@ -67,10 +83,11 @@ public class RegisterActivity extends AppCompatActivity {
                     try {
                         result = new AccountHelper.PostRegister().execute(fname.toString(), lname.toString(),mob.toString(), email.toString(),pass.toString(), gender.toString()).get();
                         if (result.isEmpty()) {
+                            progressDialog.dismiss();
                             Toast.makeText(RegisterActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();
                             result = new AccountHelper.PostRegister().execute(fname.toString(), lname.toString(),mob.toString(), email.toString(),pass.toString(), gender.toString()).get();
                         } else {
-
+                            progressDialog.dismiss();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intent);
                         }
@@ -79,6 +96,8 @@ public class RegisterActivity extends AppCompatActivity {
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     };
+                        }
+                    }, 100);
                 }
             }
         });

@@ -1,4 +1,4 @@
-package com.example.e_learning.Activity;
+package com.example.e_learning.Adapter;
 
 import android.content.Context;
 import android.os.Build;

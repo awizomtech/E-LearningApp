@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,11 +25,15 @@ public class LearningActivity extends AppCompatActivity {
     RecyclerView recyclerview;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String result;
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         InitView();
     }
 
@@ -54,10 +59,12 @@ public class LearningActivity extends AppCompatActivity {
              String cid = getIntent().getExtras().getString("Cid");
             result = new UserHelper.GetCourseTopicList().execute(cid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<CourseDetailModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 courseDetailModels = new Gson().fromJson(result, listType);
                 Log.d("Error", courseDetailModels.toString());
                 adapter = new LearningAdapter(LearningActivity.this, courseDetailModels);

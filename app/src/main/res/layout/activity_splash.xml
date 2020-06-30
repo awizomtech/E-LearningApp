@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    tools:context=".Activity.SplashActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingConstraints"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Edu4Sports"
+        android:textSize="25sp"
+       android:textAlignment="center"
+        android:layout_marginTop="70dp"
+        android:textColor="#122BAC"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Design and Developed By Awizom Tech"
+        android:textSize="14sp"
+   android:textAlignment="center"
+        android:layout_marginTop="540dp"
+        android:textColor="#F4F4F6"/>
+
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

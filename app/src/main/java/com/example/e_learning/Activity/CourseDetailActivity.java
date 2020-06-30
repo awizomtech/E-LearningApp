@@ -1,11 +1,13 @@
 package com.example.e_learning.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.e_learning.Adapter.CourseDetailAdapter;
 import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.Model.CourseDetailModel;
 import com.example.e_learning.R;
@@ -31,10 +33,15 @@ public class CourseDetailActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     String result;
 String cname,descript,price,cid,duration,startdate,date;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_detail);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         InitView();
     }
 
@@ -93,10 +100,12 @@ String cname,descript,price,cid,duration,startdate,date;
             String cid=Cid.getText().toString();
             result = new UserHelper.GetCourseTopicList().execute(cid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<CourseDetailModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 courseDetailModels = new Gson().fromJson(result, listType);
                 Log.d("Error", courseDetailModels.toString());
                 adapter = new CourseDetailAdapter(CourseDetailActivity.this, courseDetailModels);

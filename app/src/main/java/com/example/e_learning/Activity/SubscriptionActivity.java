@@ -3,6 +3,7 @@ package com.example.e_learning.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 public class SubscriptionActivity extends AppCompatActivity {
@@ -34,10 +37,15 @@ public class SubscriptionActivity extends AppCompatActivity {
 EditText Transactionid;
 CardView Next;
 String result;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscription);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+
         InitView();
     }
 
@@ -65,13 +73,17 @@ String result;
                 if(Transactionid.getText().toString().isEmpty()){
                     Transactionid.setError("Required !");
                 }else{
+                    progressDialog.show();
+                    new Timer().schedule(new TimerTask() {
+                        public void run() {
                     try {
                         String transactionid=Transactionid.getText().toString();
                         String usetid=SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getUserID();
                         result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString()).get();
                         if (result.isEmpty()) {
-
+                            progressDialog.dismiss();
                         } else {
+                            progressDialog.dismiss();
                                 Intent intent = new Intent(SubscriptionActivity.this, MyCourseActivity.class);
                                 startActivity(intent);
                         }
@@ -80,6 +92,8 @@ String result;
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     };
+                        }
+                    }, 100);
                 }
             }
         });

@@ -1,5 +1,6 @@
 package com.example.e_learning.Activity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -22,12 +23,16 @@ public class CourseListActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     private List<CourseListModel> courseListModels;
     private String result = "";
-
+    ProgressDialog progressDialog;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         InitView();
     }
 
@@ -36,21 +41,6 @@ public class CourseListActivity extends AppCompatActivity {
     private void InitView() {
 
 
-      /*  androidx.appcompat.widget.Toolbar toolbar = (androidx.appcompat.widget.Toolbar)
-                findViewById(R.id.toolbar);
-        toolbar.setTitle("Course List");
-        toolbar.setTitleTextColor(Color.parseColor("#ffff"));
-        toolbar.setBackgroundColor(Color.parseColor("#409F60"));
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(AddOrderActivity.this, HomePage.class);
-//                startActivity(intent);
-                onBackPressed();
-            }
-        });*/
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,10 +61,12 @@ public class CourseListActivity extends AppCompatActivity {
         try {
             result = new UserHelper.GetCourseList().execute().get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<CourseListModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 courseListModels= new Gson().fromJson(result, listType);
                 Log.d("Error", courseListModels.toString());
                 adapter = new CourseAdapter(CourseListActivity.this, courseListModels);

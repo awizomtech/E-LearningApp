@@ -1,5 +1,6 @@
 package com.example.e_learning.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class LiveFragment extends Fragment {
     View rootView;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     Context context;
-
+    ProgressDialog progressDialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,10 @@ public class LiveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
          rootView = inflater.inflate(R.layout.fragment_live, container, false);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
          InitView();
         return rootView;
     }
@@ -67,10 +72,12 @@ public class LiveFragment extends Fragment {
             String userid= SharedPrefManager.getInstance(context).getUser().getUserID();
             result = new UserHelper.GetMyPaymentList().execute(userid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<PaymentModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 paymentModels= new Gson().fromJson(result, listType);
                 Log.d("Error", paymentModels.toString());
                 adapter = new MyPaymentAdapter(context, paymentModels);

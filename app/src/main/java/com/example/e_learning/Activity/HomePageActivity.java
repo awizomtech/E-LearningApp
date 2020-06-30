@@ -1,7 +1,11 @@
 package com.example.e_learning.Activity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -46,7 +50,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share)
+                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -110,6 +114,10 @@ public class HomePageActivity extends AppCompatActivity {
                         fragment = new ProfileFragment();
                         loadFragment(fragment);
                         return true;
+                    case R.id.navigationMenu:
+                        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                        drawer.openDrawer(GravityCompat.START);
+                        return true;
                 }
 
                 return false;
@@ -139,6 +147,36 @@ public class HomePageActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @SuppressLint("ResourceType")
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            final AlertDialog.Builder alertbox = new AlertDialog.Builder(HomePageActivity.this);
+
+            alertbox.setIconAttribute(90);
+            alertbox.setIcon(R.drawable.exit);
+            alertbox.setTitle("Do You Want To Exit ?");
+
+            alertbox.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // finish used for destroyed activity
+
+                    finishAffinity();
+                    System.exit(0);
+                }
+            });
+
+            alertbox.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+
+                }
+            });
+            alertbox.show();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

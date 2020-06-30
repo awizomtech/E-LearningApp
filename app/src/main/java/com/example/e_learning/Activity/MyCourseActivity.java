@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,11 +26,16 @@ public class MyCourseActivity extends AppCompatActivity {
     SwipeRefreshLayout mSwipeRefreshLayout;
     private List<CourseListModel> courseListModels;
     private String result = "";
+    ProgressDialog progressDialog;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_course);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         InitView();
     }
 
@@ -56,10 +62,12 @@ public class MyCourseActivity extends AppCompatActivity {
             String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
             result = new UserHelper.GetMyCourseList().execute(userid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<CourseListModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 courseListModels= new Gson().fromJson(result, listType);
                 Log.d("Error", courseListModels.toString());
                 adapter = new MyCourseAdapter(this, courseListModels);

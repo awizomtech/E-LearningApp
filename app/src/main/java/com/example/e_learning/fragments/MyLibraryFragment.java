@@ -1,6 +1,7 @@
 package com.example.e_learning.fragments;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +32,7 @@ public class MyLibraryFragment extends Fragment {
     View rootView;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     Context context;
-
+    ProgressDialog progressDialog;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +43,10 @@ public class MyLibraryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        rootView = inflater.inflate(R.layout.fragment_my_library, container, false);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         InitView();
         return rootView;
     }
@@ -69,10 +74,12 @@ public class MyLibraryFragment extends Fragment {
             String userid= SharedPrefManager.getInstance(context).getUser().getUserID();
             result = new UserHelper.GetMyCourseList().execute(userid.toString()).get();
             if (result.isEmpty()) {
+                progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<CourseListModel>>() {
                 }.getType();
+                progressDialog.dismiss();
                 courseListModels= new Gson().fromJson(result, listType);
                 Log.d("Error", courseListModels.toString());
                 adapter = new MyCourseAdapter(context, courseListModels);
