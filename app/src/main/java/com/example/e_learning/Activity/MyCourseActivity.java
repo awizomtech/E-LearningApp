@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.e_learning.Adapter.MyCourseAdapter;
 import com.example.e_learning.Helper.UserHelper;
@@ -40,6 +41,13 @@ public class MyCourseActivity extends AppCompatActivity {
     }
 
     private void InitView() {
+        ImageView backpress=findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);

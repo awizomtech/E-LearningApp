@@ -8,6 +8,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.e_learning.Adapter.LearningAdapter;
 import com.example.e_learning.Helper.UserHelper;
@@ -38,7 +40,13 @@ public class LearningActivity extends AppCompatActivity {
     }
 
     private void InitView() {
-
+        ImageView backpress=findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         recyclerview = findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         recyclerview.setHasFixedSize(true);

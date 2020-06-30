@@ -2,7 +2,10 @@ package com.example.e_learning.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.e_learning.Helper.AccountHelper;
@@ -25,7 +28,14 @@ public class ProfileActivity extends AppCompatActivity {
         Inintview();
     }
     private void Inintview() {
-
+ImageView backpress=findViewById(R.id.back);
+      backpress.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              onBackPressed();
+          }
+      });
+      
         Username =findViewById(R.id.username);
         Name=findViewById(R.id.name);
         Address=findViewById(R.id.address);

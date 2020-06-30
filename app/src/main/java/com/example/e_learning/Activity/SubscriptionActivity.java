@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,14 @@ String result;
     }
 
     private void InitView() {
+
+        ImageView backpress=findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
       /*  SelectPay  = (Spinner) findViewById(R.id.selectpaymenttype);
         SelectEmi  = (Spinner) findViewById(R.id.selectemi);*/
         Tv_coursename = findViewById(R.id.tv_course_name);
