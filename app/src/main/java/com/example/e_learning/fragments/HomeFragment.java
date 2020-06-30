@@ -1,4 +1,4 @@
-package com.example.e_learning.ui.home;
+package com.example.e_learning.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,14 +34,12 @@ public class HomeFragment extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     private List<CourseListModel> courseListModels;
     private String result = "";
-    private HomeViewModel homeViewModel;
+
     androidx.recyclerview.widget.RecyclerView recyclerView;
     View root;
     CardView Course,Mycourse,Myprofile,Mypayment;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
      root = inflater.inflate(R.layout.fragment_home, container, false);
       /*  final TextView textView = root.findViewById(R.id.text_home);*//*
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

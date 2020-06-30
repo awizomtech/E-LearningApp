@@ -9,7 +9,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,10 +24,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.e_learning.R;
 import com.example.e_learning.SharePrefrence.SharedPrefManager;
-import com.example.e_learning.fragments.LiveFragment;
-import com.example.e_learning.fragments.MyLibraryFragment;
+import com.example.e_learning.fragments.MyPaymentFragment;
+import com.example.e_learning.fragments.MyCourseFragment;
 import com.example.e_learning.fragments.ProfileFragment;
-import com.example.e_learning.ui.home.HomeFragment;
+import com.example.e_learning.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -103,11 +102,11 @@ public class HomePageActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_my_library:
-                        fragment = new MyLibraryFragment();
+                        fragment = new MyCourseFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_plus:
-                        fragment = new LiveFragment();
+                        fragment = new MyPaymentFragment();
                         loadFragment(fragment);
                         return true;
                     case R.id.navigation_profile:
