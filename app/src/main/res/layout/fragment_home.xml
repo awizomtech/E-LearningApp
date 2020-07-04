@@ -1,432 +1,332 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home1"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
-    android:paddingBottom="40dp"
-    android:background="#ffff"
+    android:paddingBottom="40dp">
 
-    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#4FAF7D"
             android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:padding="5dp">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_white_home_24" />
+
                 <TextView
                     android:id="@+id/tv_search_hint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textStyle="bold"
-                    android:textSize="17sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginStart="10dp"
-                    android:textColor="#C2FBFBFB"/>
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Home"
+                    android:textColor="#C2FBFBFB"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
         </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Welcome To Edu4Sports"
-        android:textSize="19dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#000"/>
-    <TextView
-        android:id="@+id/tv_sub_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textSize="14sp"
-        android:text="Enroll in courses and watch lessons from India's best educators."/>
-</LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginTop="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="370dp"
-       android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/course_shap"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Course List"
-            android:textColor="#ffff"
-            android:textSize="25sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginLeft="20sp"
-            android:textStyle="bold"/>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="30dp"
-    android:layout_marginBottom="10dp"
-    android:overScrollMode="always">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
-</LinearLayout>
-    </LinearLayout>
-</LinearLayout>
-
+        <!--  <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="250dp"
+              android:orientation="vertical"
+              android:background="#F6F5F5">
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+                  <LinearLayout
+                      android:layout_width="150dp"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Edu4"
+                          android:textSize="18dp"
+                          android:layout_marginLeft="50dp"
+                          android:layout_marginTop="80dp"
+                          android:textAlignment="center"
+                          android:textStyle="bold"
+                          android:textColor="#403F3F"/>
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="Sports"
+                          android:textSize="25dp"
+                          android:layout_marginLeft="30dp"
+                          android:textAlignment="center"
+                          android:textColor="#403F3F"/>
+                  </LinearLayout>
+                  <ImageView
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:src="@drawable/homebanner"/>
+              </LinearLayout>
+           </LinearLayout>-->
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="15dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/course_shap"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Events"
-                    android:textColor="#ffff"
-                    android:textSize="25sp"
-                    android:layout_marginTop="20sp"
-                    android:layout_marginLeft="20sp"
-                    android:textStyle="bold"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/course"
+                        android:layout_width="140dp"
+                        android:layout_height="120dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/course"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Courses"
+                                android:textAlignment="center"
+                                android:textColor="#237723"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/mycourse"
+                        android:layout_width="140dp"
+                        android:layout_height="120dp"
+                        android:layout_marginLeft="10dp"
+                        app:cardCornerRadius="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/subscription"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Subscription"
+                                android:textAlignment="center"
+                                android:textColor="#237723"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:overScrollMode="always"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fitness Test"
-                        android:textColor="#ffff"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="20sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Quiz Test Online"
-                        android:textColor="#ffff"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="20sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Live Classes"
-                        android:textColor="#ffff"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="20sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Online Certification"
-                        android:textColor="#ffff"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="20sp" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Sports Activity"
-                        android:textColor="#ffff"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="20sp" />
-              </LinearLayout>
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/mypayment"
+                        android:layout_width="140dp"
+                        android:layout_height="120dp"
+                        app:cardCornerRadius="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/wallet"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Payment"
+                                android:textAlignment="center"
+                                android:textColor="#237723"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/fitness"
+                        android:layout_width="140dp"
+                        android:layout_height="120dp"
+                        android:layout_marginLeft="10dp"
+                        app:cardCornerRadius="10dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardElevation="5dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/fitness"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Fitness Test"
+                                android:textAlignment="center"
+                                android:textColor="#237723"
+                                android:layout_marginTop="5dp"
+                                android:textSize="18dp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout><!--
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="-10dp"
+android:orientation="vertical"
+android:visibility="gone">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorWhite"
+    android:layout_height="370dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/course_shap"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#4FAF7D"
-        android:orientation="horizontal">
-        <LinearLayout
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:overScrollMode="always">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="5dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_white_home_24" />
-            <TextView
-                android:id="@+id/tv_search_hint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Home"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textStyle="bold"
-                android:textSize="17sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="10dp"
-                android:textColor="#C2FBFBFB"/>
-
-        </LinearLayout>
-
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
+        android:text="Course List"
+        android:textColor="#ffff"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</LinearLayout>
+</LinearLayout>
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+android:orientation="vertical"
+android:visibility="gone">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="370dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/course_shap"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:overScrollMode="always">
 
-        <ImageView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewQuiz"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/s6"
-            android:layout_marginTop="-50dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="100dp">
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="5dp">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                      <LinearLayout
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:gravity="center"
-                          android:layout_marginTop="10dp">
-                          <androidx.cardview.widget.CardView
-                              android:id="@+id/profile"
-                              android:layout_width="150dp"
-                              android:layout_height="150dp"
-                              android:layout_margin="5dp"
-                              app:cardCornerRadius="10dp"
-                              android:clickable="true"
-                              android:focusable="true"
-                              android:foreground="?selectableItemBackground"
-                              app:cardElevation="5dp">
-                              <LinearLayout
-                                  android:layout_width="match_parent"
-                                  android:layout_height="wrap_content"
-                                  android:orientation="vertical">
-                                  <ImageView
-                                      android:layout_width="match_parent"
-                                      android:layout_height="match_parent"
-                                      android:layout_marginTop="10dp"
-                                      android:src="@drawable/s1"/>
-                                  <TextView
-                                      android:layout_width="match_parent"
-                                      android:layout_height="wrap_content"
-                                      android:text="My Profile"
-                                      android:textStyle="bold"
-                                      android:textColor="#34AA5B"
-                                      android:textSize="17dp"
-                                      android:layout_marginTop="10dp"
-                                   android:textAlignment="center"/>
-                              </LinearLayout>
-                          </androidx.cardview.widget.CardView>
-
-                              <androidx.cardview.widget.CardView
-                                  android:id="@+id/course"
-                                  android:layout_width="150dp"
-                                  android:layout_height="150dp"
-                                  android:layout_margin="5dp"
-                                  app:cardCornerRadius="10dp"
-                                  android:clickable="true"
-                                  android:focusable="true"
-                                  android:foreground="?selectableItemBackground"
-                                  app:cardElevation="5dp">
-                                  <LinearLayout
-                                      android:layout_width="match_parent"
-                                      android:layout_height="wrap_content"
-                                      android:orientation="vertical">
-                                      <ImageView
-                                          android:layout_width="match_parent"
-                                          android:layout_height="match_parent"
-                                          android:layout_marginTop="10dp"
-                                          android:src="@drawable/s2"/>
-                                      <TextView
-                                          android:layout_width="match_parent"
-                                          android:layout_height="wrap_content"
-                                          android:text="Course"
-                                          android:textStyle="bold"
-                                          android:textColor="#34AA5B"
-                                          android:textSize="17dp"
-                                          android:layout_marginTop="10dp"
-                                          android:textAlignment="center"/>
-                                  </LinearLayout>
-                             </androidx.cardview.widget.CardView>
-
-                      </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/mycourse"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:layout_margin="5dp"
-                                app:cardCornerRadius="10dp"
-                                android:clickable="true"
-                                android:focusable="true"
-                                android:foreground="?selectableItemBackground"
-                                app:cardElevation="5dp">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-                                    <ImageView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginTop="10dp"
-                                        android:src="@drawable/s4"/>
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="My Course"
-                                        android:textStyle="bold"
-                                        android:textColor="#34AA5B"
-                                        android:textSize="17dp"
-                                        android:layout_marginTop="10dp"
-                                        android:textAlignment="center"/>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-
-                                <androidx.cardview.widget.CardView
-                                    android:layout_width="150dp"
-                                    android:layout_height="150dp"
-                                    android:layout_margin="5dp"
-                                    app:cardCornerRadius="10dp"
-                                    android:id="@+id/mypayment"
-                                    android:clickable="true"
-                                    android:focusable="true"
-                                    android:foreground="?selectableItemBackground"
-                                    app:cardElevation="5dp">
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-                                        <ImageView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_marginTop="10dp"
-                                            android:src="@drawable/s3"/>
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:text="My Payment"
-                                            android:textStyle="bold"
-                                            android:textColor="#34AA5B"
-                                            android:textSize="17dp"
-                                            android:layout_marginTop="10dp"
-                                            android:textAlignment="center"/>
-                                    </LinearLayout>
-                              </androidx.cardview.widget.CardView>
-
-                            </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="10sp"
+        android:text="Quiz List"
+        android:textColor="#ffff"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+</LinearLayout>
 </LinearLayout>-->

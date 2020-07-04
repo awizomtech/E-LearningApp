@@ -21,6 +21,11 @@
             android:id="@+id/nav_course"
             android:icon="@drawable/ic_courses"
             android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/nav_quiz"
+            android:icon="@drawable/ic_courses"
+            android:title="Quiz" />
+
     </group>
     <item android:title="Action Tools">
         <menu>

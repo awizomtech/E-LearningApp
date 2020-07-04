@@ -49,7 +49,41 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
+    public static final class GetQuizlist extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
 
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetQuizlist");
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
     public static final class GetCourseTopicList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -225,6 +259,175 @@ public class UserHelper extends AppCompatActivity {
                 parameters.add("cprice", price);
                 parameters.add("TransactionID", transactionid);*/
                 builder.post(parameters.build());
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+    public static final class GetQuestionList extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String CourseID = params[0];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetQuestion?CourseID="+CourseID);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+    public static final class GetAnswerList extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String quizid = params[0];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetAnswer?QuizID="+quizid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+    public static final class PostResult extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            //     InputStream inputStream
+            String Chooseid = params[0];
+            String Length = params[1];
+            String userid = params[2];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+              /*  builder.url(AppConfig.BASE_URL_API+"ResultPost");*/
+                builder.url(AppConfig.BASE_URL_API+"ResultPost?AnswerID="+Chooseid+"&Length="+Length+"&UserId="+userid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                FormBody.Builder parameters = new FormBody.Builder();
+                parameters.add("AnswerID", Chooseid);
+                parameters.add("AnswerID", Chooseid);
+                parameters.add("UserId", userid);
+                builder.post(parameters.build());
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+
+    public static final class GetResult extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            //     InputStream inputStream
+            String quizid = params[0];
+            String userid = params[1];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                /*  builder.url(AppConfig.BASE_URL_API+"ResultPost");*/
+                builder.url(AppConfig.BASE_URL_API+"ResultGet?QuizID="+quizid+"&UsetID="+userid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+              /*  FormBody.Builder parameters = new FormBody.Builder();
+                parameters.add("QuizID", quizid);
+                parameters.add("UsetID", userid);
+                builder.post(parameters.build());*/
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
                     json = response.body().string();

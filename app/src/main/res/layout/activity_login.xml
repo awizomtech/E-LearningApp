@@ -8,56 +8,57 @@
     android:gravity="center_horizontal"
     android:background="@drawable/loginbk"
     tools:context=".Activity.LoginActivity">
-<ImageView
-    android:layout_marginTop="20dp"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_marginLeft="10dp"
-    android:src="@drawable/loginicon"
-/>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="23sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="#ffff"
         android:text="Login"
-
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="150dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.cardview.widget.CardView
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+       <!-- <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             app:cardCornerRadius="15dp"
-            app:cardElevation="5dp">
+            app:cardElevation="5dp">-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/logo"/>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginEnd="20dp">
 
                     <EditText
                         android:id="@+id/et_usename"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:inputType="number"
+                        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
                         android:maxLines="1"
+                     android:drawablePadding="10dp"
                         android:textSize="14sp"
                         android:maxLength="10"
+                        android:background="@drawable/edit_text_shape"
                         android:hint="user Name" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -65,15 +66,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginEnd="20dp">
 
                     <EditText
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:inputType="textPassword"
+                        android:background="@drawable/edit_text_shape"
+                        android:drawableLeft="@drawable/ic_baseline_lock_24"
                         android:maxLines="1"
+                        android:drawablePadding="10dp"
                         android:textSize="14sp"
                         android:maxLength="6"
                         android:hint="Password" />
@@ -81,7 +84,7 @@
                 <LinearLayout
                     android:id="@+id/ll_submit"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:gravity="center"
                     android:background="@drawable/save_post_bg"
                     android:layout_marginStart="20dp"
@@ -108,7 +111,9 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
+                    android:textColor="#fff"
                     android:paddingTop="20dp"
+                    android:textStyle="bold"
                     android:textSize="12sp"
                     android:text="You Have not Account ? Click Here"/>
 
@@ -123,7 +128,7 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+       <!-- </androidx.cardview.widget.CardView>-->
     </LinearLayout>
 <!--    <TextView
         android:layout_width="match_parent"

@@ -31,6 +31,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.R;
@@ -59,6 +60,8 @@ public class PaymentActivity extends AppCompatActivity {
     private final static int IMAGE_RESULT = 200;
     private static int TIMER = 300;
     String result;
+
+    private Spinner amountType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

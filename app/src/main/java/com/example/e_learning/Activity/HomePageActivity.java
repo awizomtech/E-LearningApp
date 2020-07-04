@@ -49,7 +49,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share)
+                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share,R.id.nav_quiz)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -75,6 +75,9 @@ public class HomePageActivity extends AppCompatActivity {
                 }
                 else if (id == R.id.nav_course) {
                     Intent intent = new Intent(HomePageActivity.this, CourseListActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_quiz) {
+                    Intent intent = new Intent(HomePageActivity.this, QuizCourseActivity.class);
                     startActivity(intent);
                 }
                 else if (id == R.id.nav_share) {

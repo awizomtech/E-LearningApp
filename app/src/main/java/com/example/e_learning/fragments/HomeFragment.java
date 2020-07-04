@@ -20,8 +20,10 @@ import com.example.e_learning.Activity.MyPaymentActivity;
 import com.example.e_learning.Activity.ProfileActivity;
 import com.example.e_learning.Adapter.CourseAdapter;
 import com.example.e_learning.Adapter.HomeCourseAdapter;
+import com.example.e_learning.Adapter.HomeQuizAdapter;
 import com.example.e_learning.Helper.UserHelper;
 import com.example.e_learning.Model.CourseListModel;
+import com.example.e_learning.Model.QuizModel;
 import com.example.e_learning.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,13 +33,16 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     HomeCourseAdapter adapter;
+    HomeQuizAdapter quizadapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
     private List<CourseListModel> courseListModels;
+    private List<QuizModel> quizModels;
     private String result = "";
 
     androidx.recyclerview.widget.RecyclerView recyclerView;
+    androidx.recyclerview.widget.RecyclerView recyclerViewQuiz;
     View root;
-    CardView Course,Mycourse,Myprofile,Mypayment;
+    CardView Course,Mycourse,Mypayment,Fitness;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
      root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -53,6 +58,39 @@ public class HomeFragment extends Fragment {
     }
 
     private void Initview() {
+        Mycourse=root.findViewById(R.id.mycourse);
+        Mypayment=root.findViewById(R.id.mypayment);
+        Fitness=root.findViewById(R.id.fitness);
+        Course=root.findViewById(R.id.course);
+
+        Course.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), CourseListActivity.class);
+                startActivity(intent);
+            }
+        });
+        Mypayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), MyPaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+        Mycourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), MyCourseActivity.class);
+                startActivity(intent);
+            }
+        });
+        Fitness.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
       /*  Mycourse=root.findViewById(R.id.mycourse);
         Mypayment=root.findViewById(R.id.mypayment);
@@ -89,11 +127,14 @@ public class HomeFragment extends Fragment {
 
 
 
-        recyclerView=root.findViewById(R.id.recyclerView);
+      /*  recyclerView=root.findViewById(R.id.recyclerView);
+        recyclerViewQuiz=root.findViewById(R.id.recyclerViewQuiz);
         recyclerView.setHasFixedSize(true);
-      /*  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*/
+      *//*  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*//*
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-
+        recyclerViewQuiz.setHasFixedSize(true);
+        recyclerViewQuiz.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+*/
        /* mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -105,6 +146,7 @@ public class HomeFragment extends Fragment {
         });*/
 
         GetCourselist();
+        GetQuizlist();
     }
 
     private void GetCourselist() {
@@ -119,6 +161,25 @@ public class HomeFragment extends Fragment {
                 Log.d("Error", courseListModels.toString());
                 adapter = new HomeCourseAdapter(getContext(), courseListModels);
                 recyclerView.setAdapter(adapter);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void GetQuizlist() {
+        try {
+            result = new UserHelper.GetQuizlist().execute().get();
+            if (result.isEmpty()) {
+            } else {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<QuizModel>>() {
+                }.getType();
+                quizModels= new Gson().fromJson(result, listType);
+                Log.d("Error", quizModels.toString());
+                quizadapter = new HomeQuizAdapter(getContext(), quizModels);
+                recyclerViewQuiz.setAdapter(quizadapter);
             }
         } catch (Exception e) {
             e.printStackTrace();
