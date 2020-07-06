@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,35 +9,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#4FAF7D"
+        android:background="#3761F8"
         android:orientation="horizontal">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:padding="5dp">
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_white_wallet_24" />
+
             <TextView
                 android:id="@+id/tv_search_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Payment"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textStyle="bold"
-                android:textSize="17sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="10dp"
-                android:textColor="#C2FBFBFB"/>
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="My Payment"
+                android:textColor="#C2FBFBFB"
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -47,14 +48,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp">
+        android:background="@drawable/payment">
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"

@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/colorTransparentBlack"
             app:cardElevation="10dp">
 
             <LinearLayout
@@ -55,7 +56,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#F8FAF8"
+                        android:textStyle="bold"
                         android:textSize="17dp" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -68,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:hint="price"
-                            android:textColor="#56C86F"
+                            android:textColor="#F8FAF8"
                             android:textSize="12dp" />
                         <TextView
                             android:id="@+id/date"
@@ -76,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:hint="date"
-                            android:textColor="#56C86F"
+                            android:textColor="#F8FAF8"
                             android:textSize="12dp" />
                     </LinearLayout>
 

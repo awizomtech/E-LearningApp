@@ -8,13 +8,6 @@
     android:gravity="center_horizontal"
     android:background="@drawable/loginbk"
     tools:context=".Activity.LoginActivity">
-    <ImageView
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/loginicon"
-        />
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -23,131 +16,114 @@
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:text="Register"
-
+         android:visibility="gone"
         android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"
         android:layout_marginEnd="20dp"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-           android:layout_margin="5dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_name"
+                <ImageView
+                    android:layout_marginTop="100dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_height="150dp"
+                    android:src="@drawable/logo"
+                    />
 
                     <EditText
                         android:id="@+id/et_fname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="text"
                         android:maxLines="1"
                         android:textSize="12sp"
-                        android:hint="First Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_lname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
+                       android:hint="First Name" />
 
                     <EditText
                         android:id="@+id/et_lname"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="text"
                         android:maxLines="1"
                         android:textSize="12sp"
                         android:hint="Last Name" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_mob"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
 
                     <EditText
                         android:id="@+id/et_mob"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/ic_baseline_phone_android_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="number"
                         android:maxLines="1"
                         android:maxLength="10"
                         android:textSize="12sp"
                         android:hint="Mobile Number" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
 
                     <EditText
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/new_email_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:textSize="12sp"
                         android:hint="Email" />
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
 
                     <EditText
                         android:id="@+id/et_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/ic_baseline_lock_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:textSize="12sp"
                         android:maxLength="6"
                         android:hint="Password" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_cpassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp">
 
                     <EditText
                         android:id="@+id/et_cpassword"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:drawableLeft="@drawable/ic_baseline_lock_24"
+                        android:drawablePadding="10dp"
+                        android:background="@drawable/edit_text_shape"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:textSize="12sp"
                         android:maxLength="6"
                         android:hint="Confirm Password" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_register"
@@ -157,7 +133,7 @@
                     android:background="@drawable/save_post_bg"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="5dp"
                     android:layout_alignParentBottom="true">
 
@@ -176,22 +152,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:textSize="12sp"
+                    android:textColor="#fff"
                     android:text="You Have  Account ? Click Here"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_marginTop="60dp"
-        android:textColor="#507AF8"
-        android:text="Design and Developed by awizom Tech"/>
 </LinearLayout>
 
 

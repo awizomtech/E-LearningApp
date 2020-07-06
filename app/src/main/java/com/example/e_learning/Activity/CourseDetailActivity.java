@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.e_learning.Adapter.CourseDetailAdapter;
@@ -46,6 +47,13 @@ String cname,descript,price,cid,duration,startdate,date;
     }
 
     private void InitView() {
+        ImageView backpress=findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         Enroll = findViewById(R.id.enroll);
         Price = findViewById(R.id.price);
         startDate = findViewById(R.id.tv_starts_on);

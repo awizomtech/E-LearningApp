@@ -24,7 +24,8 @@
         <item
             android:id="@+id/nav_quiz"
             android:icon="@drawable/ic_courses"
-            android:title="Quiz" />
+            android:title="Quiz"
+            android:visible="false"/>
 
     </group>
     <item android:title="Action Tools">

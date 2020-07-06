@@ -53,7 +53,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
         holder.Date.setText("Date " + date);
         holder.Price.setText(String.valueOf("Pay Amount " + n.Amount + "₹"));
 
-        holder.Duration.setText("Duration " + n.EMIDuration.toString());
+      /*  holder.Duration.setText("Duration " + n.EMIDuration.toString());
         holder.Emitype.setText("EMI Type " + n.EMIType.toString());
         holder.Interest.setText("Interest Amount " + n.EmiIntrest.toString());
         holder.Mothlypay.setText("Monthly Pay " + n.Amount + "₹");
@@ -61,7 +61,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
             holder.Emisection.setVisibility(LinearLayout.VISIBLE);
         }else {
             holder.Emisection.setVisibility(LinearLayout.GONE);
-        }
+        }*/
 
         if (!n.PaymentStatus == true) {
             holder.Verified.setVisibility(CardView.GONE);
@@ -102,12 +102,12 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
             imageView = view.findViewById(R.id.image);
             Cardview = view.findViewById(R.id.cardview);
             Verify = view.findViewById(R.id.virify);
-            Emitype = view.findViewById(R.id.emitype);
+           /* Emitype = view.findViewById(R.id.emitype);
             Interest = view.findViewById(R.id.interest);
             Duration = view.findViewById(R.id.duration);
             PayableAmt = view.findViewById(R.id.payableAmt);
             Mothlypay = view.findViewById(R.id.mothlypay);
-            Emisection = view.findViewById(R.id.emisection);
+            Emisection = view.findViewById(R.id.emisection);*/
             Verify = view.findViewById(R.id.virify);
             Verified = view.findViewById(R.id.virified);
         }
