@@ -44,7 +44,7 @@
                     android:layout_marginStart="10dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Home"
+                    android:text="Edu4Sports"
                     android:textColor="#C2FBFBFB"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -135,7 +135,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Courses"
                                 android:textAlignment="center"
-                                android:textColor="#237723"
+                                android:textColor="#0D4077"
                                 android:layout_marginTop="5dp"
                                 android:textSize="18dp" />
                         </LinearLayout>
@@ -167,7 +167,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Subscription"
                                 android:textAlignment="center"
-                                android:textColor="#237723"
+                                android:textColor="#0D4077"
                                 android:layout_marginTop="5dp"
                                 android:textSize="18dp" />
                         </LinearLayout>
@@ -206,7 +206,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Payment"
                                 android:textAlignment="center"
-                                android:textColor="#237723"
+                                android:textColor="#0D4077"
                                 android:layout_marginTop="5dp"
                                 android:textSize="18dp" />
                         </LinearLayout>
@@ -238,7 +238,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="Fitness Test"
                                 android:textAlignment="center"
-                                android:textColor="#237723"
+                                android:textColor="#0D4077"
                                 android:layout_marginTop="5dp"
                                 android:textSize="18dp" />
                         </LinearLayout>

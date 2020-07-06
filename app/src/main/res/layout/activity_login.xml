@@ -121,15 +121,89 @@
                     android:textStyle="bold"
                     android:textSize="12sp"
                     android:text="You Have not Account ? Click Here"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="#fff"
+                    android:paddingTop="10dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:text="Or"/>
+
+
 
                 <LinearLayout
                     android:id="@+id/ll_switch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_border"
+                            android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/google"/>
+
+                            <TextView
+                                android:id="@+id/tv_google"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorGreen"
+                                android:layout_marginStart="10dp"
+                                android:textSize="14sp"
+                                android:text="Google"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="12dp"
+                            android:paddingBottom="12dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/fb_bg"
+                            android:layout_weight="1">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/facebook"/>
+
+                            <TextView
+                                android:id="@+id/tv_facebook"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:layout_marginStart="10dp"
+                                android:textSize="14sp"
+                                android:text="Facebook"/>
+                        </LinearLayout>
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>

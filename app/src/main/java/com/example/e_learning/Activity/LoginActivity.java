@@ -7,8 +7,10 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -41,6 +43,7 @@ ProgressDialog progressDialog;
     }
     private void InitView() {
          progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         username=findViewById(R.id.et_usename);
@@ -57,7 +60,14 @@ ProgressDialog progressDialog;
                 }else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
                     password.setError("Required !");
                 } else {
-                    progressDialog.show();
+               /*     progressDialog.show();*/
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                    LayoutInflater inflater = getLayoutInflater();
+                    final View dialogView = inflater.inflate(R.layout.progress_dialog, null);
+                    alertbox.setView(dialogView);
+                    alertbox.setCancelable(false);
+                    final AlertDialog b = alertbox.create();
+                    b.show();
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                             String Username = username.getText().toString();
@@ -68,10 +78,12 @@ ProgressDialog progressDialog;
                                 String first=result.split(":")[1];
                                 String second=first.split(",")[0];
                                 if (result.isEmpty()) {
+                                    b.dismiss();
                                     progressDialog.dismiss();
                                     Toast.makeText(getApplicationContext(), "Invalid request", Toast.LENGTH_SHORT).show();
                                 }
                                 else  {
+                                    b.dismiss();
                                     Type listType = new TypeToken<LoginModel>() {
                                     }.getType();
                                     LoginModel loginModel = new Gson().fromJson(result, listType);
@@ -109,6 +121,7 @@ ProgressDialog progressDialog;
                 startActivity(intent);
             }
         });
+
     }
 
 
