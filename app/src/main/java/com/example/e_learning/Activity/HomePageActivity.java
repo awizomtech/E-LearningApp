@@ -77,7 +77,7 @@ public class HomePageActivity extends AppCompatActivity {
                     Intent intent = new Intent(HomePageActivity.this, CourseListActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_quiz) {
-                    Intent intent = new Intent(HomePageActivity.this, QuizCourseActivity.class);
+                    Intent intent = new Intent(HomePageActivity.this, StartFitnessActivity.class);
                     startActivity(intent);
                 }
                 else if (id == R.id.nav_share) {

@@ -7,10 +7,63 @@
     tools:context=".Activity.FitnessTestActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/layout"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#3761F8"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_arrow_back_24" />
+                <TextView
+                    android:id="@+id/tv_search_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fitness Test"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#C2FBFBFB"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/layout"
+            android:background="@drawable/running"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/colorTransparentBlack">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
         <LinearLayout
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
@@ -20,15 +73,19 @@
                 android:layout_width="150dp"
                 android:textSize="20sp"
                 android:text="Distance :"
+                android:textColor="#fff"
+                android:textStyle="bold"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/distance"
                 android:layout_width="match_parent"
                 android:textSize="20sp"
+                android:textColor="#fff"
                 android:text="30 miter"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,16 +93,20 @@
             <TextView
                 android:layout_width="150dp"
                 android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
                 android:text="Running Time :"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/runningtime"
                 android:layout_width="match_parent"
                 android:textSize="20sp"
+                android:textColor="#fff"
                 android:text="10 sec"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,16 +114,20 @@
             <TextView
                 android:layout_width="150dp"
                 android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
                 android:text="Rest Time :"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resttime"
                 android:layout_width="match_parent"
                 android:textSize="20sp"
+                android:textColor="#fff"
                 android:text="10 sec"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,15 +135,89 @@
             <TextView
                 android:layout_width="150dp"
                 android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
                 android:text="Round :"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/round"
                 android:layout_width="match_parent"
+                android:textColor="#fff"
                 android:textSize="20sp"
                 android:text="10 sec"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="Current Round :"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/currentround"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:text="0"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="Total Time :"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/totaltime"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:text="0"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/startbtn"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="Start"
+                android:background="@drawable/fb_bg"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/stopbtn"
+                android:layout_width="match_parent"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="Stop"
+                android:background="@drawable/fb_bg"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
         <TextView
             android:id="@+id/counttime"
             android:layout_width="match_parent"
@@ -86,4 +225,8 @@
             android:textSize="30sp"
             android:layout_height="wrap_content" />
     </LinearLayout>
+</androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

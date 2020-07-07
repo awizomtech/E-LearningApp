@@ -18,6 +18,7 @@ import com.example.e_learning.Activity.CourseListActivity;
 import com.example.e_learning.Activity.MyCourseActivity;
 import com.example.e_learning.Activity.MyPaymentActivity;
 import com.example.e_learning.Activity.ProfileActivity;
+import com.example.e_learning.Activity.StartFitnessActivity;
 import com.example.e_learning.Adapter.CourseAdapter;
 import com.example.e_learning.Adapter.HomeCourseAdapter;
 import com.example.e_learning.Adapter.HomeQuizAdapter;
@@ -87,8 +88,8 @@ public class HomeFragment extends Fragment {
         Fitness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent= new Intent(getContext(), ProfileActivity.class);
-                startActivity(intent);*/
+                Intent intent= new Intent(getContext(), StartFitnessActivity.class);
+                startActivity(intent);
             }
         });
 

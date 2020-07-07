@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +13,7 @@ import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,95 +23,191 @@ import com.example.e_learning.R;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class FitnessTestActivity extends AppCompatActivity {
     TextToSpeech tts;
     String Speck = "";
     public int counter;
-    TextView counttime;
-
+    public int timer;
+    String distance, runningTime, restTime, round;
+   public int SetRunning,SetRest,SetRound;
+    TextView counttime, Distance, RunningTime, RestTime, Round, TotalTime, CurrentRound;
+    Button Start, Stop;
+    public int i;
+    CountDownTimer myCountDownTimer;
     @TargetApi(Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fitness_test);
         counttime = findViewById(R.id.counttime);
-        CoundowdStart();
-       /* new CountDownTimer(6000,1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                counttime.setText(String.valueOf(counter));
-                Speck =counttime.getText().toString();
-                SpeachText();
-                counter++;
-            }
-            @Override
-            public void onFinish() {
-                Speck="Go";
-                SpeachText();
-                RunningStart();
-                counttime.setText("Finished");
-            }
+        InitView();
+    }
 
-        }.start();*/
+    private void InitView() {
+        ImageView backpress=findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        Distance = findViewById(R.id.distance);
+        RunningTime = findViewById(R.id.runningtime);
+        RestTime = findViewById(R.id.resttime);
+        Round = findViewById(R.id.round);
+        CurrentRound = findViewById(R.id.currentround);
+        TotalTime = findViewById(R.id.totaltime);
+        Start = findViewById(R.id.startbtn);
+        Stop = findViewById(R.id.stopbtn);
+
+        distance = getIntent().getExtras().getString("Distance");
+        runningTime = getIntent().getExtras().getString("RunningTime");
+        restTime = getIntent().getExtras().getString("RestTime");
+        round = getIntent().getExtras().getString("Round");
+
+        Distance.setText(distance);
+        RunningTime.setText(runningTime);
+        RestTime.setText(restTime);
+        Round.setText(round);
+
+        String runtime= runningTime + "000";
+        String resttime= restTime + "000";
+        SetRunning=Integer.valueOf(runtime);
+        SetRest =Integer.valueOf(resttime);
+        SetRound =Integer.valueOf(round);
+        Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Start.setVisibility(Button.GONE);
+                Stop.setVisibility(Button.VISIBLE);
+                CoundowdStart();
+            }
+        });
+        Stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myCountDownTimer.cancel();
+                Start.setVisibility(Button.VISIBLE);
+                Stop.setVisibility(Button.GONE);
+            }
+        });
     }
 
     public void CoundowdStart() {
-        final int[] count1 = new int[1];
-        new CountDownTimer(6000, 1000) {
+
+      myCountDownTimer =  new CountDownTimer(6000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
-                Speck = String.valueOf(count1[0]);
+                Speck = String.valueOf(counter);
                 SpeachText();
-                count1[0]++;
+                TotalTime.setText(String.valueOf(timer));
+                CurrentRound.setText(String.valueOf(i));
+                timer++;
+                counter++;
             }
 
             @Override
             public void onFinish() {
+                counter=0;
                 Speck = "Go";
                 SpeachText();
                 RunningStart();
-                counttime.setText("Finished");
             }
 
         }.start();
     }
 
     public void RunningStart() {
-        new CountDownTimer(6000, 1000) {
+        myCountDownTimer =   new CountDownTimer(SetRunning, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                counter++;
+                TotalTime.setText(String.valueOf(timer));
+                timer++;
             }
 
             @Override
             public void onFinish() {
-                Speck = "Beep Beep Beep";
-                SpeachText();
-                RrestTime();
+                BeepVoicedealy();
             }
 
         }.start();
 
     }
 
-    public void RrestTime() {
-        new CountDownTimer(5000, 1000) {
+    public void BeepVoicedealy() {
+        myCountDownTimer =    new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Speck = "Rest   Kro   bhai";
-                counter++;
+                MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
+                ring.start();
+                TotalTime.setText(String.valueOf(timer));
+                timer++;
             }
 
             @Override
             public void onFinish() {
-                Speck = "Beeeeeeep";
-                SpeachText();
-                for (int i = 1; i < 5; i++) {
-                    CoundowdStart();
+                RrestTime();
+            }
+
+        }.start();
+    }
+
+    public void RrestTime() {
+        myCountDownTimer =   new CountDownTimer(SetRest, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep2);
+                ring.start();
+                TotalTime.setText(String.valueOf(timer));
+                timer++;
+            }
+
+            @Override
+            public void onFinish() {
+                NewStartDealy();
+            }
+
+        }.start();
+    }
+
+    public void NewStartDealy() {
+        myCountDownTimer =    new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
+                ring.start();
+                TotalTime.setText(String.valueOf(timer));
+                timer++;
+            }
+
+            @Override
+            public void onFinish() {
+
+                if (i <= SetRound) {
+                    i = i + 1;
+
+                    new CountDownTimer(1000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            Speck = "Round " + i;
+                            SpeachText();
+                            TotalTime.setText(String.valueOf(timer));
+                            timer++;
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            CoundowdStart();
+                        }
+                    }.start();
+
+                } else {
+                    Speck = "All Rounds Completed";
+                    SpeachText();
+                    Start.setVisibility(Button.VISIBLE);
+                    Stop.setVisibility(Button.GONE);
                 }
             }
 
