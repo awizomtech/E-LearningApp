@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -35,6 +36,7 @@ EditText username,password;
 TextView Register;
 String result;
 ProgressDialog progressDialog;
+    private Context mCtx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,13 +76,11 @@ ProgressDialog progressDialog;
                             String Password = password.getText().toString();
                             try {
                                 result = new AccountHelper.LogIn().execute(Username.toString(), Password.toString()).get();
-
                                 String first=result.split(":")[1];
                                 String second=first.split(",")[0];
-                                if (result.isEmpty()) {
+                                if (second.contains("null")) {
                                     b.dismiss();
-                                    progressDialog.dismiss();
-                                    Toast.makeText(getApplicationContext(), "Invalid request", Toast.LENGTH_SHORT).show();
+                               /*     Toast.makeText(LoginActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();*/
                                 }
                                 else  {
                                     b.dismiss();
@@ -96,7 +96,6 @@ ProgressDialog progressDialog;
                                         loginmodel1.UserName = usernamebyres;
                                         loginmodel1.ID=Integer.valueOf(studid);
                                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
-                                        progressDialog.dismiss();
                                         Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                         startActivity(intent);
                                     } else {

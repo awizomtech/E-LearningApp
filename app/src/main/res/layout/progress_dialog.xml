@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.com/tools"
     xmlns:tools2="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:background="@color/colorTransparentBlack"
     android:layout_height="wrap_content">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/ball1"
         android:foregroundGravity="center"

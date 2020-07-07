@@ -2,6 +2,7 @@ package com.example.e_learning.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import java.util.List;
 
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.example.e_learning.AppConfig.AppConfig.BASE_URL;
 
 public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.MyViewHolder> {
 
@@ -61,6 +64,7 @@ public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.MyViewHo
                        intent.putExtra("Type",type.toString());
                        intent.putExtra("url",URL);
                        mCtx.startActivity(intent);
+
                    }
                });
            }else if(type.equals("PDF")){
@@ -72,10 +76,18 @@ public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.MyViewHo
                    public void onClick(View v) {
                        String type=n.Type.toString();
                        String URL=n.Video.toString();
-                       Intent intent = new Intent(mCtx, ReadActivity.class);
+
+                       Intent testIntent = new Intent(Intent.ACTION_VIEW);
+                       testIntent.setType("application/pdf");
+                       Intent intent = new Intent();
+                       intent.setAction(Intent.ACTION_VIEW);
+                       Uri uri = Uri.parse(BASE_URL+URL);
+                       intent.setDataAndType(uri, "application/pdf");
+                       mCtx.startActivity(intent);
+                      /* Intent intent = new Intent(mCtx, ReadActivity.class);
                        intent.putExtra("Type",type.toString());
                        intent.putExtra("url",URL);
-                       mCtx.startActivity(intent);
+                       mCtx.startActivity(intent);*/
                    }
                });
            }else {

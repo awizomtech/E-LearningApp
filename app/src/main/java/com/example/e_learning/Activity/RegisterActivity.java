@@ -2,9 +2,11 @@ package com.example.e_learning.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -71,7 +73,13 @@ public class RegisterActivity extends AppCompatActivity {
                     password.setError("Password are not match !");
                 }
                 else {
-                    progressDialog.show();
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                    LayoutInflater inflater = getLayoutInflater();
+                    final View dialogView = inflater.inflate(R.layout.progress_dialog, null);
+                    alertbox.setView(dialogView);
+                    alertbox.setCancelable(false);
+                    final AlertDialog b = alertbox.create();
+                    b.show();
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                     String fname = firtname.getText().toString();
@@ -83,10 +91,12 @@ public class RegisterActivity extends AppCompatActivity {
                     try {
                         result = new AccountHelper.PostRegister().execute(fname.toString(), lname.toString(),mob.toString(), email.toString(),pass.toString(), gender.toString()).get();
                         if (result.isEmpty()) {
+                            b.dismiss();
                             progressDialog.dismiss();
                             Toast.makeText(RegisterActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();
                             result = new AccountHelper.PostRegister().execute(fname.toString(), lname.toString(),mob.toString(), email.toString(),pass.toString(), gender.toString()).get();
                         } else {
+                            b.dismiss();
                             progressDialog.dismiss();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 startActivity(intent);
