@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.e_learning">
+    package="com.awizomtech.elearning">
 
     <application
         android:allowBackup="true"
@@ -11,24 +11,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.StartFitnessActivity"
+        <activity android:name="com.awizomtech.elearning.Activity.StartFitnessActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".Activity.FitnessTestActivity"
+            android:name="com.awizomtech.elearning.Activity.FitnessTestActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".Activity.QuizResultActivity"
+            android:name="com.awizomtech.elearning.Activity.QuizResultActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.QuizCourseActivity"
+            android:name="com.awizomtech.elearning.Activity.QuizCourseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.QuizActivity"
+            android:name="com.awizomtech.elearning.Activity.QuizActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name="com.awizomtech.elearning.Activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,44 +37,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.RegisterActivity"
+            android:name="com.awizomtech.elearning.Activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.PaymentActivity"
+            android:name="com.awizomtech.elearning.Activity.PaymentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ProfileActivity"
+            android:name="com.awizomtech.elearning.Activity.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.MyPaymentActivity"
+            android:name="com.awizomtech.elearning.Activity.MyPaymentActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.MyCourseActivity"
+            android:name="com.awizomtech.elearning.Activity.MyCourseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.ReadActivity"
+        <activity android:name="com.awizomtech.elearning.Activity.ReadActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name=".Activity.LearningActivity"
+            android:name="com.awizomtech.elearning.Activity.LearningActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.SubscriptionActivity"
+            android:name="com.awizomtech.elearning.Activity.SubscriptionActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.LoginActivity"
+            android:name="com.awizomtech.elearning.Activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.CourseDetailActivity"
+            android:name="com.awizomtech.elearning.Activity.CourseDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.CourseListActivity"
+            android:name="com.awizomtech.elearning.Activity.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.VerifyPhoneActivity" />
+        <activity android:name="com.awizomtech.elearning.Activity.VerifyPhoneActivity" />
         <activity
-            android:name=".Activity.HomePageActivity"
+            android:name="com.awizomtech.elearning.Activity.HomePageActivity"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.LoginRegisterActivity" />
-        <activity android:name=".Activity.MainActivity" />
+        <activity android:name="com.awizomtech.elearning.Activity.LoginRegisterActivity" />
+        <activity android:name="com.awizomtech.elearning.Activity.MainActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
