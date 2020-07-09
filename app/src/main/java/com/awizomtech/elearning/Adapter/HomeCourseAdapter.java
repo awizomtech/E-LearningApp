@@ -12,7 +12,7 @@ package com.awizomtech.elearning.Adapter;
 
         import com.bumptech.glide.Glide;
         import com.awizomtech.elearning.AppConfig.AppConfig;
-        import com.awizomtech.elearning.Activity.CourseDetailActivity;
+        import com.awizomtech.elearning.Activity.CourseLevelActivity;
         import com.awizomtech.elearning.Model.CourseListModel;
         import com.awizomtech.elearning.R;
 
@@ -53,12 +53,12 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
         final CourseListModel n = courseListModelList.get(position);
         holder.Coursename.setText(n.CourseName.toString());
         holder.Courseid.setText(String.valueOf(n.CourseID));
-        String date=n.getStartsFrom().split("T")[0];
-        String Pdate=n.getCreatedOn().split("T")[0];
+       /* String date=n.getStartsFrom().split("T")[0];
+        String Pdate=n.getCreatedOn().split("T")[0];*/
        /* holder.bodyNoti.setText("Start From : " +date);
         holder.pdate.setText("Date" +Pdate);*/
-        holder.bodyNoti.setText("Price " +n.Price+"₹");
-        holder.pdate.setText("Duration " +n.Duration);
+      /*  holder.bodyNoti.setText("Price " +n.Price+"₹");
+        holder.pdate.setText("Duration " +n.Duration);*/
         try {
             Glide.with(mCtx).load(AppConfig.BASE_URL+n.CourseImage.toString()).into(holder.imageView);
         } catch (Exception e) {
@@ -67,19 +67,8 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
         holder.Cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cname= n.getCourseName().toString();
-                String descript= n.getDescription().toString();
-                String price = String.valueOf(n.getPrice());
                 String cid = String.valueOf(n.getCourseID());
-                String duration = n.getDuration();
-                String startdate=n.getStartsFrom().toString();
-                Intent intent = new Intent(mCtx, CourseDetailActivity.class);
-                intent.putExtra("Cname",cname);
-                intent.putExtra("Descript",descript);
-                intent.putExtra("Price",price);
-                intent.putExtra("Cid",cid);
-                intent.putExtra("Duration",duration);
-                intent.putExtra("Startdate",startdate);
+                Intent intent = new Intent(mCtx, CourseLevelActivity.class);
                 mCtx.startActivity(intent);
             }
         });
@@ -87,19 +76,10 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
         holder.Details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cname= n.getCourseName().toString();
-                String descript= n.getDescription().toString();
-                String price = String.valueOf(n.getPrice());
+
                 String cid = String.valueOf(n.getCourseID());
-                String duration = n.getDuration();
-                String startdate=n.getStartsFrom().toString();
-                Intent intent = new Intent(mCtx, CourseDetailActivity.class);
-                intent.putExtra("Cname",cname);
-                intent.putExtra("Descript",descript);
-                intent.putExtra("Price",price);
+                Intent intent = new Intent(mCtx, CourseLevelActivity.class);
                 intent.putExtra("Cid",cid);
-                intent.putExtra("Duration",duration);
-                intent.putExtra("Startdate",startdate);
                 mCtx.startActivity(intent);
             }
         });

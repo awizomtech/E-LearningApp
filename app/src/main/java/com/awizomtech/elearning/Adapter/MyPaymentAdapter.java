@@ -48,6 +48,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final PaymentModel n = paymentModelList.get(position);
         holder.Coursename.setText(n.CourseName.toString());
+        holder.Level.setText(String.valueOf(n.getLevel()));
         holder.Courseid.setText(String.valueOf(n.CourseID));
         String date = n.getPaymentDate().split("T")[0];
         holder.Date.setText("Date " + date);
@@ -87,7 +88,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Coursename, Courseid, Price, Date, Emitype, Interest, Duration, PayableAmt, Mothlypay;
+        TextView Coursename, Courseid, Price, Date, Level;
         ImageView imageView;
         CardView Cardview, Verify, Verified;
         LinearLayout Emisection;
@@ -102,6 +103,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
             imageView = view.findViewById(R.id.image);
             Cardview = view.findViewById(R.id.cardview);
             Verify = view.findViewById(R.id.virify);
+            Level = view.findViewById(R.id.courselevel);
            /* Emitype = view.findViewById(R.id.emitype);
             Interest = view.findViewById(R.id.interest);
             Duration = view.findViewById(R.id.duration);

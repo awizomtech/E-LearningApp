@@ -1,16 +1,15 @@
 package com.awizomtech.elearning.Activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.awizomtech.elearning.Adapter.CourseDetailAdapter;
+import com.awizomtech.elearning.Adapter.CourseLevelAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
-import com.awizomtech.elearning.Model.CourseDetailModel;
+import com.awizomtech.elearning.Model.CourseLevelModel;
 import com.awizomtech.elearning.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,10 +23,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class CourseDetailActivity extends AppCompatActivity {
-
-    CourseDetailAdapter adapter;
-    private List<CourseDetailModel> courseDetailModels;
+public class CourseLevelActivity extends AppCompatActivity {
+    static CourseLevelActivity INSTANCE;
+    String data="FirstActivity";
+    CourseLevelAdapter adapter;
+    private List<CourseLevelModel> courseLevelModels;
     CardView Enroll;
     TextView Price, startDate, CourseName, Description, Duration, Cid;
     RecyclerView recyclerview;
@@ -38,7 +38,8 @@ String cname,descript,price,cid,duration,startdate,date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_detail);
+        setContentView(R.layout.activity_course_level);
+        INSTANCE=this;
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
@@ -54,29 +55,15 @@ String cname,descript,price,cid,duration,startdate,date;
                 onBackPressed();
             }
         });
-        Enroll = findViewById(R.id.enroll);
-        Price = findViewById(R.id.price);
-        startDate = findViewById(R.id.tv_starts_on);
         CourseName = findViewById(R.id.tv_course_name);
-        Description = findViewById(R.id.tv_discription);
-        Duration = findViewById(R.id.tv_duration);
         Cid = findViewById(R.id.tv_cid);
         recyclerview = findViewById(R.id.recyclerView);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
-
-        cname = getIntent().getExtras().getString("Cname");
-        descript = getIntent().getExtras().getString("Descript");
-        price = getIntent().getExtras().getString("Price");
+        cname = getIntent().getExtras().getString("CourseName");
         cid = getIntent().getExtras().getString("Cid");
-        duration = getIntent().getExtras().getString("Duration");
-        startdate = getIntent().getExtras().getString("Startdate");
-        date = startdate.split("T")[0];
-        Price.setText(price + "₹");
-        startDate.setText(date);
-        CourseName.setText(cname);
-        Description.setText(descript);
-        Duration.setText(duration);
         Cid.setText(cid);
+        data=cname;
+        CourseName.setText(cname);
 
         recyclerview.setHasFixedSize(true);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -87,41 +74,38 @@ String cname,descript,price,cid,duration,startdate,date;
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-
-        Enroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CourseDetailActivity.this, SubscriptionActivity.class);
-                intent.putExtra("Cname",cname);
-                intent.putExtra("Price",price);
-                intent.putExtra("Cid",cid);
-                intent.putExtra("Duration",duration);
-              startActivity(intent);
-            }
-        });
-
         GetCourseDetail();
     }
 
     private void GetCourseDetail() {
         try {
             String cid=Cid.getText().toString();
-            result = new UserHelper.GetCourseTopicList().execute(cid.toString()).get();
+            result = new UserHelper.GetCourseLevelList().execute(cid.toString()).get();
             if (result.isEmpty()) {
                 progressDialog.dismiss();
             } else {
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<CourseDetailModel>>() {
+                Type listType = new TypeToken<List<CourseLevelModel>>() {
                 }.getType();
                 progressDialog.dismiss();
-                courseDetailModels = new Gson().fromJson(result, listType);
-                Log.d("Error", courseDetailModels.toString());
-                adapter = new CourseDetailAdapter(CourseDetailActivity.this, courseDetailModels);
+                courseLevelModels = new Gson().fromJson(result, listType);
+                Log.d("Error", courseLevelModels.toString());
+                adapter = new CourseLevelAdapter(CourseLevelActivity.this, courseLevelModels);
                 recyclerview.setAdapter(adapter);
             }
         } catch (Exception e) {
             e.printStackTrace();
 
         }
+    }
+
+    public static CourseLevelActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
+
+    public String getData()
+    {
+        return this.data;
     }
 }

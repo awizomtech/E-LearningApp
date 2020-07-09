@@ -84,11 +84,11 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-    public static final class GetCourseTopicList extends AsyncTask<String, Void, String> {
+    public static final class GetCourseLevelList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
 
-         String cid = params[0];
+            String cid = params[0];
 
             String json = "";
             try {
@@ -96,6 +96,79 @@ public class UserHelper extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
                 builder.url(AppConfig.BASE_URL_API+"GetCourseDetail?CourseID="+cid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+    public static final class GetLeveleTopicList extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String cid = params[0];
+         String levelid = params[1];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetLevelTopic?CourseID="+cid+"&LevelId="+levelid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+    public static final class GetFreeTopicList extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            String cid = params[0];
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetFreeTopic?CourseID="+cid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
                 okhttp3.Response response = client.newCall(builder.build()).execute();
@@ -243,13 +316,14 @@ public class UserHelper extends AppCompatActivity {
             String cid = params[1];
             String price = params[2];
             String transactionid = params[3];
+            String lid = params[4];
 
         String json = "";
             try {
 
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder.url(AppConfig.BASE_URL_API+"paymenntpost?UserId="+usetid+"&CourseId="+cid+"&cprice="+price+"&TransactionID="+transactionid);
+                builder.url(AppConfig.BASE_URL_API+"paymenntpost?UserId="+usetid+"&CourseId="+cid+"&cprice="+price+"&TransactionID="+transactionid+"&LevelID="+lid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
                 //builder.addHeader("Authorization", "Bearer " + accesstoken);
@@ -428,6 +502,46 @@ public class UserHelper extends AppCompatActivity {
                 parameters.add("QuizID", quizid);
                 parameters.add("UsetID", userid);
                 builder.post(parameters.build());*/
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
+
+
+    public static final class GetMyCourseLevelList extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String cid = params[0];
+            String userid = params[1];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetMyCLevel?CourseID="+cid+"&UsetID="+userid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
                     json = response.body().string();

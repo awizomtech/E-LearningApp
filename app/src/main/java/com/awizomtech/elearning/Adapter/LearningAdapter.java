@@ -9,8 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.awizomtech.elearning.Helper.UserHelper;
-import com.awizomtech.elearning.Model.CourseDetailModel;
+import com.awizomtech.elearning.Model.CourseLevelModel;
 import com.awizomtech.elearning.Model.LectureModel;
+import com.awizomtech.elearning.Model.LevelTopicModel;
 import com.awizomtech.elearning.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -23,12 +24,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.MyViewHolder> {
     LectureAdapter adapter;
-    private List<CourseDetailModel> courseDetailModelList;
+    private List<LevelTopicModel> levelTopicModelList;
     private List<LectureModel> lectureModels;
     private Context mCtx;
 
-    public LearningAdapter(Context baseContext, List<CourseDetailModel> courseDetailModelList) {
-        this.courseDetailModelList = courseDetailModelList;
+    public LearningAdapter(Context baseContext, List<LevelTopicModel> levelTopicModelList) {
+        this.levelTopicModelList = levelTopicModelList;
         this.mCtx = baseContext;
 
     }
@@ -47,8 +48,8 @@ public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        final CourseDetailModel n = courseDetailModelList.get(position);
-        holder.Coursename.setText(n.PlannerList.toString());
+        final LevelTopicModel n = levelTopicModelList.get(position);
+        holder.Coursename.setText(n.getPlannerList().toString());
         holder.Down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +70,7 @@ public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.MyView
             }
         });
         try {
-            String cid = String.valueOf(n.PlannerDetailID);
+            String cid = String.valueOf(n.getPlannerDetailID());
             String   result = new UserHelper.GetLectureList().execute(cid.toString()).get();
             if (result.isEmpty()) {
             } else {
@@ -79,7 +80,7 @@ public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.MyView
                 lectureModels = new Gson().fromJson(result, listType);
                 Log.d("Error", lectureModels.toString());
                 adapter = new LectureAdapter(mCtx, lectureModels);
-              /*  holder.LectureView.setAdapter(adapter);*/
+                holder.LectureView.setAdapter(adapter);
                 holder.LectureView.setAdapter(adapter);
             }
         } catch (Exception e) {
@@ -92,7 +93,7 @@ public class LearningAdapter extends RecyclerView.Adapter<LearningAdapter.MyView
     @Override
     public int getItemCount() {
 
-        return courseDetailModelList.size();
+        return levelTopicModelList.size();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

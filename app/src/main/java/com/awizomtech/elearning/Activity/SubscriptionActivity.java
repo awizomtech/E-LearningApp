@@ -21,11 +21,12 @@ import java.util.concurrent.ExecutionException;
 
 public class SubscriptionActivity extends AppCompatActivity {
 
-    String cname, price, cid, duration;
-    TextView Tv_coursename, Tv_price, Tv_duration,PayableAmt;
+    String cname,level, price, cid, duration,levelId;
+    TextView Tv_coursename, Tv_price, Tv_duration,PayableAmt,Tv_LevelID,Tv_Level;
 EditText Transactionid;
 CardView Next;
 String result;
+
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ String result;
 
         InitView();
     }
-
     private void InitView() {
 
         ImageView backpress=findViewById(R.id.back);
@@ -47,20 +47,23 @@ String result;
                 onBackPressed();
             }
         });
-      /*  SelectPay  = (Spinner) findViewById(R.id.selectpaymenttype);
-        SelectEmi  = (Spinner) findViewById(R.id.selectemi);*/
         Tv_coursename = findViewById(R.id.tv_course_name);
         Tv_price = findViewById(R.id.tv_price);
         Tv_duration = findViewById(R.id.tv_duration);
+        Tv_LevelID = findViewById(R.id.tv_levelid);
+        Tv_Level = findViewById(R.id.tv_level_name);
         Next = findViewById(R.id.enroll);
         Transactionid = findViewById(R.id.transactionid);
         PayableAmt = findViewById(R.id.tv_payable);
-        cname = getIntent().getExtras().getString("Cname");
+        levelId = getIntent().getExtras().getString("levelID");
         price = getIntent().getExtras().getString("Price");
         cid = getIntent().getExtras().getString("Cid");
         duration = getIntent().getExtras().getString("Duration");
-
-        Tv_coursename.setText(cname.toString());
+        level = getIntent().getExtras().getString("level");
+        cname=CourseLevelActivity.getActivityInstance().getData();
+        Tv_LevelID.setText(levelId);
+        Tv_coursename.setText("Course Name : "+cname.toString());
+        Tv_Level.setText("Level Name : "+level.toString());
         Tv_price.setText(price.toString()+"₹");
         Tv_duration.setText(duration.toString());
         PayableAmt.setText(price.toString()+"₹");
@@ -74,9 +77,10 @@ String result;
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                     try {
+                        String lid=Tv_LevelID.getText().toString();
                         String transactionid=Transactionid.getText().toString();
                         String usetid=SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getUserID();
-                        result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString()).get();
+                        result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString(),lid.toString()).get();
                         if (result.isEmpty()) {
                             progressDialog.dismiss();
                         } else {

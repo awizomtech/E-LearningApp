@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 import com.awizomtech.elearning.Adapter.LearningAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
-import com.awizomtech.elearning.Model.CourseLevelModel;
 import com.awizomtech.elearning.Model.LevelTopicModel;
 import com.awizomtech.elearning.R;
 import com.google.gson.Gson;
@@ -22,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class LearningActivity extends AppCompatActivity {
+public class FreeLearningActivity extends AppCompatActivity {
     LearningAdapter adapter;
     private List<LevelTopicModel> levelTopicModels;
     RecyclerView recyclerview;
@@ -32,7 +31,7 @@ public class LearningActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learning);
+        setContentView(R.layout.activity_free_learning);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
@@ -65,9 +64,8 @@ public class LearningActivity extends AppCompatActivity {
 
     private void GetCourseDetail() {
         try {
-             String cid = getIntent().getExtras().getString("Cid");
-            String levelid = getIntent().getExtras().getString("levelID");
-            result = new UserHelper.GetLeveleTopicList().execute(cid.toString(),levelid.toString()).get();
+            String cid = getIntent().getExtras().getString("Cid");
+            result = new UserHelper.GetFreeTopicList().execute(cid.toString()).get();
             if (result.isEmpty()) {
                 progressDialog.dismiss();
             } else {
@@ -77,7 +75,7 @@ public class LearningActivity extends AppCompatActivity {
                 progressDialog.dismiss();
                 levelTopicModels = new Gson().fromJson(result, listType);
                 Log.d("Error", levelTopicModels.toString());
-                adapter = new LearningAdapter(LearningActivity.this, levelTopicModels);
+                adapter = new LearningAdapter(FreeLearningActivity.this, levelTopicModels);
                 recyclerview.setAdapter(adapter);
             }
         } catch (Exception e) {

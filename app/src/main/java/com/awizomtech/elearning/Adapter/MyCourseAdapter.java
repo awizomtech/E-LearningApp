@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.awizomtech.elearning.Activity.FreeLearningActivity;
+import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
-import com.awizomtech.elearning.Activity.LearningActivity;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
 
@@ -52,24 +54,61 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
         final CourseListModel n = courseListModelList.get(position);
         holder.Coursename.setText(n.CourseName.toString());
         holder.Courseid.setText(String.valueOf(n.CourseID));
-        String date=n.getStartsFrom().split("T")[0];
-        String Pdate=n.getCreatedOn().split("T")[0];
-        holder.bodyNoti.setText("Price " +n.Price+"₹");
-        holder.pdate.setText("Duration " +n.Duration);
+        /*String date=n.getStartsFrom().split("T")[0];
+        String Pdate=n.getCreatedOn().split("T")[0];*/
+       /* holder.bodyNoti.setText("Price " +n.Price+"₹");
+        holder.pdate.setText("Duration " +n.Duration);*/
         try {
             Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        holder.Cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String cid = String.valueOf(n.getCourseID());
+        String ctype = String.valueOf(n.getType());
+        if (ctype.contains("Free")) {
+            holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, FreeLearningActivity.class);
+                        intent.putExtra("Cid",cid);
+                        mCtx.startActivity(intent);
+                }
+            });
+        }else if (!n.PaymentStatus == true) {
+            holder.PaymnetStatus.setVisibility(CardView.VISIBLE);
+            holder.PaymnetStatus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mCtx, "When Your Payment is Verified Then Read Course",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }else {
+            holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                /*String cid = String.valueOf(n.getCourseID());
                 Intent intent = new Intent(mCtx, LearningActivity.class);
                 intent.putExtra("Cid",cid);
-                mCtx.startActivity(intent);
-            }
-        });
+                mCtx.startActivity(intent);*/
+                   /* String ctype = String.valueOf(n.getType());
+                    if (ctype.contains("Free")) {
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, FreeLearningActivity.class);
+                        intent.putExtra("Cid",cid);
+                        mCtx.startActivity(intent);
+                    } else {*/
+                        String coursename = String.valueOf(n.getCourseName());
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, MyCourseLevelActivity.class);
+                        intent.putExtra("CourseName", coursename);
+                        intent.putExtra("Cid", cid);
+                        mCtx.startActivity(intent);
+               /*     }*/
+                }
+            });
+        }
+
 
     }
 
@@ -77,7 +116,6 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
     public int getItemCount() {
 
         return courseListModelList.size();
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -93,7 +131,7 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
 
         TextView bodyNoti, Coursename, Courseid,pdate;
         ImageView imageView;
-        CardView Cardview;
+        CardView Cardview,PaymnetStatus;
         @RequiresApi(api = Build.VERSION_CODES.M)
         public MyViewHolder(View view) {
             super(view);
@@ -103,6 +141,8 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
             Coursename = view.findViewById(R.id.coursename);
             imageView=view.findViewById(R.id.image);
             Cardview=view.findViewById(R.id.cardview);
+            PaymnetStatus=view.findViewById(R.id.virify);
+
         }
 
 

@@ -22,8 +22,17 @@ public class PaymentModel {
     public boolean IsPaymentDone;
     public String CourseName;
     public int CategoryID;
-    public float Price;
 
+    public String getLevel() {
+        return Level;
+    }
+
+    public void setLevel(String level) {
+        Level = level;
+    }
+
+    public float Price;
+    public String Level;
     public String getFirstName() {
         return FirstName;
     }

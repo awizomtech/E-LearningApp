@@ -2,43 +2,19 @@ package com.awizomtech.elearning.Model;
 
 public class CourseListModel {
     public int CourseID ;
-
-    public int CategoryID ;
-
     public String CourseName ;
-
-    public String CourseCode;
-
     public String Description ;
-
-    public String StartsFrom;
-
-    public String Duration;
-
-    public String getStartsFrom() {
-        return StartsFrom;
-    }
-
-    public void setStartsFrom(String startsFrom) {
-        StartsFrom = startsFrom;
-    }
-
-    public int ProfessorID;
-
-    public float Price;
-
     public String CourseImage;
-
-    public String InstructorID;
-
+    public String Type;
     public String CreatedOn;
+    public boolean PaymentStatus;
 
-    public String getCreatedOn() {
-        return CreatedOn;
+    public boolean isPaymentStatus() {
+        return PaymentStatus;
     }
 
-    public void setCreatedOn(String createdOn) {
-        CreatedOn = createdOn;
+    public void setPaymentStatus(boolean paymentStatus) {
+        PaymentStatus = paymentStatus;
     }
 
     public int getCourseID() {
@@ -49,28 +25,12 @@ public class CourseListModel {
         CourseID = courseID;
     }
 
-    public int getCategoryID() {
-        return CategoryID;
-    }
-
-    public void setCategoryID(int categoryID) {
-        CategoryID = categoryID;
-    }
-
     public String getCourseName() {
         return CourseName;
     }
 
     public void setCourseName(String courseName) {
         CourseName = courseName;
-    }
-
-    public String getCourseCode() {
-        return CourseCode;
-    }
-
-    public void setCourseCode(String courseCode) {
-        CourseCode = courseCode;
     }
 
     public String getDescription() {
@@ -81,30 +41,6 @@ public class CourseListModel {
         Description = description;
     }
 
-    public String getDuration() {
-        return Duration;
-    }
-
-    public void setDuration(String duration) {
-        Duration = duration;
-    }
-
-    public int getProfessorID() {
-        return ProfessorID;
-    }
-
-    public void setProfessorID(int professorID) {
-        ProfessorID = professorID;
-    }
-
-    public float getPrice() {
-        return Price;
-    }
-
-    public void setPrice(float price) {
-        Price = price;
-    }
-
     public String getCourseImage() {
         return CourseImage;
     }
@@ -113,11 +49,19 @@ public class CourseListModel {
         CourseImage = courseImage;
     }
 
-    public String getInstructorID() {
-        return InstructorID;
+    public String getType() {
+        return Type;
     }
 
-    public void setInstructorID(String instructorID) {
-        InstructorID = instructorID;
+    public void setType(String type) {
+        Type = type;
+    }
+
+    public String getCreatedOn() {
+        return CreatedOn;
+    }
+
+    public void setCreatedOn(String createdOn) {
+        CreatedOn = createdOn;
     }
 }

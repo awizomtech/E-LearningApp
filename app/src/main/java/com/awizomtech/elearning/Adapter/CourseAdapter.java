@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.awizomtech.elearning.Activity.FreeSubcriptionActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
-import com.awizomtech.elearning.Activity.CourseDetailActivity;
+import com.awizomtech.elearning.Activity.CourseLevelActivity;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
 
@@ -52,12 +53,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         final CourseListModel n = courseListModelList.get(position);
         holder.Coursename.setText(n.CourseName.toString());
         holder.Courseid.setText(String.valueOf(n.CourseID));
-        String date=n.getStartsFrom().split("T")[0];
-        String Pdate=n.getCreatedOn().split("T")[0];
+      /*  String date=n.getStartsFrom().split("T")[0];
+        String Pdate=n.getCreatedOn().split("T")[0];*/
        /* holder.bodyNoti.setText("Start From : " +date);
         holder.pdate.setText("Date" +Pdate);*/
-        holder.bodyNoti.setText("Price " +n.Price+"₹");
-        holder.pdate.setText("Duration " +n.Duration);
         try {
             Glide.with(mCtx).load(AppConfig.BASE_URL+n.CourseImage.toString()).into(holder.imageView);
         } catch (Exception e) {
@@ -66,20 +65,22 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         holder.Cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String cname= n.getCourseName().toString();
-                String descript= n.getDescription().toString();
-                String price = String.valueOf(n.getPrice());
-                String cid = String.valueOf(n.getCourseID());
-                String duration = n.getDuration();
-                String startdate=n.getStartsFrom().toString();
-                Intent intent = new Intent(mCtx, CourseDetailActivity.class);
-                intent.putExtra("Cname",cname);
-                intent.putExtra("Descript",descript);
-                intent.putExtra("Price",price);
-                intent.putExtra("Cid",cid);
-                intent.putExtra("Duration",duration);
-                intent.putExtra("Startdate",startdate);
-                mCtx.startActivity(intent);
+                String ctype=n.getType().toString();
+                if(ctype.contains("Free")){
+                    String cid = String.valueOf(n.getCourseID());
+                    String coursename = String.valueOf(n.getCourseName());
+                    Intent intent = new Intent(mCtx, FreeSubcriptionActivity.class);
+                    intent.putExtra("CourseName",coursename);
+                    intent.putExtra("Cid",cid);
+                    mCtx.startActivity(intent);
+                }else {
+                    String cid = String.valueOf(n.getCourseID());
+                    String coursename = String.valueOf(n.getCourseName());
+                    Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                    intent.putExtra("CourseName",coursename);
+                    intent.putExtra("Cid",cid);
+                    mCtx.startActivity(intent);
+                }
             }
         });
 

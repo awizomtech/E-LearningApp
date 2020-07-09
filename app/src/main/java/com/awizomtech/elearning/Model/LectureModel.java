@@ -2,11 +2,8 @@ package com.awizomtech.elearning.Model;
 
 public class LectureModel {
     public int LectureID;
-
     public int CourseID ;
-
     public int PlanID;
-
     public String Title;
     public String Type;
     public String TextContant;
