@@ -1,6 +1,5 @@
 package com.awizomtech.elearning.Adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -11,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.awizomtech.elearning.Activity.FreeSubcriptionActivity;
+import com.awizomtech.elearning.Activity.HomePageActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Activity.CourseLevelActivity;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.RequiresApi;
@@ -24,11 +25,9 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder> {
-
+    public ArrayList<String> CourseId = new ArrayList<>();
     private List<CourseListModel> courseListModelList;
     private Context mCtx;
-    String result = "";
-    private AlertDialog progressDialog;
 
     public CourseAdapter(Context baseContext, List<CourseListModel> courseListModelList) {
         this.courseListModelList = courseListModelList;
@@ -57,28 +56,36 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         String Pdate=n.getCreatedOn().split("T")[0];*/
        /* holder.bodyNoti.setText("Start From : " +date);
         holder.pdate.setText("Date" +Pdate);*/
+
+        /*CourseId = HomePageActivity.getActivityInstance().getData();
+        for (int i = 0; i <= CourseId.size(); i++) {
+            int Cid = Integer.valueOf(CourseId.get(i).toString());
+            if (Cid == n.getCourseID()) {
+                holder.Virify.setVisibility(TextView.VISIBLE);
+            }
+        }*/
         try {
-            Glide.with(mCtx).load(AppConfig.BASE_URL+n.CourseImage.toString()).into(holder.imageView);
+            Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
         holder.Cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ctype=n.getType().toString();
-                if(ctype.contains("Free")){
+                String ctype = n.getType().toString();
+                if (ctype.contains("Free")) {
                     String cid = String.valueOf(n.getCourseID());
                     String coursename = String.valueOf(n.getCourseName());
                     Intent intent = new Intent(mCtx, FreeSubcriptionActivity.class);
-                    intent.putExtra("CourseName",coursename);
-                    intent.putExtra("Cid",cid);
+                    intent.putExtra("CourseName", coursename);
+                    intent.putExtra("Cid", cid);
                     mCtx.startActivity(intent);
-                }else {
+                } else {
                     String cid = String.valueOf(n.getCourseID());
                     String coursename = String.valueOf(n.getCourseName());
                     Intent intent = new Intent(mCtx, CourseLevelActivity.class);
-                    intent.putExtra("CourseName",coursename);
-                    intent.putExtra("Cid",cid);
+                    intent.putExtra("CourseName", coursename);
+                    intent.putExtra("Cid", cid);
                     mCtx.startActivity(intent);
                 }
             }
@@ -104,9 +111,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView bodyNoti, Coursename, Courseid,pdate;
+        TextView bodyNoti, Coursename, Courseid, pdate, Virify;
         ImageView imageView;
         CardView Cardview;
+
         @RequiresApi(api = Build.VERSION_CODES.M)
         public MyViewHolder(View view) {
             super(view);
@@ -114,8 +122,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             bodyNoti = view.findViewById(R.id.bodyNotice);
             pdate = view.findViewById(R.id.date);
             Coursename = view.findViewById(R.id.coursename);
-            imageView=view.findViewById(R.id.image);
-            Cardview=view.findViewById(R.id.cardview);
+            imageView = view.findViewById(R.id.image);
+            Cardview = view.findViewById(R.id.cardview);
+            Virify = view.findViewById(R.id.coursevirify);
         }
 
 

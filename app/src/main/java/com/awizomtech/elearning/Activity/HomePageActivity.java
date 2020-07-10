@@ -22,6 +22,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.awizomtech.elearning.Helper.UserHelper;
+import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.awizomtech.elearning.fragments.MyPaymentFragment;
@@ -30,17 +32,27 @@ import com.awizomtech.elearning.fragments.ProfileFragment;
 import com.awizomtech.elearning.fragments.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomePageActivity extends AppCompatActivity {
-
+    static HomePageActivity INSTANCE;
+    private List<CourseListModel> courseListModels;
+    public ArrayList<String> CourseId = new ArrayList<>();
     private AppBarConfiguration mAppBarConfiguration;
     FrameLayout fl_container;
     BottomNavigationView bnv_menu;
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        INSTANCE = this;
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -49,7 +61,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment,R.id.nav_course,R.id.nav_logout,R.id.nav_share,R.id.nav_quiz)
+                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment, R.id.nav_course, R.id.nav_logout, R.id.nav_share, R.id.nav_quiz)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -68,21 +80,18 @@ public class HomePageActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_my_courses) {
                     Intent intent = new Intent(HomePageActivity.this, MyCourseActivity.class);
                     startActivity(intent);
-                }
-                else if (id == R.id.nav_payment) {
+                } else if (id == R.id.nav_payment) {
                     Intent intent = new Intent(HomePageActivity.this, MyPaymentActivity.class);
                     startActivity(intent);
-                }
-                else if (id == R.id.nav_course) {
+                } else if (id == R.id.nav_course) {
                     Intent intent = new Intent(HomePageActivity.this, CourseListActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_quiz) {
                     Intent intent = new Intent(HomePageActivity.this, StartFitnessActivity.class);
                     startActivity(intent);
-                }
-                else if (id == R.id.nav_share) {
+                } else if (id == R.id.nav_share) {
 
-                }else if (id == R.id.nav_logout) {
+                } else if (id == R.id.nav_logout) {
                     SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
                     sp.logout();
                     startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
@@ -128,6 +137,8 @@ public class HomePageActivity extends AppCompatActivity {
 
         bnv_menu.setSelectedItemId(R.id.navigation_home);
         loadFragment(new HomeFragment());
+
+      /*  GetCourselist();*/
     }
 
     private void loadFragment(Fragment fragment) {
@@ -181,4 +192,35 @@ public class HomePageActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private void GetCourselist() {
+        try {
+            String userid = SharedPrefManager.getInstance(this).getUser().getUserID();
+            result = new UserHelper.GetMyCourseList().execute(userid.toString()).get();
+            if (result.isEmpty()) {
+
+            } else {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<CourseListModel>>() {
+                }.getType();
+
+                courseListModels = new Gson().fromJson(result, listType);
+                for (int i = 0; i <= courseListModels.size(); i++) {
+                    String cid = String.valueOf(courseListModels.get(i).getCourseID());
+                    CourseId.add(cid);
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public static HomePageActivity getActivityInstance() {
+        return INSTANCE;
+    }
+
+    public ArrayList<String> getData() {
+        return this.CourseId;
+    }
 }

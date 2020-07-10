@@ -10,6 +10,7 @@ import com.awizomtech.elearning.Adapter.CourseAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
+import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -58,11 +59,13 @@ public class CourseListActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                GetCourselist();
+
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
 
         GetCourselist();
+
     }
 
     private void GetCourselist() {
