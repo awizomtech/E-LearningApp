@@ -47,7 +47,6 @@ public class HomePageActivity extends AppCompatActivity {
     FrameLayout fl_container;
     BottomNavigationView bnv_menu;
     String result;
-////gfdkjghkjfhgkjhfg
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
