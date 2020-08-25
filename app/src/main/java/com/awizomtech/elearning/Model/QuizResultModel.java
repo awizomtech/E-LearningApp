@@ -1,7 +1,7 @@
 package com.awizomtech.elearning.Model;
 
 public class QuizResultModel {
-    public int AnswerID;
+    /*public int AnswerID;
     public int QuizID;
     public String AnswerText;
     public String UserID ;
@@ -54,5 +54,61 @@ public class QuizResultModel {
 
     public void setCorrect(boolean correct) {
         IsCorrect = correct;
+    }*/
+
+
+    public int ResultID ;
+    public String StudentID ;
+    public int CourseID ;
+    public int  QuizID ;
+    public int AnswerID ;
+    public int LevelID;
+
+    public int getResultID() {
+        return ResultID;
+    }
+
+    public void setResultID(int resultID) {
+        ResultID = resultID;
+    }
+
+    public String getStudentID() {
+        return StudentID;
+    }
+
+    public void setStudentID(String studentID) {
+        StudentID = studentID;
+    }
+
+    public int getCourseID() {
+        return CourseID;
+    }
+
+    public void setCourseID(int courseID) {
+        CourseID = courseID;
+    }
+
+    public int getQuizID() {
+        return QuizID;
+    }
+
+    public void setQuizID(int quizID) {
+        QuizID = quizID;
+    }
+
+    public int getAnswerID() {
+        return AnswerID;
+    }
+
+    public void setAnswerID(int answerID) {
+        AnswerID = answerID;
+    }
+
+    public int getLevelID() {
+        return LevelID;
+    }
+
+    public void setLevelID(int levelID) {
+        LevelID = levelID;
     }
 }

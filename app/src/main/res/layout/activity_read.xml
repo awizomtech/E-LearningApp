@@ -46,10 +46,18 @@
             </LinearLayout>
 
         </LinearLayout>
+        <Button
+            android:id="@+id/testmake"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Make Test"
+            android:textColor="#fff"
+            android:background="#40D359"/>
         <WebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

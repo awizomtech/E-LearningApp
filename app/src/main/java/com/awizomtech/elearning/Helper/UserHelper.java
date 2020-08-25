@@ -440,7 +440,9 @@ public class UserHelper extends AppCompatActivity {
             //     InputStream inputStream
             String Chooseid = params[0];
             String Length = params[1];
-            String userid = params[2];
+            String Quizid = params[2];
+            String CourseID = params[3];
+            String userid = params[4];
 
             String json = "";
             try {
@@ -448,13 +450,13 @@ public class UserHelper extends AppCompatActivity {
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
               /*  builder.url(AppConfig.BASE_URL_API+"ResultPost");*/
-                builder.url(AppConfig.BASE_URL_API+"ResultPost?AnswerID="+Chooseid+"&Length="+Length+"&UserId="+userid);
+                builder.url(AppConfig.BASE_URL_API+"ResultPost?AnswerID="+Chooseid+"&Length="+Length+"&QuizID="+Quizid+"&CourseID="+CourseID+"&UserId="+userid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
                 FormBody.Builder parameters = new FormBody.Builder();
+               /* parameters.add("AnswerID", Chooseid);
                 parameters.add("AnswerID", Chooseid);
-                parameters.add("AnswerID", Chooseid);
-                parameters.add("UserId", userid);
+                parameters.add("UserId", userid);*/
                 builder.post(parameters.build());
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
@@ -480,6 +482,55 @@ public class UserHelper extends AppCompatActivity {
 
     }
 
+    public static final class PostResultupdate extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            //     InputStream inputStream
+            String Chooseid = params[0];
+            String Length = params[1];
+            String Quizid = params[2];
+            String CourseID = params[3];
+            String userid = params[4];
+            String Resultid = params[5];
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                /*  builder.url(AppConfig.BASE_URL_API+"ResultPost");*/
+                builder.url(AppConfig.BASE_URL_API+"ResultPostupdate?AnswerID="+Chooseid+"&Length="+Length+"&QuizID="+Quizid+"&CourseID="+CourseID+"&UserId="+userid+"&ResultID="+Resultid);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                FormBody.Builder parameters = new FormBody.Builder();
+               /* parameters.add("AnswerID", Chooseid);
+                parameters.add("AnswerID", Chooseid);
+                parameters.add("UserId", userid);*/
+                builder.post(parameters.build());
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
 
     public static final class GetResult extends AsyncTask<String, Void, String> {
         @Override
@@ -498,10 +549,10 @@ public class UserHelper extends AppCompatActivity {
                 builder.url(AppConfig.BASE_URL_API+"ResultGet?QuizID="+quizid+"&UsetID="+userid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
-              /*  FormBody.Builder parameters = new FormBody.Builder();
-                parameters.add("QuizID", quizid);
-                parameters.add("UsetID", userid);
-                builder.post(parameters.build());*/
+                FormBody.Builder parameters = new FormBody.Builder();
+              /*  parameters.add("QuizID", quizid);
+                parameters.add("UsetID", userid);*/
+                builder.post(parameters.build());
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
                     json = response.body().string();

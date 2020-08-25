@@ -83,7 +83,7 @@
                         android:maxLines="1"
                         android:drawablePadding="10dp"
                         android:textSize="14sp"
-                        android:maxLength="6"
+                        android:maxLength="10"
                         android:hint="Password" />
           <!--      </com.google.android.material.textfield.TextInputLayout>
             -->    <LinearLayout

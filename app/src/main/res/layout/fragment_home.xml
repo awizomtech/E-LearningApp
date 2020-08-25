@@ -53,11 +53,11 @@
 
         </LinearLayout>
 
-        <!--  <LinearLayout
+       <!--   <LinearLayout
               android:layout_width="match_parent"
               android:layout_height="250dp"
               android:orientation="vertical"
-              android:background="#F6F5F5">
+              android:background="#DCDBDB">
               <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -67,15 +67,16 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical">
                       <TextView
-                          android:layout_width="wrap_content"
+                          android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:text="Edu4"
+                          android:text="Learn Strength and Conditioning
+Best Environment For Your Cours"
                           android:textSize="18dp"
                           android:layout_marginLeft="50dp"
                           android:layout_marginTop="80dp"
                           android:textAlignment="center"
                           android:textStyle="bold"
-                          android:textColor="#403F3F"/>
+                          android:textColor="#326BCC"/>
                       <TextView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -85,10 +86,10 @@
                           android:textAlignment="center"
                           android:textColor="#403F3F"/>
                   </LinearLayout>
-                  <ImageView
+                &lt;!&ndash;  <ImageView
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
-                      android:src="@drawable/homebanner"/>
+                      android:src="@drawable/homebanner"/>&ndash;&gt;
               </LinearLayout>
            </LinearLayout>-->
 

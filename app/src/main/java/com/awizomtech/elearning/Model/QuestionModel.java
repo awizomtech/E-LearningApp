@@ -2,7 +2,7 @@ package com.awizomtech.elearning.Model;
 
 public class QuestionModel {
     public int QuizID ;
-    public int CourseID ;
+    public int CourseID;
     public String Question ;
     public String CreatedBy ;
 

@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.awizomtech.elearning.Activity.QuizActivity;
 import com.awizomtech.elearning.Activity.QuizResultActivity;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.AnswerModel;
@@ -37,7 +38,9 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     private List<AnswerModel> answerModels;
     CircularProgressButton submit;
     private ArrayList<String> Chooseid = new ArrayList<String>();
-
+    private ArrayList<String> Quizid = new ArrayList<String>();
+String CourseID ="";
+String Data;
     public QuestionListAdapter(Context baseContext, List<QuestionModel> questionModelList, CircularProgressButton submit) {
         this.questionModelList = questionModelList;
         this.mCtx = baseContext;
@@ -61,29 +64,10 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final QuestionModel n = questionModelList.get(position);
         holder.Coursename.setText(n.getQuestion().toString());
+        Quizid.add(String.valueOf(n.getQuizID()));
+        CourseID = String.valueOf(n.getCourseID());
+        Data= QuizActivity.getActivityInstance().getData();
 
-
-      /*  answerModels = new Gson().fromJson(result, listType);
-        Log.d("Error", answerModels.toString());
-
-
-        for (int i = 0; i < answerModels.size()&&i<selectedid.size(); i++) {
-            int  na = Integer.parseInt(selectedid.get(i));
-            int ii=  answerModels.get(i).getAnswerID();
-            if(ii==na){
-                RadioButton rbn = new RadioButton(mCtx);
-                rbn.setBackgroundColor(Color.parseColor("#2F7732"));
-                rbn.setId(answerModels.get(i).getAnswerID());
-                rbn.setText(answerModels.get(i).getAnswerText());
-                holder.Check.addView(rbn);
-            }else {
-                RadioButton rb = new RadioButton(mCtx);
-                rb.setBackgroundColor(Color.parseColor("#E13C19"));
-                rb.setId(answerModels.get(i).getAnswerID());
-                rb.setText(answerModels.get(i).getAnswerText());
-                holder.Check.addView(rb);
-            }
-        }*/
         try {
             String quizid = String.valueOf(n.QuizID);
             String result = new UserHelper.GetAnswerList().execute(quizid.toString()).get();
@@ -109,17 +93,20 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         holder.Check.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup rg, int checkedId) {
                 for (int i = 0; i < rg.getChildCount(); i++) {
+                 /*   RadioButton btn = (RadioButton) rg.getChildAt(i);*/
                     RadioButton btn = (RadioButton) rg.getChildAt(i);
                     String text = String.valueOf(btn.getId());
                     if (btn.getId() == checkedId) {
-                        Chooseid.add(text);
-                        Toast.makeText(mCtx, text, Toast.LENGTH_SHORT).show();
+                        String vals = String.valueOf(checkedId);
+                        Chooseid.add(vals);
+
+                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-
-                        Chooseid.remove(text);
-                        Chooseid.add(text);
-                        Toast.makeText(mCtx, text, Toast.LENGTH_SHORT).show();
+                        String vals = String.valueOf(checkedId);
+                        Chooseid.remove(vals);
+                        Chooseid.add(vals);
+                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
@@ -133,11 +120,18 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                 try {
                     String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
                     String Length = String.valueOf(Chooseid.size());
-                    String result = new UserHelper.PostResult().execute(Chooseid.toString(), Length.toString(), userid.toString()).get();
+                    String result = new UserHelper.PostResult().execute(Chooseid.toString(), Length.toString(),Quizid.toString(),CourseID.toString(), userid.toString()).get();
                     if (result.isEmpty()) {
 
                     } else {
+                        String planer=Data.split("T")[0];
+                        String CourseName=Data.split("T")[1];
+                        String CourseId=Data.split("C")[0];
+                        String planerId=planer.split("C")[1];
                         Intent intent = new Intent(mCtx, QuizResultActivity.class);
+                        intent.putExtra("CourseID",CourseId);
+                        intent.putExtra("planerId",planerId);
+                        intent.putExtra("CourseName",CourseName);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         mCtx.startActivity(intent);
                     }

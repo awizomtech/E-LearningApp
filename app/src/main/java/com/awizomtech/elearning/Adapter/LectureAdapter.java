@@ -60,9 +60,15 @@ public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.MyViewHo
                    public void onClick(View v) {
                        String type=n.Type.toString();
                        String URL=n.Video.toString();
+                       String CourseName=n.getTitle();
+                       String CourseID = String.valueOf(n.getCourseID());
+                       String planerId = String.valueOf(n.getPlanID());
                        Intent intent = new Intent(mCtx, ReadActivity.class);
                        intent.putExtra("Type",type.toString());
                        intent.putExtra("url",URL);
+                       intent.putExtra("CourseID",CourseID);
+                       intent.putExtra("planerId",planerId);
+                       intent.putExtra("CourseName",CourseName);
                        mCtx.startActivity(intent);
 
                    }
@@ -99,9 +105,15 @@ public class LectureAdapter extends RecyclerView.Adapter<LectureAdapter.MyViewHo
                    public void onClick(View v) {
                        String URLtext=n.TextContant.toString();
                        String type=n.Type.toString();
+                       String CourseName=n.getTitle();
+                       String CourseID = String.valueOf(n.getCourseID());
+                       String planerId = String.valueOf(n.getPlanID());
                        Intent intent = new Intent(mCtx, ReadActivity.class);
                        intent.putExtra("Type",type.toString());
                        intent.putExtra("text",URLtext);
+                       intent.putExtra("planerId",planerId);
+                       intent.putExtra("CourseID",CourseID);
+                       intent.putExtra("CourseName",CourseName);
                        mCtx.startActivity(intent);
                    }
                });

@@ -58,9 +58,12 @@ ProgressDialog progressDialog;
 
                 if(username.getText().toString().isEmpty()||username.getText().toString().length()!=10){
                     username.setError("Required !");
-                }else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
+                /*}else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
                     password.setError("Required !");
-                } else {
+                }*/
+                }else if(password.getText().toString().isEmpty()){
+                    password.setError("Required !");
+                }else {
                /*     progressDialog.show();*/
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
                     LayoutInflater inflater = getLayoutInflater();

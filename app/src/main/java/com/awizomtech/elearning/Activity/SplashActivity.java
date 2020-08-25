@@ -34,7 +34,7 @@ TextToSpeech tts;
                         Log.e("error", "This Language is not supported");
                     }
                     else{
-                        ConvertTextToSpeech();
+                    /*    ConvertTextToSpeech();*/
                     }
                 }
                 else
@@ -50,7 +50,7 @@ TextToSpeech tts;
                     finish();
 
                 }
-            }, 2000);
+            }, 3000);
 
         }
         else {

@@ -108,8 +108,10 @@ public class FitnessTestActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 counter=0;
-                Speck = "Go";
-                SpeachText();
+               /* Speck = "Go";
+                SpeachText();*/
+                MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
+                ring.start();
                 RunningStart();
             }
 
@@ -196,7 +198,8 @@ public class FitnessTestActivity extends AppCompatActivity {
 
                         @Override
                         public void onFinish() {
-                            CoundowdStart();
+                           /* CoundowdStart();*/
+                            RunningStart();
                         }
                     }.start();
 
