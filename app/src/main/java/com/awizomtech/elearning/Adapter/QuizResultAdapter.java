@@ -38,18 +38,20 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
 
     private List<QuestionModel> questionModelList;
     private Context mCtx;
-  /*  QuizResultModel quizResultModels;*/
-   private List<QuizResultModel> quizResultModels;
+    /*  QuizResultModel quizResultModels;*/
+    private List<QuizResultModel> quizResultModels;
     CircularProgressButton submit;
     private ArrayList<String> Chooseid = new ArrayList<String>();
     private List<AnswerModel> answerModels;
-    int Qid=0;
+    int Qid = 0;
     private ArrayList<String> Quizid = new ArrayList<String>();
     ArrayList<String> Resultid = new ArrayList<String>();
     ArrayList<String> Resultd = new ArrayList<String>();
-
-    String CourseID ="";
+    ArrayList<String> Correct = new ArrayList<String>();
+   /* ArrayList<String> AnsCorrect = new ArrayList<String>();*/
+    String CourseID = "";
     String Data;
+
     public QuizResultAdapter(Context baseContext, List<QuestionModel> questionModelList, CircularProgressButton submit) {
         this.questionModelList = questionModelList;
         this.mCtx = baseContext;
@@ -75,10 +77,10 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
         holder.Coursename.setText(n.getQuestion().toString());
         Quizid.add(String.valueOf(n.getQuizID()));
         CourseID = String.valueOf(n.getCourseID());
-       quizResultModels= QuizResultActivity.getActivityInstance().getData();
-        Data= QuizResultActivity.getActivityInstance().getDatas();
+        quizResultModels = QuizResultActivity.getActivityInstance().getData();
+        Data = QuizResultActivity.getActivityInstance().getDatas();
         try {
-           final String quizid = String.valueOf(n.QuizID);
+            final String quizid = String.valueOf(n.QuizID);
             String result = new UserHelper.GetAnswerList().execute(quizid.toString()).get();
             if (result.isEmpty()) {
             } else {
@@ -89,49 +91,49 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
                 Log.d("Error", answerModels.toString());
 
                 ArrayList<String> Choose = new ArrayList<String>();
-                for(int j =0; j<quizResultModels.size();j++) {
-                   Choose.add(String.valueOf(quizResultModels.get(j).getAnswerID()));
+                for (int j = 0; j < quizResultModels.size(); j++) {
+                    Choose.add(String.valueOf(quizResultModels.get(j).getAnswerID()));
                     Resultd.add(String.valueOf(quizResultModels.get(j).getResultID()));
                 }
 
-           ArrayList<String> Chooselist = new ArrayList<String>();
+                ArrayList<String> Chooselist = new ArrayList<String>();
 
                 for (int i = 0; i < answerModels.size(); i++) {
                     Qid = answerModels.get(i).getAnswerID();
-                    String val= String.valueOf(answerModels.get(i).getAnswerID());
+                    String val = String.valueOf(answerModels.get(i).getAnswerID());
 
-                    if(Choose.contains(val)){
-                        String name = String.valueOf(answerModels.get(i).getAnswerID())+"10"+answerModels.get(i).getAnswerText()+"15"+"true"+"20"+answerModels.get(i).IsCorrect;
+                    if (Choose.contains(val)) {
+                        String name = String.valueOf(answerModels.get(i).getAnswerID()) + "10" + answerModels.get(i).getAnswerText() + "15" + "true" + "20" + answerModels.get(i).IsCorrect;
                         Chooselist.add(name);
-                    }else {
-                        String name = String.valueOf(answerModels.get(i).getAnswerID())+"10"+answerModels.get(i).getAnswerText()+"15"+"false"+"20"+answerModels.get(i).IsCorrect;
+                    } else {
+                        String name = String.valueOf(answerModels.get(i).getAnswerID()) + "10" + answerModels.get(i).getAnswerText() + "15" + "false" + "20" + answerModels.get(i).IsCorrect;
                         Chooselist.add(name);
                     }
-
                 }
 
-                for(int k=0; k<Chooselist.size(); k++){
-                   String name = Chooselist.get(k);
+                for (int k = 0; k < Chooselist.size(); k++) {
+                    String name = Chooselist.get(k);
 
-                    String id=name.split("10")[0];
-                    String text=name.split("15")[0];
-                    String anstext=text.split("10")[1];
-                    String texts=name.split("15")[1];
-                    String correct=texts.split("20")[1];
-                    String select=texts.split("20")[0];
+                    String id = name.split("10")[0];
+                    String text = name.split("15")[0];
+                    String anstext = text.split("10")[1];
+                    String texts = name.split("15")[1];
+                    String correct = texts.split("20")[1];
+                    String select = texts.split("20")[0];
 
                     RadioButton rbn = new RadioButton(mCtx);
-                    if(select.contains("true")){
-                        if(correct.contains(select)){
+                    if (select.contains("true")) {
+                        if (correct.contains(select)) {
                             rbn.setTextColor(Color.parseColor("#1ea383"));
                             rbn.setId(Integer.parseInt(id));
                             rbn.setText(anstext);
-                        }else if(select.contains("true")){
+                            Correct.add(id);
+                        } else if (select.contains("true")) {
                             rbn.setTextColor(Color.parseColor("#FC0707"));
                             rbn.setId(Integer.parseInt(id));
                             rbn.setText(anstext);
                         }
-                    }else {
+                    } else {
                         rbn.setId(Integer.parseInt(id));
                         rbn.setText(anstext);
                     }
@@ -139,7 +141,7 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
                     holder.Check.addView(rbn);
                 }
 
-                }
+            }
 
 
         } catch (Exception e) {
@@ -167,41 +169,77 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
                 }
             }
         });
+        int correct = Correct.size();
+        int anscorrect = Quizid.size();
+        if (correct == anscorrect) {
+            submit.setText("Completed");
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   /* try {
+                        for (int j = 0; j < Quizid.size(); j++) {
+                            Resultid.add(String.valueOf(Resultd.get(j)));
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        }
+                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
+                        String Length = String.valueOf(Chooseid.size());
+                        String result = new UserHelper.PostResultupdate().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString(), Resultid.toString()).get();
+                        if (result.isEmpty()) {
 
-                try {
-                    for(int j =0; j<Quizid.size();j++) {
-                        Resultid.add(String.valueOf(Resultd.get(j)));
+                        } else {
+                            String planer = Data.split("T")[0];
+                            String CourseName = Data.split("T")[1];
+                            String CourseId = Data.split("C")[0];
+                            String planerId = planer.split("C")[1];
+                            Intent intent = new Intent(mCtx, QuizResultActivity.class);
+                            intent.putExtra("CourseID", CourseId);
+                            intent.putExtra("planerId", planerId);
+                            intent.putExtra("CourseName", CourseName);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            mCtx.startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
 
-                    }
-                    String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
-                    String Length = String.valueOf(Chooseid.size());
-                    String result = new UserHelper.PostResultupdate().execute(Chooseid.toString(), Length.toString(),Quizid.toString(),CourseID.toString(), userid.toString(),Resultid.toString()).get();
-                    if (result.isEmpty()) {
-
-                    } else {
-                        String planer=Data.split("T")[0];
-                        String CourseName=Data.split("T")[1];
-                        String CourseId=Data.split("C")[0];
-                        String planerId=planer.split("C")[1];
-                        Intent intent = new Intent(mCtx, QuizResultActivity.class);
-                        intent.putExtra("CourseID",CourseId);
-                        intent.putExtra("planerId",planerId);
-                        intent.putExtra("CourseName",CourseName);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        mCtx.startActivity(intent);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-
+                    }*/
                 }
-            }
-        });
-    }
+            });
+        } else {
+            submit.setText("Re-Submit");
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        for (int j = 0; j < Quizid.size(); j++) {
+                            Resultid.add(String.valueOf(Resultd.get(j)));
 
+                        }
+                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
+                        String Length = String.valueOf(Chooseid.size());
+                        String result = new UserHelper.PostResultupdate().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString(), Resultid.toString()).get();
+                        if (result.isEmpty()) {
+
+                        } else {
+                            String planer = Data.split("T")[0];
+                            String CourseName = Data.split("T")[1];
+                            String CourseId = Data.split("C")[0];
+                            String planerId = planer.split("C")[1];
+                            Intent intent = new Intent(mCtx, QuizResultActivity.class);
+                            intent.putExtra("CourseID", CourseId);
+                            intent.putExtra("planerId", planerId);
+                            intent.putExtra("CourseName", CourseName);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            mCtx.startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+                }
+            });
+        }
+
+    }
 
 
     @Override
