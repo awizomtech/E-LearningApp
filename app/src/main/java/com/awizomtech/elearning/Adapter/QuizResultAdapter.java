@@ -214,7 +214,7 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
                             Resultid.add(String.valueOf(Resultd.get(j)));
 
                         }
-                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
+                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getMobileNo();
                         String Length = String.valueOf(Chooseid.size());
                         String result = new UserHelper.PostResultupdate().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString(), Resultid.toString()).get();
                         if (result.isEmpty()) {

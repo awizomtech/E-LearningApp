@@ -3,7 +3,16 @@ package com.awizomtech.elearning.Model;
 public class LoginModel {
     public String UserName ;
     public String UserID;
+    public String MobileNo;
     public int ID ;
+
+    public String getMobileNo() {
+        return MobileNo;
+    }
+
+    public void setMobileNo(String mobileNo) {
+        MobileNo = mobileNo;
+    }
 
     public String getUserName() {
         return UserName;

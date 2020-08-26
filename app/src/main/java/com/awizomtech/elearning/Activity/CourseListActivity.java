@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.awizomtech.elearning.Adapter.CourseAdapter;
+import com.awizomtech.elearning.Adapter.MyCourseAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
+import com.awizomtech.elearning.Model.QuizResultModel;
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
@@ -22,14 +24,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CourseListActivity extends AppCompatActivity {
+    static CourseListActivity INSTANCE;
     CourseAdapter adapter;
     SwipeRefreshLayout mSwipeRefreshLayout;
     private List<CourseListModel> courseListModels;
+    private List<CourseListModel> courseListModelSecond;
     private String result = "";
     ProgressDialog progressDialog;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        INSTANCE=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
         progressDialog = new ProgressDialog(this);
@@ -58,12 +63,13 @@ public class CourseListActivity extends AppCompatActivity {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                GetMyCourselist();
                GetCourselist();
 
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
-
+        GetMyCourselist();
         GetCourselist();
 
     }
@@ -87,5 +93,32 @@ public class CourseListActivity extends AppCompatActivity {
             e.printStackTrace();
 
         }
+    }
+
+    private void GetMyCourselist() {
+        try {
+            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            result = new UserHelper.GetMyCourseList().execute(userid.toString()).get();
+            if (result.isEmpty()) {
+            } else {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<CourseListModel>>() {
+                }.getType();
+                courseListModelSecond= new Gson().fromJson(result, listType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public static CourseListActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
+
+    public List<CourseListModel> getData()
+    {
+        return this.courseListModelSecond;
     }
 }

@@ -18,6 +18,7 @@ public class SharedPrefManager {
     private static final String Key_UserName = "UserName";
     private static final String Key_ID = "Id";
     private static final String Key_Name = "Name";
+    private static final String Key_Mobile = "Mobile";
 
     public SharedPrefManager(Context context) {
         mCtx = context;
@@ -37,6 +38,7 @@ public class SharedPrefManager {
         editor.putString(Key_UserID, loginModel.UserID);
         editor.putString(Key_UserName, loginModel.UserName);
         editor.putInt(Key_ID, loginModel.ID);
+        editor.putString(Key_Mobile, loginModel.MobileNo);
         editor.apply();
         return true;
     }
@@ -54,6 +56,7 @@ public class SharedPrefManager {
         LoginModel token = new LoginModel();
         token.UserID = sharedPreferences.getString(Key_UserID, "");
         token.UserName = sharedPreferences.getString(Key_UserName, "");
+        token.MobileNo = sharedPreferences.getString(Key_Mobile, "");
         token.ID = sharedPreferences.getInt(Key_ID, 0);
         return token;
     }

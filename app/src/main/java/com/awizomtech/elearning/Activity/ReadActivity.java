@@ -12,12 +12,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.awizomtech.elearning.Helper.UserHelper;
+import com.awizomtech.elearning.Model.QuizResultModel;
 import com.awizomtech.elearning.R;
+import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import static com.awizomtech.elearning.AppConfig.AppConfig.BASE_URL;
 
 public class ReadActivity extends AppCompatActivity {
 String planerId,CourseID,CourseName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +50,54 @@ String planerId,CourseID,CourseName;
         webView.getSettings().setLoadsImagesAutomatically(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        try {
+            int n=100;
+            String quizid = String.valueOf(n);
+            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            String result = new UserHelper.GetResult().execute(quizid.toString(),userid.toString()).get();
+            if (result.isEmpty()) {
+                test.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent intent = new Intent(ReadActivity.this, QuizActivity.class);
+                        intent.putExtra("CourseID",CourseID);
+                        intent.putExtra("planerId",planerId);
+                        intent.putExtra("CourseName",CourseName);
+                        startActivity(intent);
+                    }
+                });
+            } else {
+               /* if(count!=0){
+                    test.setText("View Results");
+                    test.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent intent = new Intent(ReadActivity.this, QuizResultActivity.class);
+                            intent.putExtra("CourseID",CourseID);
+                            intent.putExtra("planerId",planerId);
+                            intent.putExtra("CourseName",CourseName);
+                            startActivity(intent);
+                        }
+                    });
+                }else {
+                    test.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent intent = new Intent(ReadActivity.this, QuizActivity.class);
+                            intent.putExtra("CourseID",CourseID);
+                            intent.putExtra("planerId",planerId);
+                            intent.putExtra("CourseName",CourseName);
+                            startActivity(intent);
+                        }
+                    });
+                }*/
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if(type.equals("Video")){
             webView.loadUrl(BASE_URL+URl);
         }else {
@@ -64,7 +120,7 @@ String planerId,CourseID,CourseName;
                 intent.putExtra("CourseID",CourseID);
                 intent.putExtra("planerId",planerId);
                 intent.putExtra("CourseName",CourseName);
-             startActivity(intent);
+                startActivity(intent);
             }
         });
     }

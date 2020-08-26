@@ -107,7 +107,7 @@ public class QuizResultActivity extends AppCompatActivity {
         try {
              int n=100;
             String quizid = String.valueOf(n);
-            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            String userid= SharedPrefManager.getInstance(this).getUser().getMobileNo();
             String result = new UserHelper.GetResult().execute(quizid.toString(),userid.toString()).get();
             if (result.isEmpty()) {
             } else {

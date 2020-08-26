@@ -44,6 +44,15 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Button
+        android:id="@+id/certificate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#44D86A"
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:text="Generate certificate"
+        android:visibility="gone"/>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefresh"
         android:layout_width="match_parent"

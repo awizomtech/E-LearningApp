@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.awizomtech.elearning.Activity.CourseListActivity;
 import com.awizomtech.elearning.Activity.FreeSubcriptionActivity;
 import com.awizomtech.elearning.Activity.HomePageActivity;
+import com.awizomtech.elearning.Activity.MyCourseActivity;
+import com.awizomtech.elearning.Activity.QuizResultActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Activity.CourseLevelActivity;
@@ -27,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHolder> {
     public ArrayList<String> CourseId = new ArrayList<>();
     private List<CourseListModel> courseListModelList;
+    private List<CourseListModel> courseListModelSecond;
     private Context mCtx;
 
     public CourseAdapter(Context baseContext, List<CourseListModel> courseListModelList) {
@@ -52,44 +56,56 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         final CourseListModel n = courseListModelList.get(position);
         holder.Coursename.setText(n.CourseName.toString());
         holder.Courseid.setText(String.valueOf(n.CourseID));
-      /*  String date=n.getStartsFrom().split("T")[0];
-        String Pdate=n.getCreatedOn().split("T")[0];*/
-       /* holder.bodyNoti.setText("Start From : " +date);
-        holder.pdate.setText("Date" +Pdate);*/
+        courseListModelSecond = CourseListActivity.getActivityInstance().getData();
 
-        /*CourseId = HomePageActivity.getActivityInstance().getData();
-        for (int i = 0; i <= CourseId.size(); i++) {
-            int Cid = Integer.valueOf(CourseId.get(i).toString());
-            if (Cid == n.getCourseID()) {
-                holder.Virify.setVisibility(TextView.VISIBLE);
-            }
-        }*/
-        try {
-            Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
-        } catch (Exception e) {
-            e.printStackTrace();
+        ArrayList<String> Choose = new ArrayList<String>();
+        for (int j = 0; j < courseListModelSecond.size(); j++) {
+            Choose.add(String.valueOf(courseListModelSecond.get(j).getCourseID()));
         }
-        holder.Cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ctype = n.getType().toString();
-                if (ctype.contains("Free")) {
-                    String cid = String.valueOf(n.getCourseID());
-                    String coursename = String.valueOf(n.getCourseName());
-                    Intent intent = new Intent(mCtx, FreeSubcriptionActivity.class);
-                    intent.putExtra("CourseName", coursename);
-                    intent.putExtra("Cid", cid);
-                    mCtx.startActivity(intent);
-                } else {
-                    String cid = String.valueOf(n.getCourseID());
-                    String coursename = String.valueOf(n.getCourseName());
-                    Intent intent = new Intent(mCtx, CourseLevelActivity.class);
-                    intent.putExtra("CourseName", coursename);
-                    intent.putExtra("Cid", cid);
+        String val = String.valueOf(n.getCourseID());
+        if (Choose.contains(val)) {
+            holder.Subscribed.setVisibility(TextView.VISIBLE);
+            holder.Subscribed.setText("Subscribed");
+            try {
+                Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mCtx, MyCourseActivity.class);
                     mCtx.startActivity(intent);
                 }
+            });
+        } else {
+            try {
+                Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+            holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String ctype = n.getType().toString();
+                    if (ctype.contains("Free")) {
+                        String cid = String.valueOf(n.getCourseID());
+                        String coursename = String.valueOf(n.getCourseName());
+                        Intent intent = new Intent(mCtx, FreeSubcriptionActivity.class);
+                        intent.putExtra("CourseName", coursename);
+                        intent.putExtra("Cid", cid);
+                        mCtx.startActivity(intent);
+                    } else {
+                        String cid = String.valueOf(n.getCourseID());
+                        String coursename = String.valueOf(n.getCourseName());
+                        Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                        intent.putExtra("CourseName", coursename);
+                        intent.putExtra("Cid", cid);
+                        mCtx.startActivity(intent);
+                    }
+                }
+            });
+        }
 
     }
 
@@ -111,7 +127,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView bodyNoti, Coursename, Courseid, pdate, Virify;
+        TextView bodyNoti, Coursename, Courseid, pdate, Virify,Subscribed;
         ImageView imageView;
         CardView Cardview;
 
@@ -120,6 +136,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             super(view);
             Courseid = view.findViewById(R.id.courseid);
             bodyNoti = view.findViewById(R.id.bodyNotice);
+            Subscribed = view.findViewById(R.id.subscribe);
             pdate = view.findViewById(R.id.date);
             Coursename = view.findViewById(R.id.coursename);
             imageView = view.findViewById(R.id.image);

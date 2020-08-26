@@ -616,4 +616,48 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
+
+    public static final class PostResultProgress extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            //     InputStream inputStream
+            String studentId = params[0];
+            String levelId = params[1];
+            String cid = params[2];
+            String plannerDetailID = params[3];
+
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                /*  builder.url(AppConfig.BASE_URL_API+"ResultPost");*/
+                builder.url(AppConfig.BASE_URL_API+"GetProgress?StudentID="+studentId+"&LevelID="+levelId+"&CourseID="+cid+"&PlannerDetailID="+plannerDetailID);
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
 }
