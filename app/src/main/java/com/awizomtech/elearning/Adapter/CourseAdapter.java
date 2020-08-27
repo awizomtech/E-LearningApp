@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.awizomtech.elearning.Activity.CourseListActivity;
+import com.awizomtech.elearning.Activity.FreeLearningActivity;
 import com.awizomtech.elearning.Activity.FreeSubcriptionActivity;
 import com.awizomtech.elearning.Activity.HomePageActivity;
 import com.awizomtech.elearning.Activity.MyCourseActivity;
+import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
 import com.awizomtech.elearning.Activity.QuizResultActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
@@ -71,13 +74,39 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            holder.Cardview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mCtx, MyCourseActivity.class);
-                    mCtx.startActivity(intent);
-                }
-            });
+            String ctype = n.getType().toString();
+            if (ctype.contains("Free")) {
+                holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, FreeLearningActivity.class);
+                        intent.putExtra("Cid",cid);
+                        mCtx.startActivity(intent);
+                    }
+                });
+           /* }else if (!n.PaymentStatus == true) {
+                holder.PaymnetStatus.setVisibility(CardView.VISIBLE);
+                holder.PaymnetStatus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(mCtx, "When Your Payment is Verified Then Read Course",Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+            }else {
+                holder.Cardview.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String coursename = String.valueOf(n.getCourseName());
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, MyCourseLevelActivity.class);
+                        intent.putExtra("CourseName", coursename);
+                        intent.putExtra("Cid", cid);
+                        mCtx.startActivity(intent);
+                    }
+                });
+            }
         } else {
             try {
                 Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);

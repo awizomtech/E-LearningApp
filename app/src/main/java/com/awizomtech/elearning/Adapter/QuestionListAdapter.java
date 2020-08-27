@@ -101,13 +101,13 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                         String vals = String.valueOf(checkedId);
                         Chooseid.add(vals);
 
-                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
+                      /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     } else {
                         String vals = String.valueOf(checkedId);
                         Chooseid.remove(vals);
                         Chooseid.add(vals);
-                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
+                      /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     }
                 }

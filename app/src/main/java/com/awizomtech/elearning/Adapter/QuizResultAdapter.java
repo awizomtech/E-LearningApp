@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.awizomtech.elearning.Activity.HomePageActivity;
 import com.awizomtech.elearning.Activity.QuizActivity;
 import com.awizomtech.elearning.Activity.QuizResultActivity;
 import com.awizomtech.elearning.Helper.UserHelper;
@@ -157,13 +158,13 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
                         String vals = String.valueOf(checkedId);
                         Chooseid.add(vals);
 
-                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
+                       /* Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     } else {
                         String vals = String.valueOf(checkedId);
                         Chooseid.remove(vals);
                         Chooseid.add(vals);
-                        Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();
+                      /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     }
                 }
@@ -176,32 +177,9 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.My
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   /* try {
-                        for (int j = 0; j < Quizid.size(); j++) {
-                            Resultid.add(String.valueOf(Resultd.get(j)));
-
-                        }
-                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getUserID();
-                        String Length = String.valueOf(Chooseid.size());
-                        String result = new UserHelper.PostResultupdate().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString(), Resultid.toString()).get();
-                        if (result.isEmpty()) {
-
-                        } else {
-                            String planer = Data.split("T")[0];
-                            String CourseName = Data.split("T")[1];
-                            String CourseId = Data.split("C")[0];
-                            String planerId = planer.split("C")[1];
-                            Intent intent = new Intent(mCtx, QuizResultActivity.class);
-                            intent.putExtra("CourseID", CourseId);
-                            intent.putExtra("planerId", planerId);
-                            intent.putExtra("CourseName", CourseName);
+                            Intent intent = new Intent(mCtx, HomePageActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             mCtx.startActivity(intent);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-
-                    }*/
                 }
             });
         } else {

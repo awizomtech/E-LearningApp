@@ -87,24 +87,12 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
             holder.Cardview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                /*String cid = String.valueOf(n.getCourseID());
-                Intent intent = new Intent(mCtx, LearningActivity.class);
-                intent.putExtra("Cid",cid);
-                mCtx.startActivity(intent);*/
-                   /* String ctype = String.valueOf(n.getType());
-                    if (ctype.contains("Free")) {
-                        String cid = String.valueOf(n.getCourseID());
-                        Intent intent = new Intent(mCtx, FreeLearningActivity.class);
-                        intent.putExtra("Cid",cid);
-                        mCtx.startActivity(intent);
-                    } else {*/
                         String coursename = String.valueOf(n.getCourseName());
                         String cid = String.valueOf(n.getCourseID());
                         Intent intent = new Intent(mCtx, MyCourseLevelActivity.class);
                         intent.putExtra("CourseName", coursename);
                         intent.putExtra("Cid", cid);
                         mCtx.startActivity(intent);
-               /*     }*/
                 }
             });
         }
