@@ -75,7 +75,7 @@ public class FreeLearningActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String cid = getIntent().getExtras().getString("Cid");
-                String url= AppConfig.BASE_URL+"Student/Student/PrintCertificate?CourseID="+6+"&LevelID="+0;
+                String url= AppConfig.BASE_URL+"Student/Student/PrintCertificate?CourseID="+cid+"&LevelID="+0;
                 final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
                 startActivity(intent);
             }
