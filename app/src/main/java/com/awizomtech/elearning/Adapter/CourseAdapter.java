@@ -65,10 +65,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         for (int j = 0; j < courseListModelSecond.size(); j++) {
             Choose.add(String.valueOf(courseListModelSecond.get(j).getCourseID()));
         }
-        String val = String.valueOf(n.getCourseID());
-        if (Choose.contains(val)) {
-            holder.Subscribed.setVisibility(TextView.VISIBLE);
-            holder.Subscribed.setText("Subscribed");
+        String cid = String.valueOf(n.getCourseID());
+        String type = String.valueOf(n.getType());
+
+        if (Choose.contains(cid)) {
+            if(type.contains("Free")){
+                holder.Subscribed.setVisibility(TextView.VISIBLE);
+                holder.Subscribed.setText("Subscribed");
+            }
+
             try {
                 Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
             } catch (Exception e) {
@@ -100,7 +105,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     public void onClick(View v) {
                         String coursename = String.valueOf(n.getCourseName());
                         String cid = String.valueOf(n.getCourseID());
-                        Intent intent = new Intent(mCtx, MyCourseLevelActivity.class);
+                        Intent intent = new Intent(mCtx, CourseLevelActivity.class);
                         intent.putExtra("CourseName", coursename);
                         intent.putExtra("Cid", cid);
                         mCtx.startActivity(intent);
@@ -123,6 +128,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                         Intent intent = new Intent(mCtx, FreeSubcriptionActivity.class);
                         intent.putExtra("CourseName", coursename);
                         intent.putExtra("Cid", cid);
+                        intent.putExtra("Type", ctype);
                         mCtx.startActivity(intent);
                     } else {
                         String cid = String.valueOf(n.getCourseID());

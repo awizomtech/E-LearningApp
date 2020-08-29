@@ -317,13 +317,14 @@ public class UserHelper extends AppCompatActivity {
             String price = params[2];
             String transactionid = params[3];
             String lid = params[4];
+            String type = params[5];
 
         String json = "";
             try {
 
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder.url(AppConfig.BASE_URL_API+"paymenntpost?UserId="+usetid+"&CourseId="+cid+"&cprice="+price+"&TransactionID="+transactionid+"&LevelID="+lid);
+                builder.url(AppConfig.BASE_URL_API+"paymenntpost?UserId="+usetid+"&CourseId="+cid+"&cprice="+price+"&TransactionID="+transactionid+"&LevelID="+lid+"&Type="+type);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
                 //builder.addHeader("Authorization", "Bearer " + accesstoken);

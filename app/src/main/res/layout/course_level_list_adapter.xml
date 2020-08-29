@@ -75,6 +75,16 @@
                             android:textColor="#FAFBFA"
                             android:textSize="14dp" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/subscribed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:hint="Subscribed"
+                        android:textColor="#9E1943"
+                        android:textSize="17dp"
+                        android:visibility="gone"/>
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

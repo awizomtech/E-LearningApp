@@ -19,7 +19,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 public class FreeSubcriptionActivity extends AppCompatActivity {
-String cname,cid;
+String cname,cid,Type;
     ProgressDialog progressDialog;
     TextView Tv_coursename;
     CardView Next;
@@ -44,6 +44,7 @@ String cname,cid;
         });
         cname = getIntent().getExtras().getString("CourseName");
         cid = getIntent().getExtras().getString("Cid");
+        Type = getIntent().getExtras().getString("Type");
         Tv_coursename = findViewById(R.id.tv_course_name);
         Tv_coursename.setText(cname.toString());
         Next = findViewById(R.id.enroll);
@@ -59,7 +60,8 @@ String cname,cid;
                                 String transactionid="0";
                                 String price="0";
                                 String usetid= SharedPrefManager.getInstance(FreeSubcriptionActivity.this).getUser().getUserID();
-                                result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString(),lid.toString()).get();
+                                String type =Type.toString();
+                                result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString(),lid.toString(),type.toString()).get();
                                 if (result.isEmpty()) {
                                     progressDialog.dismiss();
                                 } else {

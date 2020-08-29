@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.awizomtech.elearning.Adapter.CourseLevelAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseLevelModel;
+import com.awizomtech.elearning.Model.MyCourseLevelModel;
 import com.awizomtech.elearning.R;
+import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,6 +30,7 @@ public class CourseLevelActivity extends AppCompatActivity {
     String data="FirstActivity";
     CourseLevelAdapter adapter;
     private List<CourseLevelModel> courseLevelModels;
+    private List<MyCourseLevelModel> myCourseLevelModels;
     CardView Enroll;
     TextView Price, startDate, CourseName, Description, Duration, Cid;
     RecyclerView recyclerview;
@@ -70,10 +73,12 @@ String cname,descript,price,cid,duration,startdate,date;
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                MycourseLevel();
                 GetCourseDetail();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
+        MycourseLevel();
         GetCourseDetail();
     }
 
@@ -98,7 +103,26 @@ String cname,descript,price,cid,duration,startdate,date;
 
         }
     }
+    private void MycourseLevel() {
+        try {
+            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            String cid=Cid.getText().toString();
+            result = new UserHelper.GetMyCourseLevelList().execute(cid.toString(),userid.toString()).get();
+            if (result.isEmpty()) {
+                progressDialog.dismiss();
+            } else {
+                Gson gson = new Gson();
+                Type listType = new TypeToken<List<MyCourseLevelModel>>() {
+                }.getType();
+                progressDialog.dismiss();
+                myCourseLevelModels = new Gson().fromJson(result, listType);
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
     public static CourseLevelActivity getActivityInstance()
     {
         return INSTANCE;
@@ -107,5 +131,9 @@ String cname,descript,price,cid,duration,startdate,date;
     public String getData()
     {
         return this.data;
+    }
+    public List<MyCourseLevelModel> getDatas()
+    {
+        return this.myCourseLevelModels;
     }
 }

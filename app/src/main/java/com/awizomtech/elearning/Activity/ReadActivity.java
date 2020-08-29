@@ -56,58 +56,60 @@ public class ReadActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
-        try {
-            String cid = CourseID;
-            String studentId = SharedPrefManager.getInstance(this).getUser().getMobileNo();
-            String levelId = "0";
-            String plannerDetailID = "0";
-
-            result = new UserHelper.PostResultProgress().execute(studentId.toString(), levelId.toString(), cid.toString(), plannerDetailID).get();
-            if (result.isEmpty()) {
-            } else {
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<ExamProgressModel>>() {
-                }.getType();
-                examProgressModels = new Gson().fromJson(result, listType);
-                for (int j = 0; j < examProgressModels.size(); j++) {
-                    Choose.add(String.valueOf(examProgressModels.get(j).getPlannerDetailID()));
-                }
-                if (Choose.contains(planerId)) {
-                    test.setText("Already Attempted Test");
-                    test.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent intent = new Intent(ReadActivity.this, QuizResultActivity.class);
-                            intent.putExtra("CourseID", CourseID);
-                            intent.putExtra("planerId", planerId);
-                            intent.putExtra("CourseName", CourseName);
-                            startActivity(intent);
-                        }
-                    });
-                } else {
-                    test.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Intent intent = new Intent(ReadActivity.this, QuizActivity.class);
-                            intent.putExtra("CourseID", CourseID);
-                            intent.putExtra("planerId", planerId);
-                            intent.putExtra("CourseName", CourseName);
-                            startActivity(intent);
-                        }
-                    });
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         if (type.equals("Video")) {
+            webView.setVisibility(WebView.VISIBLE);
+            textView.setVisibility(TextView.GONE);
+            test.setVisibility(Button.GONE);
             webView.loadUrl(BASE_URL + URl);
         } else {
-           /* if(type.equals("Free")){
-                test.setVisibility(Button.VISIBLE);
-            }*/
+
+            try {
+                String cid = CourseID;
+                String studentId = SharedPrefManager.getInstance(this).getUser().getMobileNo();
+                String levelId = "0";
+                String plannerDetailID = "0";
+
+                result = new UserHelper.PostResultProgress().execute(studentId.toString(), levelId.toString(), cid.toString(), plannerDetailID).get();
+                if (result.isEmpty()) {
+                } else {
+                    Gson gson = new Gson();
+                    Type listType = new TypeToken<List<ExamProgressModel>>() {
+                    }.getType();
+                    examProgressModels = new Gson().fromJson(result, listType);
+                    for (int j = 0; j < examProgressModels.size(); j++) {
+                        Choose.add(String.valueOf(examProgressModels.get(j).getPlannerDetailID()));
+                    }
+                    if (Choose.contains(planerId)) {
+                        test.setText("Already Attempted Test");
+                        test.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(ReadActivity.this, QuizResultActivity.class);
+                                intent.putExtra("CourseID", CourseID);
+                                intent.putExtra("planerId", planerId);
+                                intent.putExtra("CourseName", CourseName);
+                                startActivity(intent);
+                            }
+                        });
+                    } else {
+                        test.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                Intent intent = new Intent(ReadActivity.this, QuizActivity.class);
+                                intent.putExtra("CourseID", CourseID);
+                                intent.putExtra("planerId", planerId);
+                                intent.putExtra("CourseName", CourseName);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             webView.setVisibility(WebView.GONE);
             textView.setVisibility(TextView.VISIBLE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

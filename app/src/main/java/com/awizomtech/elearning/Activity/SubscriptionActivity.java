@@ -80,7 +80,8 @@ String result;
                         String lid=Tv_LevelID.getText().toString();
                         String transactionid=Transactionid.getText().toString();
                         String usetid=SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getUserID();
-                        result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString(),lid.toString()).get();
+                        String type ="Paid";
+                        result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(),price.toString(),transactionid.toString(),lid.toString(),type.toString()).get();
                         if (result.isEmpty()) {
                             progressDialog.dismiss();
                         } else {

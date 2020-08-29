@@ -75,7 +75,7 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
                         mCtx.startActivity(intent);
                 }
             });
-        }else if (!n.PaymentStatus == true) {
+        }/*else if (!n.PaymentStatus == true) {
             holder.PaymnetStatus.setVisibility(CardView.VISIBLE);
             holder.PaymnetStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,7 +83,7 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
                     Toast.makeText(mCtx, "When Your Payment is Verified Then Read Course",Toast.LENGTH_SHORT).show();
                 }
             });
-        }else {
+        }*/else {
             holder.Cardview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
