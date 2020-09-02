@@ -8,6 +8,8 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import java.util.HashSet;
@@ -21,6 +23,8 @@ TextToSpeech tts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_splash);
         tts=new TextToSpeech(SplashActivity.this, new TextToSpeech.OnInitListener() {
 

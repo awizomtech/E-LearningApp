@@ -9,6 +9,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.awizomtech.elearning.Adapter.LearningAdapter;
@@ -32,6 +33,8 @@ public class LearningActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_learning);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");

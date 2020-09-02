@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -47,9 +48,12 @@ public class HomePageActivity extends AppCompatActivity {
     FrameLayout fl_container;
     BottomNavigationView bnv_menu;
     String result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
+                WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_home_page);
         INSTANCE = this;
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -137,7 +141,7 @@ public class HomePageActivity extends AppCompatActivity {
         bnv_menu.setSelectedItemId(R.id.navigation_home);
         loadFragment(new HomeFragment());
 
-      /*  GetCourselist();*/
+        /*  GetCourselist();*/
     }
 
     private void loadFragment(Fragment fragment) {

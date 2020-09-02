@@ -138,7 +138,6 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-
                 }
             }
         });
