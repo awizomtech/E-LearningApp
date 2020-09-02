@@ -289,14 +289,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 } else {
                     String fname = UserName.toString();
                     String pass = Pass.getText().toString();
-                    String lname = " ";
+                    String lname ="";
                     String mob = Mobile.getText().toString();
                     String email = Email.toString();
                     String gender = " ";
+                    progressDialog.show();
                     try {
                         result = new AccountHelper.PostRegister().execute(fname.toString(), lname.toString(), mob.toString(), email.toString(), pass.toString(), gender.toString()).get();
                         if (result.isEmpty()) {
                         } else {
+                            progressDialog.dismiss();
                             b.dismiss();
                             Type listType = new TypeToken<ProfileModel>() {
                             }.getType();

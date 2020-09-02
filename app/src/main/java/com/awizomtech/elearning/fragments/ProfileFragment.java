@@ -69,7 +69,14 @@ public class ProfileFragment extends Fragment {
                 progressDialog.dismiss();
                 ProfileModel profileModel = new Gson().fromJson(result, listType);
                 Username.setText(profileModel.getFirstName().toString());
-                Name.setText(profileModel.getFirstName().toString() + " " + profileModel.getLastName().toString());
+                String Lname="";
+                Lname =String.valueOf(profileModel.getLastName());
+                if(Lname.equals("null")){
+                    Name.setText(profileModel.getFirstName().toString());
+                }else {
+                    Name.setText(profileModel.getFirstName().toString() + " " +Lname.toString());
+                }
+
                 Mob.setText(profileModel.getMobileNumber().toString());
                 Email.setText(profileModel.getEmailAddrss().toString());
                 String date = profileModel.getRegistrationDate().toString();
