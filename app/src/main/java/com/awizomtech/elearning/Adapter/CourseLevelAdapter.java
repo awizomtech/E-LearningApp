@@ -11,6 +11,9 @@ import android.widget.TextView;
 import com.awizomtech.elearning.Activity.CourseLevelActivity;
 import com.awizomtech.elearning.Activity.CourseListActivity;
 import com.awizomtech.elearning.Activity.LearningActivity;
+import com.awizomtech.elearning.Activity.LevelOneDescriptionActivity;
+import com.awizomtech.elearning.Activity.LevelSecDescriptionActivity;
+import com.awizomtech.elearning.Activity.LevelThirdDescriptionActivity;
 import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
 import com.awizomtech.elearning.Activity.SubscriptionActivity;
 import com.awizomtech.elearning.Model.CourseLevelModel;
@@ -84,13 +87,14 @@ String levelID = String.valueOf(n.getLevelID());
                     String duration = String.valueOf(n.getDuration());
                     String price = String.valueOf(n.getPrice());
                     /*    String cname =getIntent().getExtras().getString("CourseName");*/
-                    Intent intent = new Intent(mCtx, SubscriptionActivity.class);
+                    Intent intent = new Intent(mCtx, LevelThirdDescriptionActivity.class);
                     intent.putExtra("levelID",lid);
                     intent.putExtra("level",level);
                     intent.putExtra("Cid",cid);
                     intent.putExtra("Duration",duration);
                     intent.putExtra("Price",price);
                     mCtx.startActivity(intent);
+
                 }
             });
             holder.Duration.setText("Duration " +n.getDuration().toString());

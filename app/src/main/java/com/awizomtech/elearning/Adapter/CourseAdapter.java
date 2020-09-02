@@ -133,8 +133,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                     } else {
                         String cid = String.valueOf(n.getCourseID());
                         String coursename = String.valueOf(n.getCourseName());
+                        String image = String.valueOf(n.getCourseImage());
                         Intent intent = new Intent(mCtx, CourseLevelActivity.class);
                         intent.putExtra("CourseName", coursename);
+                        intent.putExtra("image", image);
                         intent.putExtra("Cid", cid);
                         mCtx.startActivity(intent);
                     }

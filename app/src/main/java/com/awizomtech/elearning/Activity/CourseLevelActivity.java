@@ -28,7 +28,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class CourseLevelActivity extends AppCompatActivity {
     static CourseLevelActivity INSTANCE;
-    String data="FirstActivity";
+    String data = "FirstActivity";
+    String Image = " ";
     CourseLevelAdapter adapter;
     private List<CourseLevelModel> courseLevelModels;
     private List<MyCourseLevelModel> myCourseLevelModels;
@@ -37,15 +38,16 @@ public class CourseLevelActivity extends AppCompatActivity {
     RecyclerView recyclerview;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String result;
-String cname,descript,price,cid,duration,startdate,date;
+    String cname, descript, price, cid, duration, startdate, date, image;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
         setContentView(R.layout.activity_course_level);
-        INSTANCE=this;
+        INSTANCE = this;
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
@@ -54,7 +56,7 @@ String cname,descript,price,cid,duration,startdate,date;
     }
 
     private void InitView() {
-        ImageView backpress=findViewById(R.id.back);
+        ImageView backpress = findViewById(R.id.back);
         backpress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,8 +69,10 @@ String cname,descript,price,cid,duration,startdate,date;
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         cname = getIntent().getExtras().getString("CourseName");
         cid = getIntent().getExtras().getString("Cid");
+        image = getIntent().getExtras().getString("image");
         Cid.setText(cid);
-        data=cname;
+        data = cname;
+        Image = image;
         CourseName.setText(cname);
 
         recyclerview.setHasFixedSize(true);
@@ -87,7 +91,7 @@ String cname,descript,price,cid,duration,startdate,date;
 
     private void GetCourseDetail() {
         try {
-            String cid=Cid.getText().toString();
+            String cid = Cid.getText().toString();
             result = new UserHelper.GetCourseLevelList().execute(cid.toString()).get();
             if (result.isEmpty()) {
                 progressDialog.dismiss();
@@ -106,11 +110,12 @@ String cname,descript,price,cid,duration,startdate,date;
 
         }
     }
+
     private void MycourseLevel() {
         try {
-            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
-            String cid=Cid.getText().toString();
-            result = new UserHelper.GetMyCourseLevelList().execute(cid.toString(),userid.toString()).get();
+            String userid = SharedPrefManager.getInstance(this).getUser().getUserID();
+            String cid = Cid.getText().toString();
+            result = new UserHelper.GetMyCourseLevelList().execute(cid.toString(), userid.toString()).get();
             if (result.isEmpty()) {
                 progressDialog.dismiss();
             } else {
@@ -126,17 +131,19 @@ String cname,descript,price,cid,duration,startdate,date;
 
         }
     }
-    public static CourseLevelActivity getActivityInstance()
-    {
+
+    public static CourseLevelActivity getActivityInstance() {
         return INSTANCE;
     }
 
-    public String getData()
-    {
+    public String getData() {
         return this.data;
     }
-    public List<MyCourseLevelModel> getDatas()
-    {
+    public String getImage() {
+        return this.Image;
+    }
+
+    public List<MyCourseLevelModel> getDatas() {
         return this.myCourseLevelModels;
     }
 }
