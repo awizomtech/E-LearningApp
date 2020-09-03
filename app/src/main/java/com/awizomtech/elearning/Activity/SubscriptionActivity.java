@@ -25,7 +25,7 @@ public class SubscriptionActivity extends AppCompatActivity {
     String cname,level, price, cid, duration,levelId;
     TextView Tv_coursename, Tv_price, Tv_duration,PayableAmt,Tv_LevelID,Tv_Level;
 EditText Transactionid;
-CardView Next;
+CardView Next,Enrollsend;
 String result;
 
     ProgressDialog progressDialog;
@@ -56,6 +56,7 @@ String result;
         Tv_LevelID = findViewById(R.id.tv_levelid);
         Tv_Level = findViewById(R.id.tv_level_name);
         Next = findViewById(R.id.enroll);
+        Enrollsend = findViewById(R.id.enrollsend);
         Transactionid = findViewById(R.id.transactionid);
         PayableAmt = findViewById(R.id.tv_payable);
         levelId = getIntent().getExtras().getString("levelID");
@@ -89,6 +90,8 @@ String result;
                             progressDialog.dismiss();
                         } else {
                             progressDialog.dismiss();
+                            Next.setVisibility(View.GONE);
+                            Enrollsend.setVisibility(View.VISIBLE);
                                 Intent intent = new Intent(SubscriptionActivity.this, MyCourseActivity.class);
                                 startActivity(intent);
                         }

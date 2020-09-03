@@ -61,6 +61,7 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
                 intent.putExtra("Duration", duration);
                 intent.putExtra("Price", price);
                 startActivity(intent);
+                finish();
 
             }
         });

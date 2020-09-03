@@ -60,7 +60,7 @@ public class LevelSecDescriptionActivity extends AppCompatActivity {
                 intent.putExtra("Duration", duration);
                 intent.putExtra("Price", price);
                 startActivity(intent);
-
+                finish();
             }
         });
     }

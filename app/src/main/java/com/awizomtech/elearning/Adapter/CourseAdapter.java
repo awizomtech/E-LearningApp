@@ -71,7 +71,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
         if (Choose.contains(cid)) {
             if(type.contains("Free")){
                 holder.Subscribed.setVisibility(TextView.VISIBLE);
-                holder.Subscribed.setText("Subscribed");
+                holder.Subscribed.setText("Enrolled");
             }
 
             try {

@@ -63,7 +63,7 @@ public class CourseLevelAdapter extends RecyclerView.Adapter<CourseLevelAdapter.
 String levelID = String.valueOf(n.getLevelID());
         if (Choose.contains(levelID)) {
             holder.Sub.setVisibility(TextView.VISIBLE);
-            holder.Sub.setText("Subscribed");
+            holder.Sub.setText("Enrolled");
             holder.Duration.setText("Duration " +n.getDuration().toString());
             holder.Price.setText("Price "+ String.valueOf(n.getPrice()));
             holder.payment.setOnClickListener(new View.OnClickListener() {

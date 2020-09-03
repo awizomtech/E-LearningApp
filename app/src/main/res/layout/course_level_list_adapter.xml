@@ -81,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:hint="Subscribed"
+                        android:hint="Enrolled"
                         android:textColor="#9E1943"
                         android:textSize="17dp"
                         android:visibility="gone"/>
