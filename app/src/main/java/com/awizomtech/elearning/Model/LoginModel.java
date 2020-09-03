@@ -2,6 +2,7 @@ package com.awizomtech.elearning.Model;
 
 public class LoginModel {
     public String UserName ;
+    public String Name ;
     public String UserID;
     public String MobileNo;
     public int ID ;
@@ -36,5 +37,13 @@ public class LoginModel {
 
     public void setID(int ID) {
         this.ID = ID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
     }
 }

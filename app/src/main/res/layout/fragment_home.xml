@@ -132,6 +132,7 @@ Best Environment For Your Cours"
                                 android:src="@drawable/course"/>
 
                             <TextView
+                                android:id="@+id/timecheck"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="Courses"

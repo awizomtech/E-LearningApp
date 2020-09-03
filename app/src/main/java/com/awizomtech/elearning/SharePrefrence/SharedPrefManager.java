@@ -39,6 +39,7 @@ public class SharedPrefManager {
         editor.putString(Key_UserName, loginModel.UserName);
         editor.putInt(Key_ID, loginModel.ID);
         editor.putString(Key_Mobile, loginModel.MobileNo);
+        editor.putString(Key_Name, loginModel.Name);
         editor.apply();
         return true;
     }
@@ -57,6 +58,7 @@ public class SharedPrefManager {
         token.UserID = sharedPreferences.getString(Key_UserID, "");
         token.UserName = sharedPreferences.getString(Key_UserName, "");
         token.MobileNo = sharedPreferences.getString(Key_Mobile, "");
+        token.Name = sharedPreferences.getString(Key_Name, "");
         token.ID = sharedPreferences.getInt(Key_ID, 0);
         return token;
     }

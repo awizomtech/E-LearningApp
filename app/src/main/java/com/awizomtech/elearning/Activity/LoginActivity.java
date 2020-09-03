@@ -138,12 +138,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     String usernamebyres = String.valueOf(loginModel.getUserName());
                                     String studid = String.valueOf(loginModel.getID());
                                     String mobileno = String.valueOf(loginModel.getMobileNo());
+                                    String name = String.valueOf(loginModel.getName());
                                     if (!userid.equals("null")) {
                                         LoginModel loginmodel1 = new LoginModel();
                                         loginmodel1.UserID = String.valueOf(userid.toString());
                                         loginmodel1.UserName = usernamebyres;
                                         loginmodel1.ID = Integer.valueOf(studid);
                                         loginmodel1.MobileNo = mobileno;
+                                        loginmodel1.Name = name;
                                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
                                         Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                         startActivity(intent);

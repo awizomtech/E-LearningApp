@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -26,6 +27,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -59,6 +62,24 @@ public class HomeFragment extends Fragment {
         Mypayment=root.findViewById(R.id.mypayment);
         Fitness=root.findViewById(R.id.fitness);
         Course=root.findViewById(R.id.course);
+        TextView timeCheck =root.findViewById(R.id.timecheck);
+
+        Date date = new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        String greeting = null;
+        if(hour>= 12 && hour < 17){
+            greeting = "Good Afternoon";
+        } else if(hour >= 17 && hour < 21){
+            greeting = "Good Evening";
+        } else if(hour >= 21 && hour < 24){
+            greeting = "Good Night";
+        } else {
+            greeting = "Good Morning";
+        }
+        timeCheck.setText(greeting.toString());
+
 
         Course.setOnClickListener(new View.OnClickListener() {
             @Override
