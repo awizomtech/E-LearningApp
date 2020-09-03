@@ -131,7 +131,8 @@ public class FitnessTestActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                BeepVoicedealy();
+                RrestTime();
+               /* BeepVoicedealy();*/
             }
 
         }.start();
@@ -175,11 +176,11 @@ public class FitnessTestActivity extends AppCompatActivity {
     }
 
     public void NewStartDealy() {
-        myCountDownTimer =    new CountDownTimer(2000, 1000) {
+        myCountDownTimer =    new CountDownTimer(1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
-                ring.start();
+               /* MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
+                ring.start();*/
                 TotalTime.setText(String.valueOf(timer));
                 timer++;
             }
@@ -202,6 +203,8 @@ public class FitnessTestActivity extends AppCompatActivity {
                         @Override
                         public void onFinish() {
                            /* CoundowdStart();*/
+                            MediaPlayer ring= MediaPlayer.create(FitnessTestActivity.this,R.raw.beep1);
+                            ring.start();
                             RunningStart();
                         }
                     }.start();

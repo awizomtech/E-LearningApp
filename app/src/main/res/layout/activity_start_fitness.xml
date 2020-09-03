@@ -46,7 +46,14 @@
                     android:textColor="#C2FBFBFB"
                     android:textSize="17sp"
                     android:textStyle="bold" />
-
+<ImageView
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:id="@+id/logout"
+    android:background="#F44848"
+    android:layout_marginLeft="150dp"
+    android:layout_marginRight="10dp"
+    android:src="@drawable/ic_baseline_power_settings_new_24"/>
             </LinearLayout>
 
         </LinearLayout>

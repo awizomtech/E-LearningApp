@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.LevelThirdDescriptionActivity"></activity>
+        <activity android:name=".Activity.LevelThirdDescriptionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.LevelSecDescriptionActivity"
             android:theme="@style/AppTheme.NoActionBar" />

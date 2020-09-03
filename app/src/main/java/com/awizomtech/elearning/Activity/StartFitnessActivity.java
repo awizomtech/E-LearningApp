@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.awizomtech.elearning.R;
+import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 
 public class StartFitnessActivity extends AppCompatActivity {
     EditText Distance,RunningTime,RestTime,Round;
@@ -29,6 +30,16 @@ public class StartFitnessActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        ImageView Logout=findViewById(R.id.logout);
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPrefManager sp = new SharedPrefManager(StartFitnessActivity.this);
+                sp.logout();
+                startActivity(new Intent(StartFitnessActivity.this, LoginActivity.class));
+                finish();
             }
         });
         Distance=findViewById(R.id.edi_distance);

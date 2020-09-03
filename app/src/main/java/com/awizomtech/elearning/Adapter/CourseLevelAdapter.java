@@ -87,13 +87,33 @@ String levelID = String.valueOf(n.getLevelID());
                     String duration = String.valueOf(n.getDuration());
                     String price = String.valueOf(n.getPrice());
                     /*    String cname =getIntent().getExtras().getString("CourseName");*/
-                    Intent intent = new Intent(mCtx, LevelThirdDescriptionActivity.class);
-                    intent.putExtra("levelID",lid);
-                    intent.putExtra("level",level);
-                    intent.putExtra("Cid",cid);
-                    intent.putExtra("Duration",duration);
-                    intent.putExtra("Price",price);
-                    mCtx.startActivity(intent);
+
+                    if(n.getLevel().contains("Level 1")){
+                        Intent intent = new Intent(mCtx, LevelSecDescriptionActivity.class);
+                        intent.putExtra("levelID",lid);
+                        intent.putExtra("level",level);
+                        intent.putExtra("Cid",cid);
+                        intent.putExtra("Duration",duration);
+                        intent.putExtra("Price",price);
+                        mCtx.startActivity(intent);
+                    }else if(n.getLevel().contains("Level 2")) {
+                        Intent intent = new Intent(mCtx, LevelOneDescriptionActivity.class);
+                        intent.putExtra("levelID",lid);
+                        intent.putExtra("level",level);
+                        intent.putExtra("Cid",cid);
+                        intent.putExtra("Duration",duration);
+                        intent.putExtra("Price",price);
+                        mCtx.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(mCtx, LevelThirdDescriptionActivity.class);
+                        intent.putExtra("levelID",lid);
+                        intent.putExtra("level",level);
+                        intent.putExtra("Cid",cid);
+                        intent.putExtra("Duration",duration);
+                        intent.putExtra("Price",price);
+                        mCtx.startActivity(intent);
+                    }
+
 
                 }
             });

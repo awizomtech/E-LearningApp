@@ -48,13 +48,22 @@ TextToSpeech tts;
 
         String userid = SharedPrefManager.getInstance(this).getUser().getUserID().toString();
         if (userid != "") {
-            new Timer().schedule(new TimerTask() {
-                public void run() {
-                    startActivity(new Intent(SplashActivity.this, HomePageActivity.class));
-                    finish();
+            if(userid.contains("Admin1")){
+                new Timer().schedule(new TimerTask() {
+                    public void run() {
+                        startActivity(new Intent(SplashActivity.this, StartFitnessActivity.class));
+                        finish();
+                    }
+                }, 3000);
+            }else {
+                new Timer().schedule(new TimerTask() {
+                    public void run() {
+                        startActivity(new Intent(SplashActivity.this, HomePageActivity.class));
+                        finish();
 
-                }
-            }, 3000);
+                    }
+                }, 3000);
+            }
 
         }
         else {

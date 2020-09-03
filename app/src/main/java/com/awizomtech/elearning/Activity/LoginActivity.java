@@ -91,22 +91,32 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View view) {
 
-                if (username.getText().toString().isEmpty() || username.getText().toString().length() != 10) {
+                if (username.getText().toString().isEmpty()) {
                     username.setError("Required !");
                 /*}else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
                     password.setError("Required !");
                 }*/
                 } else if (password.getText().toString().isEmpty()) {
                     password.setError("Required !");
-                } else {
-                    /*     progressDialog.show();*/
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
+                }else  if(password.getText().toString().equals("Admin@123") && username.getText().toString().equals("Admin1")){
+                    LoginModel loginmodel1 = new LoginModel();
+                    loginmodel1.UserID = "Admin1";
+                    loginmodel1.UserName = "Admin1";
+                    loginmodel1.ID = Integer.valueOf(1);
+                    loginmodel1.MobileNo = "1234567890";
+                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
+                    Intent intent = new Intent(LoginActivity.this, StartFitnessActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                         progressDialog.show();
+                   /* AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
                     LayoutInflater inflater = getLayoutInflater();
                     final View dialogView = inflater.inflate(R.layout.progress_dialog, null);
                     alertbox.setView(dialogView);
                     alertbox.setCancelable(false);
                     final AlertDialog b = alertbox.create();
-                    b.show();
+                    b.show();*/
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                             String Username = username.getText().toString();
@@ -116,10 +126,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 String first = result.split(":")[1];
                                 String second = first.split(",")[0];
                                 if (second.contains("null")) {
-                                    b.dismiss();
+                                  /*  b.dismiss();*/
+                                    progressDialog.dismiss();
                                     /*     Toast.makeText(LoginActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();*/
                                 } else {
-                                    b.dismiss();
+                                 /*   b.dismiss();*/
                                     Type listType = new TypeToken<LoginModel>() {
                                     }.getType();
                                     LoginModel loginModel = new Gson().fromJson(result, listType);

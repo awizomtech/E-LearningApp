@@ -52,14 +52,13 @@
                         android:id="@+id/et_usename"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:drawableLeft="@drawable/ic_baseline_account_circle_24"
                         android:maxLines="1"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                      android:drawablePadding="10dp"
                         android:textSize="14sp"
-                        android:maxLength="10"
                         android:background="@drawable/edit_text_shape"
                         android:hint="user Name" />
              <!--   </com.google.android.material.textfield.TextInputLayout>
