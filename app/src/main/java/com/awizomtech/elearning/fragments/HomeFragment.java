@@ -2,6 +2,7 @@ package com.awizomtech.elearning.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +12,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.awizomtech.elearning.Activity.CourseListActivity;
+import com.awizomtech.elearning.Activity.InstructorListActivity;
 import com.awizomtech.elearning.Activity.MyCourseActivity;
 import com.awizomtech.elearning.Activity.MyPaymentActivity;
-import com.awizomtech.elearning.Activity.StartFitnessActivity;
 import com.awizomtech.elearning.Adapter.HomeCourseAdapter;
-import com.awizomtech.elearning.Adapter.HomeQuizAdapter;
+import com.awizomtech.elearning.Adapter.HomeInstructorAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
-import com.awizomtech.elearning.Model.QuizModel;
+import com.awizomtech.elearning.Model.InstructorModel;
 import com.awizomtech.elearning.R;
+import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,36 +36,41 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     HomeCourseAdapter adapter;
-    HomeQuizAdapter quizadapter;
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    HomeInstructorAdapter quizadapter;
+    SwipeRefreshLayout mSwipeRefreshLayout,mSwipeRefreshLayout1;
     private List<CourseListModel> courseListModels;
-    private List<QuizModel> quizModels;
+    private List<InstructorModel> instructorModels;
     private String result = "";
 
     androidx.recyclerview.widget.RecyclerView recyclerView;
-    androidx.recyclerview.widget.RecyclerView recyclerViewQuiz;
+    androidx.recyclerview.widget.RecyclerView recyclerView1;
     View root;
-    CardView Course,Mycourse,Mypayment,Fitness;
+    CardView Subscription,Mycourse,Mypayment,AllCourse,AllInstructor;
+    TextView Wish, Name;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
      root = inflater.inflate(R.layout.fragment_home, container, false);
-      /*  final TextView textView = root.findViewById(R.id.text_home);*//*
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
         Initview();
+        blink();
         return root;
     }
 
     private void Initview() {
         Mycourse=root.findViewById(R.id.mycourse);
-        Mypayment=root.findViewById(R.id.mypayment);
-        Fitness=root.findViewById(R.id.fitness);
-        Course=root.findViewById(R.id.course);
-        TextView timeCheck =root.findViewById(R.id.timecheck);
+        Mypayment=root.findViewById(R.id.payment);
+        Subscription=root.findViewById(R.id.subscription);
+        AllCourse=root.findViewById(R.id.allcourse);
+        Wish=root.findViewById(R.id.wish);
+        Name=root.findViewById(R.id.userName);
+        AllInstructor=root.findViewById(R.id.viewAllInstructor);
+        recyclerView=root.findViewById(R.id.recyclerView);
+        recyclerView1=root.findViewById(R.id.recyclerView1);
+        mSwipeRefreshLayout =root.findViewById(R.id.swipeToRefresh);
+        mSwipeRefreshLayout1 =root.findViewById(R.id.swipeToRefresh1);
+        recyclerView.setHasFixedSize(true);
+        recyclerView1.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
@@ -78,13 +86,24 @@ public class HomeFragment extends Fragment {
         } else {
             greeting = "Good Morning";
         }
-        timeCheck.setText(greeting.toString());
 
+        Wish.setText(greeting.toString());
+        String uname = SharedPrefManager.getInstance(getContext()).getUser().getName();
+        StringBuilder sb = new StringBuilder(uname);
+        sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+        Name.setText(sb.toString());
 
-        Course.setOnClickListener(new View.OnClickListener() {
+        AllCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(getContext(), CourseListActivity.class);
+                startActivity(intent);
+            }
+        });
+        Subscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), MyCourseActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,58 +121,13 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        Fitness.setOnClickListener(new View.OnClickListener() {
+        AllInstructor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getContext(), StartFitnessActivity.class);
+                Intent intent= new Intent(getContext(), InstructorListActivity.class);
                 startActivity(intent);
             }
         });
-
-      /*  Mycourse=root.findViewById(R.id.mycourse);
-        Mypayment=root.findViewById(R.id.mypayment);
-        Myprofile=root.findViewById(R.id.profile);
-        Course=root.findViewById(R.id.course);
-        Course.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getContext(), CourseListActivity.class);
-                startActivity(intent);
-            }
-        });
-        Mypayment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getContext(), MyPaymentActivity.class);
-                startActivity(intent);
-            }
-        });
-        Mycourse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getContext(), MyCourseActivity.class);
-                startActivity(intent);
-            }
-        });
-        Myprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(getContext(), ProfileActivity.class);
-                startActivity(intent);
-            }
-        });*/
-
-
-
-      /*  recyclerView=root.findViewById(R.id.recyclerView);
-        recyclerViewQuiz=root.findViewById(R.id.recyclerViewQuiz);
-        recyclerView.setHasFixedSize(true);
-      *//*  recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));*//*
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewQuiz.setHasFixedSize(true);
-        recyclerViewQuiz.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-*/
-       /* mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -161,10 +135,16 @@ public class HomeFragment extends Fragment {
                 GetCourselist();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
-        });*/
-
+        });
+        mSwipeRefreshLayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                GetInstructorlist();
+                mSwipeRefreshLayout1.setRefreshing(false);
+            }
+        });
         GetCourselist();
-        GetQuizlist();
+        GetInstructorlist();
     }
 
     private void GetCourselist() {
@@ -186,22 +166,44 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void GetQuizlist() {
+    private void GetInstructorlist() {
         try {
-            result = new UserHelper.GetQuizlist().execute().get();
+            result = new UserHelper.GetInstructorlist().execute().get();
             if (result.isEmpty()) {
             } else {
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<QuizModel>>() {
+                Type listType = new TypeToken<List<InstructorModel>>() {
                 }.getType();
-                quizModels= new Gson().fromJson(result, listType);
-                Log.d("Error", quizModels.toString());
-                quizadapter = new HomeQuizAdapter(getContext(), quizModels);
-                recyclerViewQuiz.setAdapter(quizadapter);
+                instructorModels= new Gson().fromJson(result, listType);
+                Log.d("Error", instructorModels.toString());
+                quizadapter = new HomeInstructorAdapter(getContext(), instructorModels);
+                recyclerView1.setAdapter(quizadapter);
             }
         } catch (Exception e) {
             e.printStackTrace();
 
         }
+    }
+    private void blink(){
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int timeToBlink = 1000;    //in milissegunds
+                try{Thread.sleep(timeToBlink);}catch (Exception e) {}
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(Wish.getVisibility() == View.VISIBLE){
+                            Wish.setVisibility(View.INVISIBLE);
+                        }else{
+                            Wish.setVisibility(View.VISIBLE);
+                        }
+                        blink();
+                    }
+                });
+            }
+        }).start();
     }
 }

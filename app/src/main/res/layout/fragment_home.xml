@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home1"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     android:paddingBottom="40dp">
@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -52,283 +51,297 @@
             </LinearLayout>
 
         </LinearLayout>
-
-       <!--   <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="250dp"
-              android:orientation="vertical"
-              android:background="#DCDBDB">
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
-                  <LinearLayout
-                      android:layout_width="150dp"
-                      android:layout_height="wrap_content"
-                      android:orientation="vertical">
-                      <TextView
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:text="Learn Strength and Conditioning
-Best Environment For Your Cours"
-                          android:textSize="18dp"
-                          android:layout_marginLeft="50dp"
-                          android:layout_marginTop="80dp"
-                          android:textAlignment="center"
-                          android:textStyle="bold"
-                          android:textColor="#326BCC"/>
-                      <TextView
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="Sports"
-                          android:textSize="25dp"
-                          android:layout_marginLeft="30dp"
-                          android:textAlignment="center"
-                          android:textColor="#403F3F"/>
-                  </LinearLayout>
-                &lt;!&ndash;  <ImageView
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:src="@drawable/homebanner"/>&ndash;&gt;
-              </LinearLayout>
-           </LinearLayout>-->
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
+                    android:layout_height="match_parent"
+                    android:background="#ffff"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <TextView
+                            android:id="@+id/wish"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Good Morning"
+                            android:textColor="#424141"
+                            android:layout_marginLeft="20dp"
+                            android:textSize="20dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:id="@+id/userName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Name"
+                            android:textAlignment="textEnd"
+                            android:textColor="#424141"
+                            android:textSize="20dp"
+                            android:layout_marginRight="30dp"/>
+                    </LinearLayout>
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/course"
-                        android:layout_width="140dp"
-                        android:layout_height="120dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="5dp">
-
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="30dp"
+                        app:cardElevation="10dp">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:background="@drawable/level1"
                             android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:src="@drawable/course"/>
-
                             <TextView
-                                android:id="@+id/timecheck"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:text="Learn Strength and Conditioning
+                                 Best Environment For Your Courses"
+                                android:textAlignment="center"
+                                android:textColor="#FEFDFF"
+                                android:textStyle="bold"
+                                android:textSize="18dp"
+                                android:layout_marginTop="50dp" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
                                 android:text="Courses"
-                                android:textAlignment="center"
-                                android:textColor="#0D4077"
-                                android:layout_marginTop="5dp"
-                                android:textSize="18dp" />
+                                android:textColor="#777676"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/mycourse"
-                        android:layout_width="140dp"
-                        android:layout_height="120dp"
-                        android:layout_marginLeft="10dp"
-                        app:cardCornerRadius="10dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardElevation="5dp">
 
                         <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="160dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/allcourse"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_margin="10dp"
+                                android:layout_marginLeft="100dp"
+                                app:cardBackgroundColor="#6ADC6A"
+                                app:cardCornerRadius="20dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Explore All"
+                                    android:textAlignment="center"
+                                    android:textColor="#FDFCFC"
+                                    android:textSize="14dp" />
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+                        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                            android:id="@+id/swipeToRefresh"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
+                            android:layout_marginRight="10dp">
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:src="@drawable/subscription"/>
+                                android:layout_height="match_parent">
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recyclerView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Subscription"
-                                android:textAlignment="center"
-                                android:textColor="#0D4077"
-                                android:layout_marginTop="5dp"
-                                android:textSize="18dp" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Instructor"
+                                android:textColor="#777676"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/mypayment"
-                        android:layout_width="140dp"
-                        android:layout_height="120dp"
-                        app:cardCornerRadius="10dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardElevation="5dp">
-
                         <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="150dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/viewAllInstructor"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_margin="10dp"
+                                android:layout_marginLeft="100dp"
+                                app:cardBackgroundColor="#6ADC6A"
+                                app:cardCornerRadius="20dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Explore All"
+                                    android:textAlignment="center"
+                                    android:textColor="#FDFCFC"
+                                    android:textSize="14dp" />
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp">
+                        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                            android:id="@+id/swipeToRefresh1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_marginRight="10dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recyclerView1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                            </LinearLayout>
+                        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Quick Links"
+                                android:textColor="#777676"
+                                android:textSize="18dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="50dp"
+                        android:orientation="horizontal">
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/mycourse"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_margin="10dp"
+                                app:cardBackgroundColor="#FAF9F9"
+                                app:cardCornerRadius="20dp">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="70dp"
+                                        android:src="@drawable/course"/>
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="13dp"
+                                        android:textAlignment="center"
+                                        android:text="My Courses"/>
+                                </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/subscription"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FAF9F9"
+                            app:cardCornerRadius="20dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/subscription"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="13dp"
+                                    android:textAlignment="center"
+                                    android:text="My Subscription"/>
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/payment"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FAF9F9"
+                        app:cardCornerRadius="20dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_height="70dp"
                                 android:src="@drawable/wallet"/>
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Payment"
+                                android:textSize="13dp"
                                 android:textAlignment="center"
-                                android:textColor="#0D4077"
-                                android:layout_marginTop="5dp"
-                                android:textSize="18dp" />
+                                android:text="My Payment"/>
                         </LinearLayout>
+
                     </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/fitness"
-                        android:layout_width="140dp"
-                        android:layout_height="120dp"
-                        android:layout_marginLeft="10dp"
-                        app:cardCornerRadius="10dp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        app:cardElevation="5dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                android:layout_marginTop="10dp"
-                                android:src="@drawable/fitness"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Fitness Test"
-                                android:textAlignment="center"
-                                android:textColor="#0D4077"
-                                android:layout_marginTop="5dp"
-                                android:textSize="18dp" />
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </ScrollView>
         </LinearLayout>
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout><!--
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_marginTop="-10dp"
-android:orientation="vertical"
-android:visibility="gone">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="370dp"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:background="@drawable/course_shap"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:overScrollMode="always">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="10sp"
-        android:text="Course List"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold" />
 </LinearLayout>
-</LinearLayout>
-
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_marginTop="10dp"
-android:orientation="vertical"
-android:visibility="gone">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="370dp"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:background="@drawable/course_shap"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:overScrollMode="always">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:layout_marginTop="10sp"
-        android:text="Quiz List"
-        android:textColor="#ffff"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-</LinearLayout>
-</LinearLayout>-->

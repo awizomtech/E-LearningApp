@@ -158,7 +158,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetFreeTopicList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -194,7 +193,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetMyCourseList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -232,7 +230,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetMyPaymentList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -270,7 +267,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetLectureList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -357,7 +353,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetQuestionList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -395,7 +390,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetAnswerList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -433,7 +427,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class PostResult extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -482,7 +475,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class PostResultupdate extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -532,7 +524,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class GetResult extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -577,8 +568,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
-
     public static final class GetMyCourseLevelList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -617,7 +606,6 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
     public static final class PostResultProgress extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -662,5 +650,40 @@ public class UserHelper extends AppCompatActivity {
 
     }
 
+    public static final class GetInstructorlist extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String json = "";
+            try {
+
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(AppConfig.BASE_URL_API+"GetInstructorList");
+                builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
+                builder.addHeader("Accept", "application/json");
+                okhttp3.Response response = client.newCall(builder.build()).execute();
+                if (response.isSuccessful()) {
+                    json = response.body().string();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
+        protected void onPostExecute(String result) {
+
+            if (result.isEmpty()) {
+
+            } else {
+                super.onPostExecute(result);
+//
+            }
+
+
+        }
+
+    }
 
 }

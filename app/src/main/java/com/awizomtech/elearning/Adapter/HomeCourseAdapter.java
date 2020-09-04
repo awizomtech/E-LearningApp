@@ -59,31 +59,35 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
         holder.pdate.setText("Date" +Pdate);*/
       /*  holder.bodyNoti.setText("Price " +n.Price+"₹");
         holder.pdate.setText("Duration " +n.Duration);*/
-        try {
-            Glide.with(mCtx).load(AppConfig.BASE_URL+n.CourseImage.toString()).into(holder.imageView);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        holder.Cardview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String cid = String.valueOf(n.getCourseID());
-                Intent intent = new Intent(mCtx, CourseLevelActivity.class);
-                mCtx.startActivity(intent);
-            }
-        });
+      if (n.getType().contains("Free")){
+          holder.Cardview.setVisibility(CardView.GONE);
+      }else {
+          try {
+              Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
+          } catch (Exception e) {
+              e.printStackTrace();
+          }
+          holder.Cardview.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  String cid = String.valueOf(n.getCourseID());
+                  Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                  intent.putExtra("Cid", cid);
+                  mCtx.startActivity(intent);
+              }
+          });
 
-        holder.Details.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+          holder.Details.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
 
-                String cid = String.valueOf(n.getCourseID());
-                Intent intent = new Intent(mCtx, CourseLevelActivity.class);
-                intent.putExtra("Cid",cid);
-                mCtx.startActivity(intent);
-            }
-        });
-
+                  String cid = String.valueOf(n.getCourseID());
+                  Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                  intent.putExtra("Cid", cid);
+                  mCtx.startActivity(intent);
+              }
+          });
+      }
     }
 
     @Override
