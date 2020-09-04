@@ -53,17 +53,9 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.MyVi
         String date = n.getPaymentDate().split("T")[0];
         holder.Date.setText("Date " + date);
         holder.Price.setText(String.valueOf("Pay Amount " + n.Amount + "₹"));
-
-      /*  holder.Duration.setText("Duration " + n.EMIDuration.toString());
-        holder.Emitype.setText("EMI Type " + n.EMIType.toString());
-        holder.Interest.setText("Interest Amount " + n.EmiIntrest.toString());
-        holder.Mothlypay.setText("Monthly Pay " + n.Amount + "₹");
-        if (n.EMIID > 0) {
-            holder.Emisection.setVisibility(LinearLayout.VISIBLE);
-        }else {
-            holder.Emisection.setVisibility(LinearLayout.GONE);
-        }*/
-
+        if(n.getCourseName().contains("Strength and Conditioning - Pre Level")){
+            holder.Cardview.setVisibility(View.GONE);
+        }
         if (!n.PaymentStatus == true) {
             holder.Verified.setVisibility(CardView.GONE);
             holder.Verify.setVisibility(CardView.VISIBLE);

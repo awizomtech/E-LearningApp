@@ -32,7 +32,7 @@
                 android:id="@+id/tv_search_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Payment"
+                android:text="My Subscription"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textStyle="bold"
@@ -52,7 +52,9 @@
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -60,7 +62,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"/>
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -15,8 +15,8 @@
             android:layout_height="120dp"
             android:layout_margin="5dp"
             app:cardCornerRadius="15dp"
-            app:cardBackgroundColor="@color/colorTransparentBlack"
-            app:cardElevation="1dp">
+            app:cardBackgroundColor="#F8F6F6"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,7 +43,6 @@
                     android:orientation="vertical"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_gravity="center"
                     android:layout_marginRight="20dp">
 
                     <TextView
@@ -52,7 +51,8 @@
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
                         android:hint="Course Name"
-                        android:textColor="#FAFBFA"
+                        android:textColor="#484948"
+                        android:textStyle="bold"
                         android:textSize="26dp" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -64,15 +64,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:hint="Course Name"
-                            android:textColor="#FAFBFA"
+                            android:textColor="#484948"
+                            android:textStyle="bold"
                             android:textSize="14dp" />
                         <TextView
                             android:id="@+id/courseDuration"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:hint="Course Name"
+                            android:textStyle="bold"
                             android:layout_marginLeft="40dp"
-                            android:textColor="#FAFBFA"
+                            android:textColor="#484948"
                             android:textSize="14dp" />
                     </LinearLayout>
 

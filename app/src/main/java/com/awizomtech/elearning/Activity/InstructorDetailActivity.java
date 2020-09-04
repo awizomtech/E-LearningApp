@@ -24,6 +24,13 @@ public class InstructorDetailActivity extends AppCompatActivity {
     }
 
     private void InitView() {
+        ImageView backpress = findViewById(R.id.back);
+        backpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         Name = findViewById(R.id.name);
         imageView=findViewById(R.id.image);
         Cardview=findViewById(R.id.cardview);

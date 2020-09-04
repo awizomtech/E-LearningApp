@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         Register = findViewById(R.id.tv_register);
         ll_submit = findViewById(R.id.ll_submit);
         Googlesigin = findViewById(R.id.googlesigin);
+
+        Register.setText(Html.fromHtml("<p>New User Register ?<u>Click Here</u></p>"));
         Googlesigin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

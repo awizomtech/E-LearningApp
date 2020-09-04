@@ -22,6 +22,7 @@
         app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
     <TextView
+        android:id="@+id/usernames"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"

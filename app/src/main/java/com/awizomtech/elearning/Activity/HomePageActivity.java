@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +61,6 @@ public class HomePageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -141,7 +141,9 @@ public class HomePageActivity extends AppCompatActivity {
         bnv_menu.setSelectedItemId(R.id.navigation_home);
         loadFragment(new HomeFragment());
 
-        /*  GetCourselist();*/
+          /*TextView Uname = findViewById(R.id.usernames);
+        String Name = SharedPrefManager.getInstance(this).getUser().getName();
+        Uname.setText(Name.toString());*/
     }
 
     private void loadFragment(Fragment fragment) {
@@ -193,30 +195,6 @@ public class HomePageActivity extends AppCompatActivity {
             alertbox.show();
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    private void GetCourselist() {
-        try {
-            String userid = SharedPrefManager.getInstance(this).getUser().getUserID();
-            result = new UserHelper.GetMyCourseList().execute(userid.toString()).get();
-            if (result.isEmpty()) {
-
-            } else {
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<CourseListModel>>() {
-                }.getType();
-
-                courseListModels = new Gson().fromJson(result, listType);
-                for (int i = 0; i <= courseListModels.size(); i++) {
-                    String cid = String.valueOf(courseListModels.get(i).getCourseID());
-                    CourseId.add(cid);
-                }
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
     }
 
     public static HomePageActivity getActivityInstance() {

@@ -50,7 +50,7 @@
             android:id="@+id/testmake"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Make Test"
+            android:text="Take Test"
             android:textColor="#fff"
             android:background="#40D359"/>
         <WebView

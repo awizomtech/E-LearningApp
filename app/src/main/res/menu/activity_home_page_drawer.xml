@@ -12,11 +12,10 @@
             android:id="@+id/nav_my_courses"
             android:icon="@drawable/ic_courses"
             android:title="@string/menu_course" />
-
         <item
             android:id="@+id/nav_payment"
             android:icon="@drawable/ic_baseline_account_balance_wallet_24"
-            android:title="@string/menu_gallery" />
+            android:title="@string/menu_subscription" />
         <item
             android:id="@+id/nav_course"
             android:icon="@drawable/ic_courses"
@@ -24,7 +23,8 @@
         <item
             android:id="@+id/nav_quiz"
             android:icon="@drawable/ic_courses"
-            android:title="Fitness Test" />
+            android:title="Fitness Test"
+            android:visible="false"/>
 
     </group>
     <item android:title="Action Tools">

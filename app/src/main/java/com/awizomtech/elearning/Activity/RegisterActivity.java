@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -47,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         conpass=findViewById(R.id.et_cpassword);
         mobile=findViewById(R.id.et_mob);
         ll_submit=findViewById(R.id.ll_register);
-
+        login.setText(Html.fromHtml("<p>Already Have A Account ?<u>Click Here</u></p>"));
         ll_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

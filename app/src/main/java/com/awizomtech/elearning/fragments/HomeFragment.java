@@ -19,6 +19,8 @@ import com.awizomtech.elearning.Activity.CourseListActivity;
 import com.awizomtech.elearning.Activity.InstructorListActivity;
 import com.awizomtech.elearning.Activity.MyCourseActivity;
 import com.awizomtech.elearning.Activity.MyPaymentActivity;
+import com.awizomtech.elearning.Activity.MySubcriptionListActivity;
+import com.awizomtech.elearning.Activity.ProfileActivity;
 import com.awizomtech.elearning.Adapter.HomeCourseAdapter;
 import com.awizomtech.elearning.Adapter.HomeInstructorAdapter;
 import com.awizomtech.elearning.Helper.UserHelper;
@@ -93,6 +95,13 @@ public class HomeFragment extends Fragment {
         sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
         Name.setText(sb.toString());
 
+        Name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
         AllCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,15 +112,17 @@ public class HomeFragment extends Fragment {
         Subscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getContext(), MyCourseActivity.class);
+           /*     Intent intent= new Intent(getContext(), MySubcriptionListActivity.class);
+                startActivity(intent);*/
+                Intent intent= new Intent(getContext(), MyPaymentActivity.class);
                 startActivity(intent);
             }
         });
         Mypayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getContext(), MyPaymentActivity.class);
-                startActivity(intent);
+                /*Intent intent= new Intent(getContext(), MyPaymentActivity.class);
+                startActivity(intent);*/
             }
         });
         Mycourse.setOnClickListener(new View.OnClickListener() {

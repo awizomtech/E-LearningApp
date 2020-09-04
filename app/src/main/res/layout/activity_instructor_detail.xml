@@ -86,7 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:textSize="18dp" />
@@ -95,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:layout_marginTop="10dp"
                         android:textSize="16dp" />
                     <TextView
@@ -103,7 +103,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:layout_marginTop="10dp"
                         android:textSize="16dp" />
                     <TextView
@@ -120,7 +120,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:textSize="16dp" />
@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:layout_marginTop="10dp"
                         android:textSize="16dp" />
                 </LinearLayout>

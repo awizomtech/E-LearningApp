@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:cardCornerRadius="8dp"
-            app:cardBackgroundColor="@color/colorTransparentBlack"
-            app:cardElevation="5dp">
+            app:cardBackgroundColor="#FBFBFB"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,6 +36,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
+                        android:visibility="gone"
                         android:src="@drawable/new_payment"/>
                 </LinearLayout>
 
@@ -57,16 +58,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#F8FAF8"
+                        android:textColor="#5F605F"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:textSize="13dp" />
+                        android:textSize="16dp" />
                     <TextView
                         android:id="@+id/courselevel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Level"
-                        android:textColor="#F8FAF8"
+                        android:textColor="#5F605F"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
                         android:textSize="13dp" />
@@ -81,7 +82,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="2dp"
                             android:hint="Pay Amount"
-                            android:textColor="#F8FAF8"
+                            android:textColor="#5F605F"
                             android:textSize="13dp" />
 
                         <TextView
@@ -91,20 +92,22 @@
                             android:layout_marginBottom="2dp"
                             android:hint="date"
                             android:layout_marginLeft="5dp"
-                            android:textColor="#F8FAF8"
+                            android:textColor="#5F605F"
                             android:textSize="13dp" />
                     </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
     <androidx.cardview.widget.CardView
         android:id="@+id/virified"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         app:cardCornerRadius="10dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:clickable="true"
         android:focusable="true"
         android:layout_marginTop="5dp"
@@ -123,19 +126,20 @@
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/virify"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="30dp"
         app:cardCornerRadius="10dp"
         android:clickable="true"
         android:focusable="true"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:foreground="?selectableItemBackground"
         app:cardBackgroundColor="#F44D4D"
         android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="Payment Under Verification"

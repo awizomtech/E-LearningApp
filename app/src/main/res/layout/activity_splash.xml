@@ -26,6 +26,7 @@
         android:text="Design and Developed By Awizom Tech"
         android:textAlignment="center"
         android:textColor="#F4F4F6"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:visibility="gone"/>
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -44,7 +44,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
                         android:textAlignment="center"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
+                        android:textStyle="bold"
                         android:textSize="14dp" />
                 </LinearLayout>
 

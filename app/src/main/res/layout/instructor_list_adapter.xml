@@ -45,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:textStyle="bold"
                         android:textSize="15dp" />
                     <TextView
@@ -53,21 +53,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:textSize="14dp" />
                     <TextView
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:textSize="14dp" />
                     <TextView
                         android:id="@+id/degree"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:visibility="gone"
                         android:textSize="14dp" />
                     <TextView
@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:visibility="gone"
                         android:textSize="14dp" />
                     <TextView
@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Course Name"
-                        android:textColor="#2F7732"
+                        android:textColor="#4A4A4A"
                         android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>

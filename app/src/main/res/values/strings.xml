@@ -11,6 +11,7 @@
     <string name="menu_home">Profile</string>
 
     <string name="menu_course">My Course</string>
+    <string name="menu_subscription">My Subscription</string>
     <string name="menu_gallery">My Payment</string>
     <string name="menu_slideshow">Courses</string>
 
