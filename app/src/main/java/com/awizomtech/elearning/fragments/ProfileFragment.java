@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Helper.AccountHelper;
 import com.awizomtech.elearning.Model.ProfileModel;
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -29,6 +31,7 @@ public class ProfileFragment extends Fragment {
     TextView Username, Name, Mob, Address, Email;
     LinearLayout ll_login_signup;
     ProgressDialog progressDialog;
+    de.hdodenhof.circleimageview.CircleImageView imageview;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class ProfileFragment extends Fragment {
         Address = rootView.findViewById(R.id.address);
         Mob = rootView.findViewById(R.id.mob);
         Email = rootView.findViewById(R.id.email);
+        imageview = rootView.findViewById(R.id.iconimage);
 
 
         try {
@@ -82,13 +86,17 @@ public class ProfileFragment extends Fragment {
                 String date = profileModel.getRegistrationDate().toString();
                 String ne = date.split("T")[0];
                 Address.setText(ne);
+                try {
+                    Glide.with(getContext()).load(AppConfig.BASE_URL + profileModel.getProfilePhoto()).into(imageview);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        ;
     }
 }
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -89,7 +90,10 @@ public class HomePageActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_course) {
                     Intent intent = new Intent(HomePageActivity.this, CourseListActivity.class);
                     startActivity(intent);
-                } else if (id == R.id.nav_quiz) {
+                } else if (id == R.id.nav_contactus) {
+                    Intent intent = new Intent(HomePageActivity.this, ContactUsActivity.class);
+                    startActivity(intent);
+                }else if (id == R.id.nav_quiz) {
                     Intent intent = new Intent(HomePageActivity.this, StartFitnessActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_share) {
@@ -141,9 +145,11 @@ public class HomePageActivity extends AppCompatActivity {
         bnv_menu.setSelectedItemId(R.id.navigation_home);
         loadFragment(new HomeFragment());
 
-          /*TextView Uname = findViewById(R.id.usernames);
-        String Name = SharedPrefManager.getInstance(this).getUser().getName();
-        Uname.setText(Name.toString());*/
+        View hView = navigationView.getHeaderView(0);
+        TextView nav_user = hView.findViewById(R.id.usernames);
+        String nme = SharedPrefManager.getInstance(this).getUser().getName();
+        nav_user.setText(nme);
+
     }
 
     private void loadFragment(Fragment fragment) {
@@ -204,4 +210,6 @@ public class HomePageActivity extends AppCompatActivity {
     public ArrayList<String> getData() {
         return this.CourseId;
     }
+
+
 }

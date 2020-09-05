@@ -112,7 +112,7 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:textSize="12sp"
-                    android:maxLength="6"
+                    android:maxLength="15"
                     android:hint="Password" />
 
                 <EditText
@@ -128,7 +128,7 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:textSize="12sp"
-                    android:maxLength="6"
+                    android:maxLength="15"
                     android:hint="Confirm Password" />
 
                 <LinearLayout

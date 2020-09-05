@@ -10,7 +10,7 @@ public class ProfileModel {
     public String Gender ;
     public String UserID ;
     public String RegistrationDate;
-
+    public String ProfilePhoto ;
     public int getID() {
         return ID;
     }
@@ -81,6 +81,14 @@ public class ProfileModel {
 
     public void setRegistrationDate(String registrationDate) {
         RegistrationDate = registrationDate;
+    }
+
+    public String getProfilePhoto() {
+        return ProfilePhoto;
+    }
+
+    public void setProfilePhoto(String profilePhoto) {
+        ProfilePhoto = profilePhoto;
     }
 }
 

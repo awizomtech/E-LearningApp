@@ -14,6 +14,7 @@
     <string name="menu_subscription">My Subscription</string>
     <string name="menu_gallery">My Payment</string>
     <string name="menu_slideshow">Courses</string>
+    <string name="menu_contact">Contact Us</string>
 
     <string name="home_second">Home Second</string>
     <string name="spinner_title">Select Payment Type</string>

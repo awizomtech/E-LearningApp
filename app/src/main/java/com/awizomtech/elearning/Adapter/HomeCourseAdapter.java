@@ -8,6 +8,7 @@ package com.awizomtech.elearning.Adapter;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.ImageView;
+        import android.widget.LinearLayout;
         import android.widget.TextView;
 
         import com.bumptech.glide.Glide;
@@ -60,7 +61,7 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
       /*  holder.bodyNoti.setText("Price " +n.Price+"₹");
         holder.pdate.setText("Duration " +n.Duration);*/
       if (n.getType().contains("Free")){
-          holder.Cardview.setVisibility(CardView.GONE);
+          holder.Linear.setVisibility(LinearLayout.GONE);
       }else {
           try {
               Glide.with(mCtx).load(AppConfig.BASE_URL + n.CourseImage.toString()).into(holder.imageView);
@@ -68,18 +69,6 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
               e.printStackTrace();
           }
           holder.Cardview.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  String coursename = String.valueOf(n.getCourseName());
-                  String cid = String.valueOf(n.getCourseID());
-                  Intent intent = new Intent(mCtx, CourseLevelActivity.class);
-                  intent.putExtra("CourseName", coursename);
-                  intent.putExtra("Cid", cid);
-                  mCtx.startActivity(intent);
-              }
-          });
-
-          holder.Details.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
                   String coursename = String.valueOf(n.getCourseName());
@@ -104,7 +93,7 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.newcourse_list_adapter, parent, false);
+                .inflate(R.layout.home_course_list_adapter, parent, false);
 
         return new MyViewHolder(v);
     }
@@ -114,6 +103,7 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
         TextView bodyNoti, Coursename, Courseid,pdate;
         ImageView imageView;
         CardView Cardview,Details;
+        LinearLayout Linear;
         @RequiresApi(api = Build.VERSION_CODES.M)
         public MyViewHolder(View view) {
             super(view);
@@ -123,7 +113,7 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
             Coursename = view.findViewById(R.id.coursename);
             imageView=view.findViewById(R.id.courseImage);
             Cardview=view.findViewById(R.id.cardview);
-            Details=view.findViewById(R.id.detail);
+            Linear=view.findViewById(R.id.linear);
         }
 
 

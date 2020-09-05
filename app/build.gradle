@@ -68,4 +68,11 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
 
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
+
+
+    implementation 'com.android.support:multidex:1.0.1'
+
+
+    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 }
