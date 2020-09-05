@@ -9,8 +9,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +39,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
@@ -68,6 +78,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+       /* try {
+            result = new AccountHelper.RetrieveUSDValueTask().execute().get();
+            if (result.isEmpty()) {
+            } else {
+                JSONObject obj = new JSONObject(result);
+                String raa = String.valueOf(obj.get("rates"));
+                JSONObject obj1 = new JSONObject(raa);
+                String usd = String.valueOf(obj1.get("INR"));
+                String A=usd;
+     }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
         InitView();
     }
 
@@ -346,4 +374,5 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         });
     }
+
 }

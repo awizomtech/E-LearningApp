@@ -70,8 +70,10 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
           holder.Cardview.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
+                  String coursename = String.valueOf(n.getCourseName());
                   String cid = String.valueOf(n.getCourseID());
                   Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                  intent.putExtra("CourseName", coursename);
                   intent.putExtra("Cid", cid);
                   mCtx.startActivity(intent);
               }
@@ -80,9 +82,10 @@ public class HomeCourseAdapter extends RecyclerView.Adapter<HomeCourseAdapter.My
           holder.Details.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-
+                  String coursename = String.valueOf(n.getCourseName());
                   String cid = String.valueOf(n.getCourseID());
                   Intent intent = new Intent(mCtx, CourseLevelActivity.class);
+                  intent.putExtra("CourseName", coursename);
                   intent.putExtra("Cid", cid);
                   mCtx.startActivity(intent);
               }

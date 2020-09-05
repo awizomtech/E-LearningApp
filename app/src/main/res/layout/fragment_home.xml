@@ -136,7 +136,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="160dp">
+                            android:layout_marginLeft="140dp">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/allcourse"
@@ -201,7 +201,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="150dp">
+                            android:layout_marginLeft="135dp">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/viewAllInstructor"

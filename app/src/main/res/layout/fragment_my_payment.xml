@@ -36,7 +36,7 @@
                 android:layout_marginStart="10dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="My Payment"
+                android:text="My Subscription"
                 android:textColor="#C2FBFBFB"
                 android:textSize="17sp"
                 android:textStyle="bold" />

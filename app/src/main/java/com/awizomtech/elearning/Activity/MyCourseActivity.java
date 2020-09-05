@@ -12,8 +12,10 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.awizomtech.elearning.Adapter.MyCourseAdapter;
+import com.awizomtech.elearning.Helper.AccountHelper;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
+import com.awizomtech.elearning.Model.ProfileModel;
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
@@ -21,6 +23,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class MyCourseActivity extends AppCompatActivity {
     MyCourseAdapter adapter;
@@ -85,7 +88,6 @@ public class MyCourseActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 }
