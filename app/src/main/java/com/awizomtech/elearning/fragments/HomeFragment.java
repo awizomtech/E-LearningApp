@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import com.awizomtech.elearning.Activity.CourseListActivity;
 import com.awizomtech.elearning.Activity.InstructorListActivity;
@@ -23,11 +24,13 @@ import com.awizomtech.elearning.Activity.MySubcriptionListActivity;
 import com.awizomtech.elearning.Activity.ProfileActivity;
 import com.awizomtech.elearning.Adapter.HomeCourseAdapter;
 import com.awizomtech.elearning.Adapter.HomeInstructorAdapter;
+import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.Model.InstructorModel;
 import com.awizomtech.elearning.R;
 import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -43,7 +46,7 @@ public class HomeFragment extends Fragment {
     private List<CourseListModel> courseListModels;
     private List<InstructorModel> instructorModels;
     private String result = "";
-
+    de.hdodenhof.circleimageview.CircleImageView ImageView;
     androidx.recyclerview.widget.RecyclerView recyclerView;
     androidx.recyclerview.widget.RecyclerView recyclerView1;
     View root;
@@ -69,6 +72,7 @@ public class HomeFragment extends Fragment {
         recyclerView1=root.findViewById(R.id.recyclerView1);
         mSwipeRefreshLayout =root.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout1 =root.findViewById(R.id.swipeToRefresh1);
+        ImageView =root.findViewById(R.id.imageView);
         recyclerView.setHasFixedSize(true);
         recyclerView1.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -88,7 +92,12 @@ public class HomeFragment extends Fragment {
         } else {
             greeting = "Good Morning";
         }
-
+        String image =SharedPrefManager.getInstance(getContext()).getUser().getProfilePhoto();
+        try {
+            Glide.with(getContext()).load(AppConfig.BASE_URL +image.toString()).into(ImageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Wish.setText(greeting.toString());
         String uname = SharedPrefManager.getInstance(getContext()).getUser().getName();
         StringBuilder sb = new StringBuilder(uname);

@@ -248,7 +248,6 @@ public class EditProfileActivity extends AppCompatActivity {
         String name = Fname.getText().toString();
         /*  String userid = SharedPrefManager.getInstance(EditProfileActivity.this).getUser().getUserID();*/
         String userid = SharedPrefManager.getInstance(EditProfileActivity.this).getUser().getMobileNo();
-        ;
         RequestBody photoContent = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), photoContent);
