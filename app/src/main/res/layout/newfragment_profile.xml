@@ -61,7 +61,7 @@
                     app:cardCornerRadius="30dp"
                     app:cardElevation="30dp"
                     android:layout_margin="30dp"
-                    app:cardBackgroundColor="@color/colorTransparentBlack">
+                    app:cardBackgroundColor="#F6F4F4">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -79,13 +79,14 @@
                             <de.hdodenhof.circleimageview.CircleImageView
                                 xmlns:app="http://schemas.android.com/apk/res-auto"
                                 android:id="@+id/iconimage"
-                                android:layout_width="match_parent"
+                                android:layout_width="110dp"
                                 android:layout_centerHorizontal="true"
-                                android:layout_height="105dp"
+                                android:layout_height="110dp"
                                 android:layout_marginTop="20dp"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/profileicon"
                                 app:civ_border_width="5dp"
+                                android:layout_marginBottom="10dp"
                                 app:civ_border_color="@color/colorWhite"/>
 
                             <TextView
@@ -93,7 +94,7 @@
                                 android:id="@+id/username"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textColor="#ffff"
+                                android:textColor="#302F2F"
                                 android:textAlignment="center"
                                 android:text=" Ravio"
                                 android:layout_marginTop="5dp"
@@ -103,6 +104,26 @@
 
                         </LinearLayout>
                         <LinearLayout
+                            android:id="@+id/ll_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:background="@drawable/save_post_bg"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="30dp"
+                            android:layout_alignParentBottom="true">
+                            <TextView
+                                android:id="@+id/tv_submit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:text="Edit Profile"/>
+                        </LinearLayout>
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -110,7 +131,7 @@
                                 android:layout_below="@+id/circleLayouts"
                                 android:id="@+id/StFirstLayout"
                                 android:layout_width="match_parent"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginTop="5dp"
                                 android:padding="5dp"
                                 android:clickable="true"
                                 android:background="?attr/selectableItemBackground"
@@ -132,7 +153,7 @@
                                     android:id="@+id/St_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage1"
                                     android:layout_marginEnd="15dp"
                                     android:text="Name"
@@ -144,7 +165,7 @@
                                     android:id="@+id/name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage1"
                                     android:layout_marginEnd="15dp"
                                     android:layout_marginTop="25dp"
@@ -179,7 +200,7 @@
                                     android:id="@+id/St_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage2"
                                     android:layout_marginEnd="15dp"
                                     android:text="Mob No"
@@ -191,7 +212,7 @@
                                     android:id="@+id/mob"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage2"
                                     android:layout_marginEnd="15dp"
                                     android:layout_marginTop="25dp"
@@ -215,7 +236,7 @@
                                     android:id="@+id/StImage3"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/ic_baseline_email_24"
+                                    android:src="@drawable/blue_email"
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginTop="0dp"
                                     android:layout_centerVertical="true"
@@ -226,7 +247,7 @@
                                     android:id="@+id/St_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage3"
                                     android:layout_marginEnd="15dp"
                                     android:text="Email"
@@ -238,7 +259,7 @@
                                     android:id="@+id/email"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage3"
                                     android:layout_marginEnd="15dp"
                                     android:layout_marginTop="25dp"
@@ -273,7 +294,7 @@
                                     android:id="@+id/St_31"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage31"
                                     android:layout_marginEnd="15dp"
                                     android:text="Registration Date"
@@ -285,7 +306,7 @@
                                     android:id="@+id/address"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textColor="#ffff"
+                                    android:textColor="#302F2F"
                                     android:layout_toEndOf="@+id/StImage31"
                                     android:layout_marginEnd="15dp"
                                     android:layout_marginTop="25dp"
@@ -293,7 +314,7 @@
                                     android:gravity="start"
                                     android:layout_marginStart="5dp"
                                     android:textSize="14sp"
-                                    android:layout_marginBottom="0dp" />
+                                    android:layout_marginBottom="10dp" />
                             </RelativeLayout>
                         </LinearLayout>
                     </LinearLayout>

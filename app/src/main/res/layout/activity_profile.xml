@@ -53,14 +53,15 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardCornerRadius="30dp"
             app:cardElevation="10dp"
             android:layout_margin="10dp"
-            app:cardBackgroundColor="@color/colorTransparentBlack">
+            app:cardBackgroundColor="#F3F1F1">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -78,9 +79,9 @@
                     <de.hdodenhof.circleimageview.CircleImageView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/Iconimage2"
-                        android:layout_width="match_parent"
+                        android:layout_width="110dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_height="105dp"
+                        android:layout_height="110dp"
                         android:layout_marginTop="20dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/profileicon"
@@ -92,7 +93,7 @@
                         android:id="@+id/username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="#ffff"
+                        android:textColor="#302F2F"
                         android:textAlignment="center"
                         android:text=" Ravio"
                         android:layout_marginTop="5dp"
@@ -100,6 +101,26 @@
                         android:textSize="16sp"
                         android:layout_marginBottom="20dp" />
 
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:background="@drawable/save_post_bg"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_alignParentBottom="true">
+                    <TextView
+                        android:id="@+id/tv_submit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="Edit Profile"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,7 +152,7 @@
                             android:id="@+id/St_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage1"
                             android:layout_marginEnd="15dp"
                             android:text="Name"
@@ -139,19 +160,19 @@
                             android:layout_marginStart="5dp"
                             android:textSize="14sp"
                             android:layout_marginBottom="0dp" />
+
                         <TextView
                             android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
-                            android:layout_toEndOf="@+id/StImage1"
                             android:layout_marginEnd="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="name"
-                            android:gravity="start"
                             android:layout_marginStart="5dp"
-                            android:textSize="14sp"
-                            android:layout_marginBottom="0dp" />
+                            android:layout_marginTop="25dp"
+                            android:layout_toEndOf="@+id/StImage1"
+                            android:gravity="start"
+                            android:text="name"
+                            android:textColor="#302F2F"
+                            android:textSize="14sp" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/StsecoundLayout"
@@ -178,7 +199,7 @@
                             android:id="@+id/St_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage2"
                             android:layout_marginEnd="15dp"
                             android:text="Mob No"
@@ -186,19 +207,19 @@
                             android:layout_marginStart="5dp"
                             android:textSize="14sp"
                             android:layout_marginBottom="0dp" />
+
                         <TextView
                             android:id="@+id/mob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
-                            android:layout_toEndOf="@+id/StImage2"
                             android:layout_marginEnd="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="mob no"
-                            android:gravity="start"
                             android:layout_marginStart="5dp"
-                            android:textSize="14sp"
-                            android:layout_marginBottom="0dp" />
+                            android:layout_marginTop="25dp"
+                            android:layout_toEndOf="@+id/StImage2"
+                            android:gravity="start"
+                            android:text="mob no"
+                            android:textColor="#302F2F"
+                            android:textSize="14sp" />
                     </RelativeLayout>
                     <RelativeLayout
                         android:id="@+id/StthirdLayout"
@@ -225,7 +246,7 @@
                             android:id="@+id/St_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage3"
                             android:layout_marginEnd="15dp"
                             android:text="Email"
@@ -237,7 +258,7 @@
                             android:id="@+id/email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage3"
                             android:layout_marginEnd="15dp"
                             android:layout_marginTop="25dp"
@@ -256,7 +277,8 @@
                         android:layout_marginTop="15dp"
                         android:padding="5dp"
                         android:gravity="center_vertical"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
                         <ImageView
                             android:id="@+id/StImage31"
                             android:layout_width="30dp"
@@ -272,7 +294,7 @@
                             android:id="@+id/St_31"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage31"
                             android:layout_marginEnd="15dp"
                             android:text="Registration Date"
@@ -284,7 +306,7 @@
                             android:id="@+id/address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#ffff"
+                            android:textColor="#302F2F"
                             android:layout_toEndOf="@+id/StImage31"
                             android:layout_marginEnd="15dp"
                             android:layout_marginTop="25dp"

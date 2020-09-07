@@ -283,7 +283,7 @@
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="70dp"
-                                        android:src="@drawable/course"/>
+                                        android:src="@drawable/mycourse1"/>
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -306,7 +306,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="70dp"
-                                    android:src="@drawable/subscription"/>
+                                    android:src="@drawable/mysubscription1"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

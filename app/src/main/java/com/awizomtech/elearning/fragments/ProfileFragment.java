@@ -2,6 +2,7 @@ package com.awizomtech.elearning.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.awizomtech.elearning.Activity.EditProfileActivity;
+import com.awizomtech.elearning.Activity.ProfileActivity;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Helper.AccountHelper;
 import com.awizomtech.elearning.Model.ProfileModel;
@@ -32,7 +35,7 @@ public class ProfileFragment extends Fragment {
     LinearLayout ll_login_signup;
     ProgressDialog progressDialog;
     de.hdodenhof.circleimageview.CircleImageView imageview;
-
+    LinearLayout Edit;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +62,14 @@ public class ProfileFragment extends Fragment {
         Mob = rootView.findViewById(R.id.mob);
         Email = rootView.findViewById(R.id.email);
         imageview = rootView.findViewById(R.id.iconimage);
-
+        Edit = rootView.findViewById(R.id.ll_submit);
+        Edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         try {
             String userid = SharedPrefManager.getInstance(context).getUser().getUserID();

@@ -3,8 +3,10 @@ package com.awizomtech.elearning.Model;
 public class LoginModel {
     public String UserName ;
     public String Name ;
+    public String LastName;
     public String UserID;
     public String MobileNo;
+    public String ProfilePhoto;
     public int ID ;
 
     public String getMobileNo() {
@@ -45,5 +47,20 @@ public class LoginModel {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getProfilePhoto() {
+        return ProfilePhoto;
+    }
+    public void setProfilePhoto(String profilePhoto) {
+        ProfilePhoto = profilePhoto;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 }

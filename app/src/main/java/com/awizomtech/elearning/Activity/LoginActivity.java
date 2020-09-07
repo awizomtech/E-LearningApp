@@ -78,24 +78,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-       /* try {
-            result = new AccountHelper.RetrieveUSDValueTask().execute().get();
-            if (result.isEmpty()) {
-            } else {
-                JSONObject obj = new JSONObject(result);
-                String raa = String.valueOf(obj.get("rates"));
-                JSONObject obj1 = new JSONObject(raa);
-                String usd = String.valueOf(obj1.get("INR"));
-                String A=usd;
-     }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
         InitView();
     }
 
@@ -122,14 +104,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             @Override
             public void onClick(View view) {
 
-                if (username.getText().toString().isEmpty()) {
-                    username.setError("Required !");
-                /*}else if(password.getText().toString().isEmpty()||password.getText().toString().length()!=6){
+                if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
                     password.setError("Required !");
-                }*/
+                    username.setError("Required !");
+                } else if (username.getText().toString().isEmpty()) {
+                    username.setError("Required !");
                 } else if (password.getText().toString().isEmpty()) {
                     password.setError("Required !");
-                }else  if(password.getText().toString().equals("Admin@123") && username.getText().toString().equals("Admin1")){
+                } else if (password.getText().toString().equals("Admin@123") && username.getText().toString().equals("Admin1")) {
                     LoginModel loginmodel1 = new LoginModel();
                     loginmodel1.UserID = "Admin1";
                     loginmodel1.UserName = "Admin1";
@@ -138,16 +120,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
                     Intent intent = new Intent(LoginActivity.this, StartFitnessActivity.class);
                     startActivity(intent);
-                }
-                else {
-                         progressDialog.show();
-                   /* AlertDialog.Builder alertbox = new AlertDialog.Builder(view.getRootView().getContext());
-                    LayoutInflater inflater = getLayoutInflater();
-                    final View dialogView = inflater.inflate(R.layout.progress_dialog, null);
-                    alertbox.setView(dialogView);
-                    alertbox.setCancelable(false);
-                    final AlertDialog b = alertbox.create();
-                    b.show();*/
+                } else {
+                    progressDialog.show();
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                             String Username = username.getText().toString();
@@ -157,11 +131,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 String first = result.split(":")[1];
                                 String second = first.split(",")[0];
                                 if (second.contains("null")) {
-                                  /*  b.dismiss();*/
+                                    /*  b.dismiss();*/
                                     progressDialog.dismiss();
                                     /*     Toast.makeText(LoginActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();*/
                                 } else {
-                                 /*   b.dismiss();*/
+                                    /*   b.dismiss();*/
                                     Type listType = new TypeToken<LoginModel>() {
                                     }.getType();
                                     LoginModel loginModel = new Gson().fromJson(result, listType);
@@ -170,6 +144,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                     String studid = String.valueOf(loginModel.getID());
                                     String mobileno = String.valueOf(loginModel.getMobileNo());
                                     String name = String.valueOf(loginModel.getName());
+                                    String lname = String.valueOf(loginModel.getLastName());
+                                    String image = String.valueOf(loginModel.getProfilePhoto());
                                     if (!userid.equals("null")) {
                                         LoginModel loginmodel1 = new LoginModel();
                                         loginmodel1.UserID = String.valueOf(userid.toString());
@@ -177,6 +153,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                         loginmodel1.ID = Integer.valueOf(studid);
                                         loginmodel1.MobileNo = mobileno;
                                         loginmodel1.Name = name;
+                                        loginmodel1.LastName = lname;
+                                        loginmodel1.ProfilePhoto = image;
                                         SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
                                         Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                         startActivity(intent);
@@ -266,15 +244,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         try {
             result = new AccountHelper.GetGoogleLogin().execute(Email.toString()).get();
-          /*  String first = result.split(":")[1];
-            String second = first.split(",")[0];*/
-
-           /* if (second.contains("null")) {
-                Googlesignup();
-            }*/
             if (result.equals("null")) {
                 Googlesignup();
-            }else {
+            } else {
                 Type listType = new TypeToken<ProfileModel>() {
                 }.getType();
                 ProfileModel profileModel = new Gson().fromJson(result, listType);
@@ -291,7 +263,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
                     Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                     startActivity(intent);
-                }else{
+                } else {
                     Googlesignup();
                 }
             }
@@ -315,12 +287,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         final EditText Pass = dialogView.findViewById(R.id.pass);
         final EditText Mobile = dialogView.findViewById(R.id.mobile);
         Button Continue = dialogView.findViewById(R.id.continuebtn);
-        ImageView viewImage=dialogView.findViewById(R.id.image);
+        ImageView viewImage = dialogView.findViewById(R.id.image);
         Username.setText(UserName.toString());
-        try{
+        try {
             Glide.with(this).load(Image).into(viewImage);
-        }catch (NullPointerException e){
-            Toast.makeText(getApplicationContext(),"image not found",Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e) {
+            Toast.makeText(getApplicationContext(), "image not found", Toast.LENGTH_LONG).show();
         }
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -333,7 +305,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 } else {
                     String fname = UserName.toString();
                     String pass = Pass.getText().toString();
-                    String lname ="";
+                    String lname = "";
                     String mob = Mobile.getText().toString();
                     String email = Email.toString();
                     String gender = " ";
@@ -360,7 +332,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                                 SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
                                 Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                 startActivity(intent);
-                            }else {
+                            } else {
                                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
                             }
                         }

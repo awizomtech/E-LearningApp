@@ -13,9 +13,10 @@
     <string name="menu_course">My Course</string>
     <string name="menu_subscription">My Subscription</string>
     <string name="menu_gallery">My Payment</string>
-    <string name="menu_slideshow">Courses</string>
+    <string name="menu_slideshow">All Courses</string>
     <string name="menu_contact">Contact Us</string>
-
+    <string name="menu_edit_profile">Edit Profile</string>
+    <string name="menu_rating">Your Rating</string>
     <string name="home_second">Home Second</string>
     <string name="spinner_title">Select Payment Type</string>
 </resources>

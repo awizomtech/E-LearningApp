@@ -6,8 +6,8 @@ class AppConfigurations {
 
     /* public static final String BASE_URL = "http://192.168.1.40:3803/";
      public static final String BASE_URL_API = "http://192.168.1.40:3803/api/apps/";*/
-   public static final String BASE_URL = "http://edu4sports.com/api/apps/";
-
+ /*  public static final String BASE_URL = "http://edu4sports.com/api/apps/";*/
+    public static final String BASE_URL = "http://192.168.1.9:3803/api/apps/";
     static Retrofit getRetrofit() {
 
         return new Retrofit.Builder()

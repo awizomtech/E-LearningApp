@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,6 +27,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.awizomtech.elearning.AppConfig.AppConfig;
+import com.awizomtech.elearning.BuildConfig;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.R;
@@ -33,6 +37,7 @@ import com.awizomtech.elearning.fragments.MyPaymentFragment;
 import com.awizomtech.elearning.fragments.MyCourseFragment;
 import com.awizomtech.elearning.fragments.ProfileFragment;
 import com.awizomtech.elearning.fragments.HomeFragment;
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
@@ -65,7 +70,7 @@ public class HomePageActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment, R.id.nav_course, R.id.nav_logout, R.id.nav_share, R.id.nav_quiz)
+                R.id.nav_profile, R.id.nav_my_courses, R.id.nav_payment, R.id.nav_course, R.id.nav_logout, R.id.nav_share, R.id.nav_quiz, R.id.nav_edit_profile, R.id.nav_rating)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -93,11 +98,24 @@ public class HomePageActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_contactus) {
                     Intent intent = new Intent(HomePageActivity.this, ContactUsActivity.class);
                     startActivity(intent);
-                }else if (id == R.id.nav_quiz) {
+                } else if (id == R.id.nav_quiz) {
                     Intent intent = new Intent(HomePageActivity.this, StartFitnessActivity.class);
                     startActivity(intent);
+                } else if (id == R.id.nav_edit_profile) {
+                    Intent intent = new Intent(HomePageActivity.this, EditProfileActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.nav_rating) {
+                    String url = "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID;
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
                 } else if (id == R.id.nav_share) {
-
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,
+                            "Hey check out my app at: https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID);
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
                 } else if (id == R.id.nav_logout) {
                     SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
                     sp.logout();
@@ -147,8 +165,15 @@ public class HomePageActivity extends AppCompatActivity {
 
         View hView = navigationView.getHeaderView(0);
         TextView nav_user = hView.findViewById(R.id.usernames);
+        de.hdodenhof.circleimageview.CircleImageView nav_image = hView.findViewById(R.id.imageView);
         String nme = SharedPrefManager.getInstance(this).getUser().getName();
+        String photo = SharedPrefManager.getInstance(this).getUser().getProfilePhoto();
         nav_user.setText(nme);
+        try {
+            Glide.with(this).load(AppConfig.BASE_URL + photo.toString()).into(nav_image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

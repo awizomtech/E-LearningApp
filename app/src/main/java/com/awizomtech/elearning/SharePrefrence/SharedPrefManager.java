@@ -19,7 +19,8 @@ public class SharedPrefManager {
     private static final String Key_ID = "Id";
     private static final String Key_Name = "Name";
     private static final String Key_Mobile = "Mobile";
-
+    private static final String Key_Photo = "photo";
+    private static final String Key_LastName ="lastname";
     public SharedPrefManager(Context context) {
         mCtx = context;
     }
@@ -40,6 +41,8 @@ public class SharedPrefManager {
         editor.putInt(Key_ID, loginModel.ID);
         editor.putString(Key_Mobile, loginModel.MobileNo);
         editor.putString(Key_Name, loginModel.Name);
+        editor.putString(Key_LastName, loginModel.LastName);
+        editor.putString(Key_Photo, loginModel.ProfilePhoto);
         editor.apply();
         return true;
     }
@@ -59,18 +62,11 @@ public class SharedPrefManager {
         token.UserName = sharedPreferences.getString(Key_UserName, "");
         token.MobileNo = sharedPreferences.getString(Key_Mobile, "");
         token.Name = sharedPreferences.getString(Key_Name, "");
+        token.LastName = sharedPreferences.getString(Key_LastName, "");
+        token.ProfilePhoto = sharedPreferences.getString(Key_Photo, "");
         token.ID = sharedPreferences.getInt(Key_ID, 0);
         return token;
     }
-   /* public ProfileModel getProfileview() {
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        ProfileModel token = new ProfileModel();
-        token.Name = sharedPreferences.getString(Key_Name, "");
-        token.Photo = sharedPreferences.getString(Key_Photo, "");
-
-        return token;
-    }*/
-
 
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);

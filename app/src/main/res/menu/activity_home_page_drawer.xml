@@ -10,7 +10,7 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_my_courses"
-            android:icon="@drawable/ic_courses"
+            android:icon="@drawable/ic_baseline_library_books_24"
             android:title="@string/menu_course" />
         <item
             android:id="@+id/nav_payment"
@@ -18,11 +18,11 @@
             android:title="@string/menu_subscription" />
         <item
             android:id="@+id/nav_course"
-            android:icon="@drawable/ic_courses"
+            android:icon="@drawable/ic_baseline_library_books_24"
             android:title="@string/menu_slideshow" />
         <item
             android:id="@+id/nav_contactus"
-            android:icon="@drawable/ic_courses"
+            android:icon="@drawable/ic_baseline_contact_mail_24"
             android:title="@string/menu_contact" />
 
         <item
@@ -34,7 +34,14 @@
     </group>
     <item android:title="Action Tools">
         <menu>
-
+            <item
+                android:id="@+id/nav_edit_profile"
+                android:icon="@drawable/ic_baseline_edit_24"
+                android:title="@string/menu_edit_profile" />
+            <item
+                android:id="@+id/nav_rating"
+                android:icon="@drawable/ic_baseline_star_border_24"
+                android:title="@string/menu_rating" />
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_baseline_share_24"
