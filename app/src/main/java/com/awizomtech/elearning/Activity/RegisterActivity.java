@@ -60,8 +60,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String cpass = conpass.getText().toString();
                 String pass = password.getText().toString();
-                if (firtname.getText().toString().isEmpty()) {
+                if (firtname.getText().toString().isEmpty()||lastname.getText().toString().isEmpty()||emailaddress.getText().toString().isEmpty()||mobile.getText().toString().isEmpty()||password.getText().toString().isEmpty()||conpass.getText().toString().isEmpty()) {
                     firtname.setError("Required !");
+                    lastname.setError("Required !");
+                    emailaddress.setError("Required !");
+                    mobile.setError("Required !");
+                    password.setError("Required !");
+                    conpass.setError("Required !");
                 } else if (lastname.getText().toString().isEmpty()) {
                     lastname.setError("Required !");
                 } else if (emailaddress.getText().toString().isEmpty() || !emailaddress.getText().toString().trim().matches(emailPattern)) {

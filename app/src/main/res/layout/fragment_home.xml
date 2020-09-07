@@ -127,7 +127,7 @@
                                 android:layout_height="30dp"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="10dp"
-                                android:text="Courses"
+                                android:text="Suggested for You"
                                 android:textColor="#777676"
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
@@ -136,7 +136,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="140dp">
+                            android:layout_marginLeft="70dp">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/allcourse"
