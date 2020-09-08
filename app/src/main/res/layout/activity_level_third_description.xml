@@ -195,7 +195,7 @@
                             android:layout_marginRight="5dp"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:text="Role of S and C"
+                            android:text="Role of Strength and Conditioning"
                             android:layout_marginLeft="10dp" />
                     </LinearLayout>
                     <LinearLayout
@@ -396,7 +396,7 @@
                             android:layout_marginRight="5dp"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:text="S and C program for novice and state level athlete"
+                            android:text="Strength and Conditioning program for novice and state level athlete"
                             android:layout_marginLeft="10dp" />
                     </LinearLayout>
                     <LinearLayout

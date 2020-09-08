@@ -133,7 +133,7 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                         intent.putExtra("CourseID", CourseId);
                         intent.putExtra("planerId", planerId);
                         intent.putExtra("CourseName", CourseName);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                      /*  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
                         mCtx.startActivity(intent);
                     }
                 } catch (Exception e) {

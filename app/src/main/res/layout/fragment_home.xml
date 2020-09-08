@@ -284,7 +284,7 @@
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="70dp"
-                                        android:src="@drawable/homecourse"/>
+                                        android:src="@drawable/mycourse"/>
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
@@ -309,7 +309,7 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="70dp"
-                                    android:src="@drawable/homesub"/>
+                                    android:src="@drawable/mysub"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

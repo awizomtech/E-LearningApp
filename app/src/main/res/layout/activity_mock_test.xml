@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/mycourse"
+    android:background="@drawable/mycourses"
     tools:context=".Activity.MockTestActivity">
     <LinearLayout
         android:layout_width="match_parent"
