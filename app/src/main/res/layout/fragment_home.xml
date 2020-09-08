@@ -275,7 +275,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 android:layout_margin="10dp"
-                                app:cardBackgroundColor="#FAF9F9"
+                                app:cardBackgroundColor="#FDFCFC"
                                 app:cardCornerRadius="20dp">
                                 <LinearLayout
                                     android:layout_width="wrap_content"
@@ -284,11 +284,13 @@
                                     <ImageView
                                         android:layout_width="match_parent"
                                         android:layout_height="70dp"
-                                        android:src="@drawable/mycourse1"/>
+                                        android:src="@drawable/homecourse"/>
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:textSize="13dp"
+                                        android:textColor="#1B1A1A"
+                                        android:textStyle="bold"
                                         android:textAlignment="center"
                                         android:text="My Courses"/>
                                 </LinearLayout>
@@ -307,11 +309,13 @@
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="70dp"
-                                    android:src="@drawable/mysubscription1"/>
+                                    android:src="@drawable/homesub"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:textSize="13dp"
+                                    android:textColor="#1B1A1A"
+                                    android:textStyle="bold"
                                     android:textAlignment="center"
                                     android:text="My Subscription"/>
                             </LinearLayout>
@@ -332,11 +336,13 @@
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
-                                android:src="@drawable/wallet"/>
+                                android:src="@drawable/homesub"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="13dp"
+                                android:textColor="#1B1A1A"
+                                android:textStyle="bold"
                                 android:textAlignment="center"
                                 android:text="My Payment"/>
                         </LinearLayout>

@@ -122,55 +122,66 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     startActivity(intent);
                 } else {
                     progressDialog.show();
+
+
                     new Timer().schedule(new TimerTask() {
                         public void run() {
-                            String Username = username.getText().toString();
-                            String Password = password.getText().toString();
-                            try {
-                                result = new AccountHelper.LogIn().execute(Username.toString(), Password.toString()).get();
-                                String first = result.split(":")[1];
-                                String second = first.split(",")[0];
-                                if (second.contains("null")) {
-                                    /*  b.dismiss();*/
-                                    progressDialog.dismiss();
-                                    /*     Toast.makeText(LoginActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();*/
-                                } else {
-                                    /*   b.dismiss();*/
-                                    Type listType = new TypeToken<LoginModel>() {
-                                    }.getType();
-                                    LoginModel loginModel = new Gson().fromJson(result, listType);
-                                    String userid = String.valueOf(loginModel.getUserID());
-                                    String usernamebyres = String.valueOf(loginModel.getUserName());
-                                    String studid = String.valueOf(loginModel.getID());
-                                    String mobileno = String.valueOf(loginModel.getMobileNo());
-                                    String name = String.valueOf(loginModel.getName());
-                                    String lname = String.valueOf(loginModel.getLastName());
-                                    String image = String.valueOf(loginModel.getProfilePhoto());
-                                    if (!userid.equals("null")) {
-                                        LoginModel loginmodel1 = new LoginModel();
-                                        loginmodel1.UserID = String.valueOf(userid.toString());
-                                        loginmodel1.UserName = usernamebyres;
-                                        loginmodel1.ID = Integer.valueOf(studid);
-                                        loginmodel1.MobileNo = mobileno;
-                                        loginmodel1.Name = name;
-                                        loginmodel1.LastName = lname;
-                                        loginmodel1.ProfilePhoto = image;
-                                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
-                                        Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
-                                        startActivity(intent);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "User ID or Password are not Correct", Toast.LENGTH_LONG).show();
+                            LoginActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String Username = username.getText().toString();
+                                    String Password = password.getText().toString();
+                                    try {
+                                        result = new AccountHelper.LogIn().execute(Username.toString(), Password.toString()).get();
+                                        String first = result.split(":")[1];
+                                        String second = first.split(",")[0];
+                                        if (second.contains("null")) {
+                                            /*  b.dismiss();*/
+                                            progressDialog.dismiss();
+                                            /*     Toast.makeText(LoginActivity.this, "Invalid request", Toast.LENGTH_SHORT).show();*/
+                                        } else {
+                                             Type listType = new TypeToken<LoginModel>() {
+                                            }.getType();
+                                            LoginModel loginModel = new Gson().fromJson(result, listType);
+                                            String userid = String.valueOf(loginModel.getUserID());
+                                            String usernamebyres = String.valueOf(loginModel.getUserName());
+                                            String studid = String.valueOf(loginModel.getID());
+                                            String mobileno = String.valueOf(loginModel.getMobileNo());
+                                            String name = String.valueOf(loginModel.getName());
+                                            String lname = String.valueOf(loginModel.getLastName());
+                                            String image = String.valueOf(loginModel.getProfilePhoto());
+                                            if (!userid.equals("null")) {
+                                                if (!loginModel.isLogInStatus()) {
+                                                    progressDialog.dismiss();
+                                                    LoginModel loginmodel1 = new LoginModel();
+                                                    loginmodel1.UserID = String.valueOf(userid.toString());
+                                                    loginmodel1.UserName = usernamebyres;
+                                                    loginmodel1.ID = Integer.valueOf(studid);
+                                                    loginmodel1.MobileNo = mobileno;
+                                                    loginmodel1.Name = name;
+                                                    loginmodel1.LastName = lname;
+                                                    loginmodel1.ProfilePhoto = image;
+                                                    SharedPrefManager.getInstance(getApplicationContext()).userLogin(loginmodel1);
+                                                    Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                } else {
+                                                    progressDialog.dismiss();
+                                                    Toast.makeText(getApplicationContext(), "Already Logged-In Another Device !", Toast.LENGTH_LONG).show();
+                                                }
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "User ID or Password are not Correct", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    } catch (ExecutionException e) {
+                                        e.printStackTrace();
                                     }
                                 }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            }
-
+                            });
                         }
                     }, 100);
-
                 }
             }
         });
@@ -183,7 +194,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         });
 
     }
-
 
     @SuppressLint("ResourceType")
     @Override

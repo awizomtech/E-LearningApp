@@ -8,6 +8,7 @@ public class LoginModel {
     public String MobileNo;
     public String ProfilePhoto;
     public int ID ;
+    public boolean LogInStatus;
 
     public String getMobileNo() {
         return MobileNo;
@@ -62,5 +63,13 @@ public class LoginModel {
 
     public void setLastName(String lastName) {
         LastName = lastName;
+    }
+
+    public boolean isLogInStatus() {
+        return LogInStatus;
+    }
+
+    public void setLogInStatus(boolean logInStatus) {
+        LogInStatus = logInStatus;
     }
 }

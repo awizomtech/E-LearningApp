@@ -2,10 +2,14 @@ package com.awizomtech.elearning.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +18,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +32,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.awizomtech.elearning.Adapter.MyCourseAdapter;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.BuildConfig;
 import com.awizomtech.elearning.Helper.UserHelper;
@@ -117,9 +123,22 @@ public class HomePageActivity extends AppCompatActivity {
                     sendIntent.setType("text/plain");
                     startActivity(sendIntent);
                 } else if (id == R.id.nav_logout) {
-                    SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
-                    sp.logout();
-                    startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
+                    ConnectivityManager mgr = (ConnectivityManager) getApplication().getSystemService(Context.CONNECTIVITY_SERVICE);
+                    NetworkInfo netInfo = mgr.getActiveNetworkInfo();
+
+                    if (netInfo != null) {
+                        if (netInfo.isConnected()) {
+                            LogOut();
+                           /* SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
+                            sp.logout();
+                            startActivity(new Intent(HomePageActivity.this, LoginActivity.class));*/
+                        }else {
+                            Toast.makeText(HomePageActivity.this,"Please Enable Your Internet", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(HomePageActivity.this,"Please Enable Your Internet", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
@@ -236,5 +255,21 @@ public class HomePageActivity extends AppCompatActivity {
         return this.CourseId;
     }
 
-
+    private void LogOut() {
+        try {
+            String userid= SharedPrefManager.getInstance(this).getUser().getUserID();
+            result = new UserHelper.Logout().execute(userid.toString()).get();
+            if (result.isEmpty()) {
+                SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
+                sp.logout();
+                startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
+            } else {
+                SharedPrefManager sp = new SharedPrefManager(HomePageActivity.this);
+                sp.logout();
+                startActivity(new Intent(HomePageActivity.this, LoginActivity.class));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
