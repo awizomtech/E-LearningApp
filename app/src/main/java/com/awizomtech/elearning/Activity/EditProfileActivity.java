@@ -92,12 +92,12 @@ public class EditProfileActivity extends AppCompatActivity {
                     LName.setError("Required !");
                 } else {
                     progressDialog.show();
+                    uploadFile();
                     new Timer().schedule(new TimerTask() {
                         public void run() {
-                            uploadFile();
                             ProfileData();
                         }
-                    }, 100);
+                    }, 1000);
                 }
             }
         });

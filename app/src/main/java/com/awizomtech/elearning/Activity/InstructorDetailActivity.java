@@ -51,7 +51,8 @@ public class InstructorDetailActivity extends AppCompatActivity {
         String InsDegreeText = getIntent().getExtras().getString("InsDegreeText");
         String Dates = getIntent().getExtras().getString("Date");
 
-
+       Mobile.setVisibility(View.GONE);
+     Email.setVisibility(View.GONE);
        Name.setText("Name : "+InsName.toString());
        Mobile.setText("Phone : "+InsPhone.toString());
        Email.setText("Email : "+InsEmail.toString());

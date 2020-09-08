@@ -52,6 +52,8 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.My
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final InstructorModel n = instructorModelList.get(position);
         holder.Name.setText("Name : "+n.getInsName().toString());
+        holder.Mobile.setVisibility(View.GONE);
+        holder.Email.setVisibility(View.GONE);
         holder.Mobile.setText("Phone : "+n.getInsPhone().toString());
         holder.Email.setText("Email : "+n.getInsEmail().toString());
         String date = n.getCreatedOn().split("T")[0];
