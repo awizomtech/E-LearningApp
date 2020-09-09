@@ -3,6 +3,7 @@ package com.awizomtech.elearning.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,19 +15,12 @@ import com.awizomtech.elearning.Activity.LearningActivity;
 import com.awizomtech.elearning.Activity.LevelOneDescriptionActivity;
 import com.awizomtech.elearning.Activity.LevelSecDescriptionActivity;
 import com.awizomtech.elearning.Activity.LevelThirdDescriptionActivity;
-import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
-import com.awizomtech.elearning.Activity.SubscriptionActivity;
-import com.awizomtech.elearning.Helper.AccountHelper;
 import com.awizomtech.elearning.Model.CourseLevelModel;
 import com.awizomtech.elearning.Model.MyCourseLevelModel;
 import com.awizomtech.elearning.R;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
@@ -38,14 +32,15 @@ public class CourseLevelAdapter extends RecyclerView.Adapter<CourseLevelAdapter.
     private List<MyCourseLevelModel> myCourseLevelModels;
     private Context mCtx;
     String result;
-float USDValue;
+    String USDValue;
+
     public CourseLevelAdapter(Context baseContext, List<CourseLevelModel> courseLevelModelList) {
         this.courseLevelModelList = courseLevelModelList;
         this.mCtx = baseContext;
-        ViewAll();
+
     }
 
-    private void ViewAll() {
+   /* private void ViewAll() {
         try {
             result = new AccountHelper.RetrieveUSDValueTask().execute().get();
             if (result.isEmpty()) {
@@ -54,8 +49,8 @@ float USDValue;
                 String raa = String.valueOf(obj.get("rates"));
                 JSONObject obj1 = new JSONObject(raa);
                 String usd = String.valueOf(obj1.get("INR"));
-              /*  String ss=usd.split(".")[0];
-                String s=usd.split(".")[1];*/
+              *//*  String ss=usd.split(".")[0];
+                String s=usd.split(".")[1];*//*
                 USDValue = Float.parseFloat(usd);
             }
         } catch (InterruptedException e) {
@@ -65,7 +60,7 @@ float USDValue;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     /* for solve issue of item change on scroll this method is set*/
     @Override
@@ -82,9 +77,18 @@ float USDValue;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final CourseLevelModel n = courseLevelModelList.get(position);
-        holder.Coursename.setText(n.Level.toString());
         myCourseLevelModels = CourseLevelActivity.getActivityInstance().getDatas();
+        USDValue = CourseListActivity.getActivityInstance().getUSD();
 
+        holder.Coursename.setText(n.Level.toString());
+        holder.Discount.setText(n.getPercentage() + "% OFF");
+        holder.Duration.setText("Duration " + n.getDuration().toString());
+        float usd = Float.parseFloat(USDValue);
+        float inr = n.getPrice();
+        float sum = inr / usd;
+        String price = String.valueOf(n.getPrice());
+        String usdprice = String.valueOf(sum);
+        holder.Price.setText("Price  " + " ₹" + price + "/" + usdprice + "$");
         ArrayList<String> Choose = new ArrayList<String>();
         for (int j = 0; j < myCourseLevelModels.size(); j++) {
             Choose.add(String.valueOf(myCourseLevelModels.get(j).getLevelID()));
@@ -93,10 +97,8 @@ float USDValue;
         if (Choose.contains(levelID)) {
             holder.Sub.setVisibility(TextView.VISIBLE);
             holder.Sub.setText("Enrolled");
-            holder.Duration.setText("Duration " + n.getDuration().toString());
-            holder.Price.setText("Price " +"₹" +String.valueOf(n.getPrice()));
-          /*  holder.Price.setText("Price " +"₹" +String.valueOf(n.getPrice())+"/"+String.valueOf(n.getPrice()/USDValue)+"$");*/
-            holder.payment.setOnClickListener(new View.OnClickListener() {
+
+         holder.payment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     String cid = String.valueOf(n.getCourseID());
@@ -116,7 +118,9 @@ float USDValue;
                     String level = String.valueOf(n.getLevel());
                     String duration = String.valueOf(n.getDuration());
                     String price = String.valueOf(n.getPrice());
-                    /*    String cname =getIntent().getExtras().getString("CourseName");*/
+                    String discount = String.valueOf(n.getPercentage());
+                    String payable = String.valueOf(n.getPayableAmount());
+
 
                     if (n.getLevel().contains("Level 1")) {
                         Intent intent = new Intent(mCtx, LevelSecDescriptionActivity.class);
@@ -125,6 +129,9 @@ float USDValue;
                         intent.putExtra("Cid", cid);
                         intent.putExtra("Duration", duration);
                         intent.putExtra("Price", price);
+                        intent.putExtra("payable", payable);
+                        intent.putExtra("discount", discount);
+                        intent.putExtra("USDValue", USDValue);
                         mCtx.startActivity(intent);
                     } else if (n.getLevel().contains("Level 2")) {
                         Intent intent = new Intent(mCtx, LevelOneDescriptionActivity.class);
@@ -133,6 +140,9 @@ float USDValue;
                         intent.putExtra("Cid", cid);
                         intent.putExtra("Duration", duration);
                         intent.putExtra("Price", price);
+                        intent.putExtra("payable", payable);
+                        intent.putExtra("discount", discount);
+                        intent.putExtra("USDValue", USDValue);
                         mCtx.startActivity(intent);
                     } else {
                         Intent intent = new Intent(mCtx, LevelThirdDescriptionActivity.class);
@@ -141,17 +151,16 @@ float USDValue;
                         intent.putExtra("Cid", cid);
                         intent.putExtra("Duration", duration);
                         intent.putExtra("Price", price);
+                        intent.putExtra("payable", payable);
+                        intent.putExtra("discount", discount);
+                        intent.putExtra("USDValue", USDValue);
                         mCtx.startActivity(intent);
                     }
 
 
                 }
             });
-            holder.Duration.setText("Duration " + n.getDuration().toString());
-            holder.Price.setText("Price " +"₹" +String.valueOf(n.getPrice()));
-        /*    holder.Price.setText("Price " +"₹" +String.valueOf(n.getPrice())+"/"+String.valueOf(n.getPrice()/USDValue)+"$");*/
         }
-
     }
 
     @Override
@@ -171,7 +180,7 @@ float USDValue;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView Coursename, Duration, Price, Sub;
+        TextView Coursename, Duration, Price, Sub, Discount;
         CardView payment;
 
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -182,9 +191,7 @@ float USDValue;
             Duration = view.findViewById(R.id.courseDuration);
             Price = view.findViewById(R.id.coursePrice);
             Sub = view.findViewById(R.id.subscribed);
+            Discount = view.findViewById(R.id.courseDiscount);
         }
-
-
     }
-
 }

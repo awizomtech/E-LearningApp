@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.awizomtech.elearning.Adapter.CourseAdapter;
 import com.awizomtech.elearning.Adapter.MyCourseAdapter;
+import com.awizomtech.elearning.Helper.AccountHelper;
 import com.awizomtech.elearning.Helper.UserHelper;
 import com.awizomtech.elearning.Model.CourseListModel;
 import com.awizomtech.elearning.Model.QuizResultModel;
@@ -17,8 +18,12 @@ import com.awizomtech.elearning.SharePrefrence.SharedPrefManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +38,7 @@ public class CourseListActivity extends AppCompatActivity {
     private String result = "";
     ProgressDialog progressDialog;
     androidx.recyclerview.widget.RecyclerView recyclerView;
+    String USDValue=" ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         INSTANCE=this;
@@ -44,6 +50,7 @@ public class CourseListActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
+        ViewAll();
         InitView();
     }
 
@@ -114,7 +121,25 @@ public class CourseListActivity extends AppCompatActivity {
 
         }
     }
-
+    private void ViewAll() {
+        try {
+            result = new AccountHelper.RetrieveUSDValueTask().execute().get();
+            if (result.isEmpty()) {
+            } else {
+                JSONObject obj = new JSONObject(result);
+                String raa = String.valueOf(obj.get("rates"));
+                JSONObject obj1 = new JSONObject(raa);
+                String usd = String.valueOf(obj1.get("INR"));
+                USDValue = usd;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     public static CourseListActivity getActivityInstance()
     {
         return INSTANCE;
@@ -123,5 +148,8 @@ public class CourseListActivity extends AppCompatActivity {
     public List<CourseListModel> getData()
     {
         return this.courseListModelSecond;
+    }
+    public  String getUSD(){
+        return this.USDValue;
     }
 }

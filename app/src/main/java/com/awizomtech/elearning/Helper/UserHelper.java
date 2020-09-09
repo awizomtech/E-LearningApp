@@ -684,19 +684,22 @@ public class UserHelper extends AppCompatActivity {
         }
 
     }
-
-    public static final class GetUSDValue extends AsyncTask<String, Void, String> {
+    public static final class Logout extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
+
+            String userid = params[0];
 
             String json = "";
             try {
 
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder.url("https://openexchangerates.org/api/latest.json?app_id=9228157222b84c8ebbb062d68d458c86");
+                builder.url(AppConfig.BASE_URL_API+"LoggedOut?UserID="+userid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
+                FormBody.Builder parameters = new FormBody.Builder();
+                builder.post(parameters.build());
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
                     json = response.body().string();
@@ -721,22 +724,20 @@ public class UserHelper extends AppCompatActivity {
 
     }
 
-    public static final class Logout extends AsyncTask<String, Void, String> {
+    public static final class GetLeveleDetalList extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-
-            String userid = params[0];
+            String cid = params[0];
+            String levelid = params[1];
 
             String json = "";
             try {
 
                 OkHttpClient client = new OkHttpClient();
                 Request.Builder builder = new Request.Builder();
-                builder.url(AppConfig.BASE_URL_API+"LoggedOut?UserID="+userid);
+                builder.url(AppConfig.BASE_URL_API+"GetLevelDetail?CourseID="+cid+"&LevelId="+levelid);
                 builder.addHeader("Content-Type", "application/x-www-form-urlencoded");
                 builder.addHeader("Accept", "application/json");
-                FormBody.Builder parameters = new FormBody.Builder();
-                builder.post(parameters.build());
                 okhttp3.Response response = client.newCall(builder.build()).execute();
                 if (response.isSuccessful()) {
                     json = response.body().string();

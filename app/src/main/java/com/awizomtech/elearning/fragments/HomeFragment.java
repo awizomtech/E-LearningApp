@@ -3,6 +3,7 @@ package com.awizomtech.elearning.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -163,6 +164,11 @@ public class HomeFragment extends Fragment {
                 mSwipeRefreshLayout1.setRefreshing(false);
             }
         });
+        TextView textView = root.findViewById(R.id.mywidget);
+        textView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        textView.setText("Special Offers 30 % Discount During Covid-19");
+        textView.setSelected(true);
+        textView.setSingleLine(true);
         GetCourselist();
         GetInstructorlist();
     }
