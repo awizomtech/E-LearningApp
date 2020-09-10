@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -41,8 +42,8 @@ import java.util.concurrent.ExecutionException;
 
 public class SubscriptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    String cname, level, price, cid, duration, levelId;
-    TextView Tv_coursename, Tv_price, Tv_duration, PayableAmt, Tv_LevelID, Tv_Level;
+    String cname, level, price, cid, duration, levelId,USDValue,Payable,Discount;
+    TextView Tv_coursename, Tv_price, Tv_duration, PayableAmt, Tv_LevelID, Tv_Level,Tv_offer,Tv_actualprice,Tv_afterdiscount;
     EditText Transactionid;
     CardView Next, Enrollsend;
     String result;
@@ -88,6 +89,10 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         QRlayout = findViewById(R.id.qrcode);
         BankLayout = findViewById(R.id.babktype);
         Document = findViewById(R.id.document);
+        Tv_offer = findViewById(R.id.tv_offer);
+        Tv_afterdiscount = findViewById(R.id.tv_afterdiscount);
+        Tv_actualprice = findViewById(R.id.tv_actualprice);
+        Tv_actualprice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         SelectFile = findViewById(R.id.selectfile);
         Preview = findViewById(R.id.preview);
 
@@ -96,13 +101,26 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         cid = getIntent().getExtras().getString("Cid");
         duration = getIntent().getExtras().getString("Duration");
         level = getIntent().getExtras().getString("level");
+        USDValue = getIntent().getExtras().getString("USDValue");
+        Payable = getIntent().getExtras().getString("payable");
+        Discount = getIntent().getExtras().getString("discount");
         cname = CourseLevelActivity.getActivityInstance().getData();
+        float usd = Float.parseFloat(USDValue);
+        float inr = Float.parseFloat(price);
+        float payable=Float.parseFloat(Payable);
+        float sum = inr / usd;
+        float sum1 = payable / usd;
+        String usdprice = String.valueOf(sum);
+        String usdprice1 = String.valueOf(sum1);
         Tv_LevelID.setText(levelId);
         Tv_coursename.setText("Course Name : " + cname.toString());
         Tv_Level.setText("Level Name : " + level.toString());
-        Tv_price.setText("₹"+price.toString());
+        Tv_actualprice.setText("₹" + price + "/" + usdprice + "$");
+        Tv_price.setText("₹" + price + "/" + usdprice + "$");
         Tv_duration.setText(duration.toString());
-        PayableAmt.setText("₹"+price.toString());
+        Tv_offer.setText(Discount+"% OFF");
+        Tv_afterdiscount.setText(" ₹" + Payable + "/" + usdprice1 + "$");
+        PayableAmt.setText("Payable "+" ₹" + Payable + "/" + usdprice1 + "$");
 
         PaymentOption = (Spinner)findViewById(R.id.paymentOption);
         ArrayAdapter<String>adapter = new ArrayAdapter<String>(SubscriptionActivity.this,

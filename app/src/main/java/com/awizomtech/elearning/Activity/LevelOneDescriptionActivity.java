@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,8 +34,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class LevelOneDescriptionActivity extends AppCompatActivity {
-    String cname, level, price, cid, duration, levelId, ImageCourse;
-    TextView CoursePrice, EnrollPrice, Duration;
+    String cname,level,price,cid,duration,levelId,ImageCourse,Payable,Discount,USDValue;
+    TextView CoursePrice, EnrollPrice, Duration,DiscountText,PayableText;
     ImageView CourseImage;
     CardView Enroll;
     RecyclerView Topics;
@@ -52,10 +54,6 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
     }
 
     private void InitView() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
         ImageView backpress = findViewById(R.id.back);
         backpress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,19 +66,36 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
         cid = getIntent().getExtras().getString("Cid");
         duration = getIntent().getExtras().getString("Duration");
         level = getIntent().getExtras().getString("level");
+        USDValue = getIntent().getExtras().getString("USDValue");
+        Payable = getIntent().getExtras().getString("payable");
+        Discount = getIntent().getExtras().getString("discount");
+
         cname = CourseLevelActivity.getActivityInstance().getData();
         ImageCourse = CourseLevelActivity.getActivityInstance().getImage();
         CoursePrice = findViewById(R.id.pricecourse);
-        EnrollPrice = findViewById(R.id.price);
-        Duration = findViewById(R.id.duration);
-        Enroll = findViewById(R.id.enroll);
-        Topics = findViewById(R.id.recyclerView);
+        /* CoursePrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);*/
+        EnrollPrice =findViewById(R.id.price);
+        EnrollPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        Duration =findViewById(R.id.duration);
+        DiscountText =findViewById(R.id.discount);
+        PayableText =findViewById(R.id.payable);
+        Enroll =findViewById(R.id.enroll);
+        CourseImage =findViewById(R.id.image);
+        Topics =findViewById(R.id.recyclerView);
         Topics.setHasFixedSize(true);
         Topics.setLayoutManager(new LinearLayoutManager(this));
-        CourseImage = findViewById(R.id.image);
-        Duration.setText("Duration : " + duration.toString());
-        CoursePrice.setText("Price : " + price.toString());
-        EnrollPrice.setText(price.toString());
+        Duration.setText("Duration : " +duration.toString());
+        float usd = Float.parseFloat(USDValue);
+        float inr = Float.parseFloat(price);
+        float payable=Float.parseFloat(Payable);
+        float sum = inr / usd;
+        float sum1 = payable / usd;
+        String usdprice = String.valueOf(sum);
+        String usdprice1 = String.valueOf(sum1);
+        EnrollPrice.setText(" ₹" + price + "/" + usdprice + "$");
+        DiscountText.setText(Discount+"% OFF");
+        PayableText.setText(" ₹" + Payable + "/" + usdprice1 + "$");
+        CoursePrice.setText("Price "+" ₹" + price + "/" + usdprice + "$");
         Enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,19 +106,22 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
                 intent.putExtra("Cid", cid);
                 intent.putExtra("Duration", duration);
                 intent.putExtra("Price", price);
+                intent.putExtra("USDValue", USDValue);
+                intent.putExtra("payable", Payable);
+                intent.putExtra("discount", Discount);
+
                 startActivity(intent);
                 finish();
-
             }
         });
+        blink();
         GetDetailDetail();
     }
-
     private void GetDetailDetail() {
         try {
             String cid = getIntent().getExtras().getString("Cid");
             String levelid = getIntent().getExtras().getString("levelID");
-            result = new UserHelper.GetLeveleDetalList().execute(cid.toString(), levelid.toString()).get();
+            result = new UserHelper.GetLeveleDetalList().execute(cid.toString(),levelid.toString()).get();
             if (result.isEmpty()) {
                 progressDialog.dismiss();
             } else {
@@ -121,5 +139,27 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
             e.printStackTrace();
 
         }
+    }
+    private void blink(){
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int timeToBlink = 1000;    //in milissegunds
+                try{Thread.sleep(timeToBlink);}catch (Exception e) {}
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(DiscountText.getVisibility() == View.VISIBLE){
+                            DiscountText.setVisibility(View.INVISIBLE);
+                        }else{
+                            DiscountText.setVisibility(View.VISIBLE);
+                        }
+                        blink();
+                    }
+                });
+            }
+        }).start();
     }
 }

@@ -129,6 +129,48 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="15dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="After Discount "
+                                android:textAlignment="center"
+                                android:textColor="#0B2C70"
+                                android:textSize="15sp"
+                                android:layout_marginLeft="10dp"
+                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_actualprice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="5000 ₹"
+                                    android:textAlignment="center"
+                                    android:textColor="#E15858"
+                                    android:textSize="13sp"
+                                    android:layout_marginLeft="10dp" />
+                                <TextView
+                                    android:id="@+id/tv_afterdiscount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="5000 ₹"
+                                    android:textAlignment="center"
+                                    android:textColor="#1C9745"
+                                    android:textSize="15sp"
+                                    android:layout_marginLeft="10dp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="23dp"
                             android:orientation="horizontal"
                             android:layout_marginTop="15dp">
@@ -159,7 +201,7 @@
                                 android:gravity="center"
                                 android:text="Discount"
                                 android:textAlignment="center"
-                                android:textColor="#12700B"
+                                android:textColor="#0B2C70"
                                 android:textSize="15sp"
                                 android:layout_marginLeft="30dp"
                                 android:textStyle="bold" />
@@ -170,7 +212,7 @@
                                 android:gravity="center"
                                 android:text="5000 ₹"
                                 android:textAlignment="center"
-                                android:textColor="#1D4C22"
+                                android:textColor="#0B2C70"
                                 android:textSize="15sp"
                                 android:layout_marginLeft="10dp"
                                 android:textStyle="bold" />
@@ -243,8 +285,8 @@
                             android:id="@+id/tv_payable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#0B2C70"
-                            android:textSize="15sp"
+                            android:textColor="#1D7326"
+                            android:textSize="16sp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
                             android:textStyle="bold"
@@ -310,7 +352,7 @@
                             android:layout_marginTop="10dp"
                             android:foreground="?selectableItemBackground"
                             android:layout_gravity="center"
-                            app:cardBackgroundColor="#3EFA57"
+                            app:cardBackgroundColor="#3473D1"
                             android:layout_marginBottom="10dp">
 
                             <TextView

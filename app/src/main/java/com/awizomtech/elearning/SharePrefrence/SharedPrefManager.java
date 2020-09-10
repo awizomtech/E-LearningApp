@@ -9,10 +9,7 @@ public class SharedPrefManager {
 
     private static SharedPrefManager mInstance;
     private static Context mCtx;
-
     private static final String SHARED_PREF_NAME = "learningsharepref";
-
-
 
     private static final String Key_UserID = "UserID";
     private static final String Key_UserName = "UserName";
