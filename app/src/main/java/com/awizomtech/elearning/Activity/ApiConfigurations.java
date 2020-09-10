@@ -8,8 +8,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 
-interface ApiConfigurations
-{
+interface ApiConfigurations {
     /*@Multipart
     @POST("upload")
     Call<ServerResponse> uploadFile(@Part("photo") MultipartBody.Part photo);*/
@@ -21,11 +20,15 @@ interface ApiConfigurations
                                     @Part("UserID") RequestBody UserId);
 
     @Multipart
-    @POST("paymentupload")
+    @POST("uploadpay")
     Call<ServerResponse> paymentUpload(@Part MultipartBody.Part file,
-                                    @Part("description") RequestBody name,
-                                    @Part("writepost") RequestBody Posrwrite,
-                                    @Part("UserID") RequestBody UserId);
+                                       @Part("courseid") RequestBody courseid,
+                                       @Part("transactionid") RequestBody transactionid,
+                                       @Part("levelid") RequestBody levelid,
+                                       @Part("paymenttype") RequestBody paymenttype,
+                                       @Part("price") RequestBody price,
+                                       @Part("UserID") RequestBody UserId);
+
 
     @Multipart
     @POST("retrofit_example/upload_multiple_files.php")

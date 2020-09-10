@@ -40,21 +40,21 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
-public class SubscriptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-
-    String cname =" ", level, price, cid, duration, levelId,USDValue,Payable,Discount;
-    TextView Tv_coursename, Tv_price, Tv_duration, PayableAmt, Tv_LevelID, Tv_Level,Tv_offer,Tv_actualprice,Tv_afterdiscount;
+public class SubscriptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    String cname = " ", level, price, cid, duration, levelId, USDValue, Payable, Discount, PaymentType = " ";
+    TextView Tv_coursename, Tv_price, Tv_duration, PayableAmt, Tv_LevelID, Tv_Level, Tv_offer, Tv_actualprice, Tv_afterdiscount;
     EditText Transactionid;
     CardView Next, Enrollsend;
     String result;
     ProgressDialog progressDialog;
     private Spinner PaymentOption;
-    LinearLayout BankLayout,QRlayout,Document;
+    LinearLayout BankLayout, QRlayout, Document;
     Button SelectFile;
-    String mediaPath=" ";
+    String mediaPath = " ";
     String[] mediaColumns = {MediaStore.Video.Media._ID};
     ImageView Preview;
-    private static final String[] option = {"Select Payment Option","Cash", "Bank Account", "Scan QR"};
+    private static final String[] option = {"Select Payment Option", "Cash", "Bank Account", "Scan QR"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,14 +104,14 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         USDValue = getIntent().getExtras().getString("USDValue");
         Payable = getIntent().getExtras().getString("payable");
         Discount = getIntent().getExtras().getString("discount");
-        if(level.contains("Short")){
+        if (level.contains("Short")) {
             cname = getIntent().getExtras().getString("CourseName");
-        }else {
+        } else {
             cname = CourseLevelActivity.getActivityInstance().getData();
         }
         float usd = Float.parseFloat(USDValue);
         float inr = Float.parseFloat(price);
-        float payable=Float.parseFloat(Payable);
+        final float payable = Float.parseFloat(Payable);
         float sum = inr / usd;
         float sum1 = payable / usd;
         String usdprice = String.valueOf(sum);
@@ -122,13 +122,13 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         Tv_actualprice.setText("₹" + price + "/" + usdprice + "$");
         Tv_price.setText("₹" + price + "/" + usdprice + "$");
         Tv_duration.setText(duration.toString());
-        Tv_offer.setText(Discount+"% OFF");
+        Tv_offer.setText(Discount + "% OFF");
         Tv_afterdiscount.setText(" ₹" + Payable + "/" + usdprice1 + "$");
-        PayableAmt.setText("Payable "+" ₹" + Payable + "/" + usdprice1 + "$");
+        PayableAmt.setText("Payable " + " ₹" + Payable + "/" + usdprice1 + "$");
 
-        PaymentOption = (Spinner)findViewById(R.id.paymentOption);
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(SubscriptionActivity.this,
-                android.R.layout.simple_spinner_item,option);
+        PaymentOption = (Spinner) findViewById(R.id.paymentOption);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(SubscriptionActivity.this,
+                android.R.layout.simple_spinner_item, option);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         PaymentOption.setAdapter(adapter);
@@ -144,17 +144,18 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Transactionid.getText().toString().isEmpty()) {
-                    Transactionid.setError("Required !");
-                } else {
+                if (PaymentType.contains("Select Payment Option")) {
+                    Toast.makeText(SubscriptionActivity.this, "Please Select Payment Method", Toast.LENGTH_SHORT).show();
+                } else if (PaymentType.contains("Cash")) {
                     progressDialog.show();
                     new Timer().schedule(new TimerTask() {
                         public void run() {
                             try {
-                                String lid = Tv_LevelID.getText().toString();
-                                String transactionid = Transactionid.getText().toString();
+                                String lid = levelId.toString();
+                                String transactionid = "demo";
                                 String usetid = SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getUserID();
                                 String type = "Paid";
+                                String price = Payable;
                                 result = new UserHelper.POSTPayment().execute(usetid.toString(), cid.toString(), price.toString(), transactionid.toString(), lid.toString(), type.toString()).get();
                                 if (result.isEmpty()) {
                                     progressDialog.dismiss();
@@ -164,15 +165,28 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
                                     Enrollsend.setVisibility(View.VISIBLE);
                                     Intent intent = new Intent(SubscriptionActivity.this, MyCourseActivity.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             } catch (ExecutionException e) {
                                 e.printStackTrace();
                             }
-                            ;
                         }
                     }, 100);
+                } else if (Transactionid.getText().toString().isEmpty()) {
+                    Transactionid.setError("Required !");
+                } else {
+                    progressDialog.show();
+                    uploadFile();
+                    new Timer().schedule(new TimerTask() {
+                        public void run() {
+                            progressDialog.dismiss();
+                            Intent intent = new Intent(SubscriptionActivity.this, MyCourseActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, 1000);
                 }
             }
         });
@@ -188,31 +202,34 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
                 QRlayout.setVisibility(View.GONE);
                 Document.setVisibility(View.GONE);
                 Preview.setVisibility(View.GONE);
+                PaymentType = "Select Payment Option";
                 break;
             case 1:
                 BankLayout.setVisibility(View.GONE);
                 QRlayout.setVisibility(View.GONE);
                 Document.setVisibility(View.GONE);
                 Preview.setVisibility(View.GONE);
+                PaymentType = "Cash";
                 break;
             case 2:
                 BankLayout.setVisibility(View.VISIBLE);
                 QRlayout.setVisibility(View.GONE);
                 Document.setVisibility(View.VISIBLE);
                 Preview.setVisibility(View.GONE);
+                PaymentType = "Bank Account";
                 break;
             case 3:
                 BankLayout.setVisibility(View.GONE);
                 QRlayout.setVisibility(View.VISIBLE);
                 Document.setVisibility(View.VISIBLE);
                 Preview.setVisibility(View.GONE);
+                PaymentType = "Scan QR";
                 break;
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        Toast.makeText(SubscriptionActivity.this, "Option no", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -268,18 +285,21 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
 
         // Map is used to multipart the file using okhttp3.RequestBody
         File file = new File(mediaPath);
-        String lastname = "demo";
-        String name ="demo";
+        String tid = Transactionid.getText().toString();
+
         /*  String userid = SharedPrefManager.getInstance(EditProfileActivity.this).getUser().getUserID();*/
         String userid = SharedPrefManager.getInstance(SubscriptionActivity.this).getUser().getMobileNo();
         RequestBody photoContent = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("photo", file.getName(), photoContent);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), name.toString());
-        RequestBody Posrwrite = RequestBody.create(MediaType.parse("text/plain"), lastname.toString());
+        RequestBody courseid = RequestBody.create(MediaType.parse("text/plain"), cid.toString());
+        RequestBody transactionid = RequestBody.create(MediaType.parse("text/plain"), tid.toString());
+        RequestBody levelid = RequestBody.create(MediaType.parse("text/plain"), levelId.toString());
+        RequestBody paymenttype = RequestBody.create(MediaType.parse("text/plain"), PaymentType.toString());
+        RequestBody price = RequestBody.create(MediaType.parse("text/plain"), Payable.toString());
         RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), userid.toString());
         ApiConfigurations getResponse = AppConfigurations.getRetrofit().create(ApiConfigurations.class);
-        Call call = getResponse.paymentUpload(fileToUpload, filename, Posrwrite, userId);
+        Call call = getResponse.paymentUpload(fileToUpload, courseid, transactionid, levelid, paymenttype, price, userId);
         call.enqueue(new Callback() {
 
             @Override

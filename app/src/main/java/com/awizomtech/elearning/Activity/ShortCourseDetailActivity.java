@@ -106,7 +106,7 @@ public class ShortCourseDetailActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent intent = new Intent(ShortCourseDetailActivity.this, SubscriptionActivity.class);
-                        intent.putExtra("levelID", 0);
+                        intent.putExtra("levelID", "0");
                         intent.putExtra("level", "Short");
                         intent.putExtra("Cid", cid);
                         intent.putExtra("Duration", duration);
