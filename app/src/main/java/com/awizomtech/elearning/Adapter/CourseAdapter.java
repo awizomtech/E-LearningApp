@@ -14,9 +14,11 @@ import com.awizomtech.elearning.Activity.CourseListActivity;
 import com.awizomtech.elearning.Activity.FreeLearningActivity;
 import com.awizomtech.elearning.Activity.FreeSubcriptionActivity;
 import com.awizomtech.elearning.Activity.HomePageActivity;
+import com.awizomtech.elearning.Activity.LearningActivity;
 import com.awizomtech.elearning.Activity.MyCourseActivity;
 import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
 import com.awizomtech.elearning.Activity.QuizResultActivity;
+import com.awizomtech.elearning.Activity.ShortCourseDetailActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Activity.CourseLevelActivity;
@@ -72,6 +74,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             if(type.contains("Free")){
                 holder.Subscribed.setVisibility(TextView.VISIBLE);
                 holder.Subscribed.setText("Enrolled");
+            }else if(type.contains("Short")){
+                holder.Subscribed.setVisibility(TextView.VISIBLE);
+                holder.Subscribed.setText("Enrolled");
             }
 
             try {
@@ -91,14 +96,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                         mCtx.startActivity(intent);
                     }
                 });
-           /* }else if (!n.PaymentStatus == true) {
-                holder.PaymnetStatus.setVisibility(CardView.VISIBLE);
-                holder.PaymnetStatus.setOnClickListener(new View.OnClickListener() {
+            }else if (type.contains("Short")) {
+                holder.Cardview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(mCtx, "When Your Payment is Verified Then Read Course",Toast.LENGTH_SHORT).show();
+                        String cid = String.valueOf(n.getCourseID());
+                        Intent intent = new Intent(mCtx, FreeLearningActivity.class);
+                        intent.putExtra("Cid",cid);
+                        mCtx.startActivity(intent);
                     }
-                });*/
+                });
             }else {
                 holder.Cardview.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -129,6 +136,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
                         intent.putExtra("CourseName", coursename);
                         intent.putExtra("Cid", cid);
                         intent.putExtra("Type", ctype);
+                        mCtx.startActivity(intent);
+                    }else if (ctype.contains("Short")) {
+                        String cid = String.valueOf(n.getCourseID());
+                        String coursename = String.valueOf(n.getCourseName());
+                        Intent intent = new Intent(mCtx, ShortCourseDetailActivity.class);
+                        intent.putExtra("CourseName", coursename);
+                        intent.putExtra("Cid", cid);
                         mCtx.startActivity(intent);
                     } else {
                         String cid = String.valueOf(n.getCourseID());
@@ -180,7 +194,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.MyViewHold
             Cardview = view.findViewById(R.id.cardview);
             Virify = view.findViewById(R.id.coursevirify);
         }
-
 
     }
 

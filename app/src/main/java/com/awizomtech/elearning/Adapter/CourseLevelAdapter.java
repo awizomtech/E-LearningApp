@@ -40,29 +40,6 @@ public class CourseLevelAdapter extends RecyclerView.Adapter<CourseLevelAdapter.
 
     }
 
-   /* private void ViewAll() {
-        try {
-            result = new AccountHelper.RetrieveUSDValueTask().execute().get();
-            if (result.isEmpty()) {
-            } else {
-                JSONObject obj = new JSONObject(result);
-                String raa = String.valueOf(obj.get("rates"));
-                JSONObject obj1 = new JSONObject(raa);
-                String usd = String.valueOf(obj1.get("INR"));
-              *//*  String ss=usd.split(".")[0];
-                String s=usd.split(".")[1];*//*
-                USDValue = Float.parseFloat(usd);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-    /* for solve issue of item change on scroll this method is set*/
     @Override
     public long getItemId(int position) {
         return position;

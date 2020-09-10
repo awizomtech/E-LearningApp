@@ -33,12 +33,11 @@ public class CourseLevelActivity extends AppCompatActivity {
     CourseLevelAdapter adapter;
     private List<CourseLevelModel> courseLevelModels;
     private List<MyCourseLevelModel> myCourseLevelModels;
-    CardView Enroll;
-    TextView Price, startDate, CourseName, Description, Duration, Cid;
+    TextView CourseName, Cid;
     RecyclerView recyclerview;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String result;
-    String cname, descript, price, cid, duration, startdate, date, image;
+    String cname, cid, image;
     ProgressDialog progressDialog;
 
     @Override

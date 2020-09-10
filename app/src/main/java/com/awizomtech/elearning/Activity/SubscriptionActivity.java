@@ -42,7 +42,7 @@ import java.util.concurrent.ExecutionException;
 
 public class SubscriptionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-    String cname, level, price, cid, duration, levelId,USDValue,Payable,Discount;
+    String cname =" ", level, price, cid, duration, levelId,USDValue,Payable,Discount;
     TextView Tv_coursename, Tv_price, Tv_duration, PayableAmt, Tv_LevelID, Tv_Level,Tv_offer,Tv_actualprice,Tv_afterdiscount;
     EditText Transactionid;
     CardView Next, Enrollsend;
@@ -104,7 +104,11 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         USDValue = getIntent().getExtras().getString("USDValue");
         Payable = getIntent().getExtras().getString("payable");
         Discount = getIntent().getExtras().getString("discount");
-        cname = CourseLevelActivity.getActivityInstance().getData();
+        if(level.contains("Short")){
+            cname = getIntent().getExtras().getString("CourseName");
+        }else {
+            cname = CourseLevelActivity.getActivityInstance().getData();
+        }
         float usd = Float.parseFloat(USDValue);
         float inr = Float.parseFloat(price);
         float payable=Float.parseFloat(Payable);
@@ -275,7 +279,7 @@ public class SubscriptionActivity extends AppCompatActivity implements AdapterVi
         RequestBody Posrwrite = RequestBody.create(MediaType.parse("text/plain"), lastname.toString());
         RequestBody userId = RequestBody.create(MediaType.parse("text/plain"), userid.toString());
         ApiConfigurations getResponse = AppConfigurations.getRetrofit().create(ApiConfigurations.class);
-        Call call = getResponse.uploadFile(fileToUpload, filename, Posrwrite, userId);
+        Call call = getResponse.paymentUpload(fileToUpload, filename, Posrwrite, userId);
         call.enqueue(new Callback() {
 
             @Override

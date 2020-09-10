@@ -21,6 +21,13 @@ interface ApiConfigurations
                                     @Part("UserID") RequestBody UserId);
 
     @Multipart
+    @POST("paymentupload")
+    Call<ServerResponse> paymentUpload(@Part MultipartBody.Part file,
+                                    @Part("description") RequestBody name,
+                                    @Part("writepost") RequestBody Posrwrite,
+                                    @Part("UserID") RequestBody UserId);
+
+    @Multipart
     @POST("retrofit_example/upload_multiple_files.php")
     Call<ServerResponse> uploadMulFile(@Part MultipartBody.Part file1,
                                        @Part MultipartBody.Part file2);

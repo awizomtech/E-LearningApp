@@ -32,7 +32,7 @@
                 android:id="@+id/tv_search_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Level 3"
+                android:text="Short Course"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textStyle="bold"
@@ -85,86 +85,86 @@
                                 android:textStyle="bold" />
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:orientation="vertical"
-                     >
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:text="Course Price "
-                           android:textAlignment="center"
-                           android:textColor="#555555"
-                           android:textSize="15sp"
-                           android:layout_marginTop="30dp"
-                           android:layout_marginLeft="40dp"
-                           android:textStyle="bold" />
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:orientation="horizontal"
-                           android:layout_marginTop="10dp">
-                           <TextView
-                               android:id="@+id/price"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:text="3000"
-                               android:textAlignment="center"
-                               android:textColor="#555555"
-                               android:textSize="15sp"
-                               android:textStyle="bold" />
-                       </LinearLayout>
-                       <TextView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:text="After Discount"
-                           android:textAlignment="center"
-                           android:textColor="#555555"
-                           android:textSize="15sp"
-                           android:layout_marginTop="10dp"
-                           android:layout_marginLeft="40dp"
-                           android:textStyle="bold" />
-                       <LinearLayout
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           android:orientation="horizontal"
-                           android:layout_marginTop="10dp">
-                           <TextView
-                               android:id="@+id/payable"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:text="3000"
-                               android:textAlignment="center"
-                               android:textColor="#247A25"
-                               android:textSize="17sp"
-                               android:layout_marginLeft="10dp"
-                               android:textStyle="bold" />
-                       </LinearLayout>
-                       <androidx.cardview.widget.CardView
-                           android:id="@+id/enroll"
-                           android:layout_width="100dp"
-                           android:layout_height="40dp"
-                           app:cardCornerRadius="10dp"
-                           android:clickable="true"
-                           android:focusable="true"
-                           android:layout_marginTop="40dp"
-                           android:layout_marginLeft="20dp"
-                           android:foreground="?selectableItemBackground"
-                           app:cardBackgroundColor="#3C77D1"
-                           android:layout_marginBottom="20dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Course Price "
+                            android:textAlignment="center"
+                            android:textColor="#555555"
+                            android:textSize="15sp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="40dp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
+                            <TextView
+                                android:id="@+id/price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="3000"
+                                android:textAlignment="center"
+                                android:textColor="#555555"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="After Discount"
+                            android:textAlignment="center"
+                            android:textColor="#555555"
+                            android:textSize="15sp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:textStyle="bold" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp">
+                            <TextView
+                                android:id="@+id/payable"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="3000"
+                                android:textAlignment="center"
+                                android:textColor="#247A25"
+                                android:textSize="17sp"
+                                android:layout_marginLeft="10dp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/enroll"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            app:cardCornerRadius="10dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginLeft="20dp"
+                            android:foreground="?selectableItemBackground"
+                            app:cardBackgroundColor="#3C77D1"
+                            android:layout_marginBottom="20dp">
 
-                           <TextView
-                               android:layout_width="match_parent"
-                               android:layout_height="40dp"
-                               android:gravity="center"
-                               android:text="Enroll Now"
-                               android:textAlignment="center"
-                               android:textColor="#F7F7F8"
-                               android:textSize="15sp"
-                               android:textStyle="bold" />
-                       </androidx.cardview.widget.CardView>
-                   </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:gravity="center"
+                                android:text="Enroll Now"
+                                android:textAlignment="center"
+                                android:textColor="#F7F7F8"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
@@ -190,7 +190,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
-                        android:text="Strength and Conditioning (Short Term)"/>
+                        android:text="Level-3"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -199,7 +199,7 @@
                         android:layout_marginRight="5dp"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                       android:text="This is the most advanced course for an Strength and Conditioning coach with a period of 1 year. It will focus on all the necessary skills and theory needed for coaching and training. It will also help you through mock tests and discussion classes. You will be certified at the end of the course and you will be able to design programs to elite athletes and train them as they want. You will be able to deal with any kind of problems faced as an S and C Coach. After completing this course you will be able to clear all the necessary exams and certification courses. This is all max course which is needed for any S and C coach."
+                        android:text="This course aims to provide the opportunity for the Strength and Conditioning  coach to acquire specialty in a particular topic with the key technologies used currently in elite sports. If you are facing any difficulties in any concepts or even in practicals join this course and get all your doubts cleared."
                         android:layout_marginLeft="10dp" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -252,7 +252,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerView"
                             android:layout_width="match_parent"
-                            android:layout_height="600dp"/>
+                            android:layout_height="400dp"/>
                     </LinearLayout>
 
                 </LinearLayout>
