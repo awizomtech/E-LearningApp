@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.awizomtech.elearning.Activity.FreeLearningActivity;
 import com.awizomtech.elearning.Activity.MyCourseLevelActivity;
+import com.awizomtech.elearning.Activity.ShortCourseDetailActivity;
 import com.bumptech.glide.Glide;
 import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Model.CourseListModel;
@@ -75,15 +76,18 @@ public class MyCourseAdapter extends RecyclerView.Adapter<MyCourseAdapter.MyView
                         mCtx.startActivity(intent);
                 }
             });
-        }/*else if (!n.PaymentStatus == true) {
-            holder.PaymnetStatus.setVisibility(CardView.VISIBLE);
-            holder.PaymnetStatus.setOnClickListener(new View.OnClickListener() {
+        }else if (ctype.contains("Short")) {
+
+            holder.Cardview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mCtx, "When Your Payment is Verified Then Read Course",Toast.LENGTH_SHORT).show();
+                    String cid = String.valueOf(n.getCourseID());
+                    Intent intent = new Intent(mCtx, FreeLearningActivity.class);
+                    intent.putExtra("Cid",cid);
+                    mCtx.startActivity(intent);
                 }
             });
-        }*/else {
+        } else {
             holder.Cardview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -14,19 +14,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.awizomtech.elearning.Adapter.LearningAdapter;
 import com.awizomtech.elearning.Adapter.LevelTopicDetailAdapter;
-import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Helper.UserHelper;
-import com.awizomtech.elearning.Model.AnswerModel;
-import com.awizomtech.elearning.Model.LevelDetailTopicModel;
-import com.awizomtech.elearning.Model.LevelTopicModel;
+import com.awizomtech.elearning.Model.LevelDetailModel;
 import com.awizomtech.elearning.R;
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,6 +27,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class LevelOneDescriptionActivity extends AppCompatActivity {
+
+    /*private List<LevelDetailModel> levelDetailTopicModels;*/
     String cname,level,price,cid,duration,levelId,ImageCourse,Payable,Discount,USDValue;
     TextView CoursePrice, EnrollPrice, Duration,DiscountText,PayableText;
     ImageView CourseImage;
@@ -42,7 +37,6 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
     String result;
     LevelTopicDetailAdapter adapter;
     ProgressDialog progressDialog;
-    private List<LevelDetailTopicModel> levelDetailTopicModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,26 +108,26 @@ public class LevelOneDescriptionActivity extends AppCompatActivity {
                 finish();
             }
         });
-        blink();
+
         GetDetailDetail();
+        blink();
     }
     private void GetDetailDetail() {
         try {
             String cid = getIntent().getExtras().getString("Cid");
             String levelid = getIntent().getExtras().getString("levelID");
-            result = new UserHelper.GetLeveleDetalList().execute(cid.toString(),levelid.toString()).get();
-            if (result.isEmpty()) {
-                progressDialog.dismiss();
+           String  results = new UserHelper.GetLeveleDetalList().execute(cid.toString(),levelid.toString()).get();
+            if (results.isEmpty()) {
+
             } else {
+
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<LevelDetailTopicModel>>() {
+                Type listType = new TypeToken<List<LevelDetailModel>>() {
                 }.getType();
-                progressDialog.dismiss();
-                levelDetailTopicModels = new Gson().fromJson(result, listType);
+                List<LevelDetailModel>  levelDetailTopicModels = new Gson().fromJson(results, listType);
                 Log.d("Error", levelDetailTopicModels.toString());
                 adapter = new LevelTopicDetailAdapter(LevelOneDescriptionActivity.this, levelDetailTopicModels);
                 Topics.setAdapter(adapter);
-
             }
         } catch (Exception e) {
             e.printStackTrace();

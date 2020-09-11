@@ -1,10 +1,10 @@
 package com.awizomtech.elearning.Model;
 
-public class LevelDetailTopicModel {
-    public int LevelTopicID;
-    public int CourseID;
+public class LevelDetailModel {
+    public int LevelTopicID ;
+    public int CourseID ;
     public int LevelID;
-    public String TopicName;
+    public String TopicName ;
 
     public int getLevelTopicID() {
         return LevelTopicID;

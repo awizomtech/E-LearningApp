@@ -101,13 +101,13 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
                         String vals = String.valueOf(checkedId);
                         Chooseid.add(vals);
 
-                      /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
+                        /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     } else {
                         String vals = String.valueOf(checkedId);
                         Chooseid.remove(vals);
                         Chooseid.add(vals);
-                      /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
+                        /*  Toast.makeText(mCtx, vals, Toast.LENGTH_SHORT).show();*/
                         return;
                     }
                 }
@@ -117,27 +117,32 @@ public class QuestionListAdapter extends RecyclerView.Adapter<QuestionListAdapte
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int a = Chooseid.size();
+                int b = Quizid.size();
+                if (a != b) {
+                    Toast.makeText(mCtx, "Please Attempt All Question", Toast.LENGTH_LONG).show();
 
-                try {
-                    String userid = SharedPrefManager.getInstance(mCtx).getUser().getMobileNo();
-                    String Length = String.valueOf(Chooseid.size());
-                    String result = new UserHelper.PostResult().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString()).get();
-                    if (result.isEmpty()) {
+                } else {
+                    try {
+                        String userid = SharedPrefManager.getInstance(mCtx).getUser().getMobileNo();
+                        String Length = String.valueOf(Chooseid.size());
+                        String result = new UserHelper.PostResult().execute(Chooseid.toString(), Length.toString(), Quizid.toString(), CourseID.toString(), userid.toString()).get();
+                        if (result.isEmpty()) {
 
-                    } else {
-                        String planer = Data.split("T")[0];
-                        String CourseName = Data.split("T")[1];
-                        String CourseId = Data.split("C")[0];
-                        String planerId = planer.split("C")[1];
-                        Intent intent = new Intent(mCtx, QuizResultActivity.class);
-                        intent.putExtra("CourseID", CourseId);
-                        intent.putExtra("planerId", planerId);
-                        intent.putExtra("CourseName", CourseName);
-                      /*  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
-                        mCtx.startActivity(intent);
+                        } else {
+                            String planer = Data.split("T")[0];
+                            String CourseName = Data.split("T")[1];
+                            String CourseId = Data.split("C")[0];
+                            String planerId = planer.split("C")[1];
+                            Intent intent = new Intent(mCtx, QuizResultActivity.class);
+                            intent.putExtra("CourseID", CourseId);
+                            intent.putExtra("planerId", planerId);
+                            intent.putExtra("CourseName", CourseName);
+                            mCtx.startActivity(intent);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
         });

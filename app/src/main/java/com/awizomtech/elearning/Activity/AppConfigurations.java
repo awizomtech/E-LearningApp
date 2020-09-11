@@ -4,8 +4,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 class AppConfigurations {
 
-  /* public static final String BASE_URL = "http://edu4sports.com/api/apps/";*/
-    public static final String BASE_URL = "http://192.168.1.8:3803/api/apps/";
+   public static final String BASE_URL = "http://edu4sports.com/api/apps/";
+   /* public static final String BASE_URL = "http://192.168.1.8:3803/api/apps/";*/
     static Retrofit getRetrofit() {
 
         return new Retrofit.Builder()

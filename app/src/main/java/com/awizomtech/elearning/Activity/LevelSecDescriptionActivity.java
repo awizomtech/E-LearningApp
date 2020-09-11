@@ -17,11 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.awizomtech.elearning.Adapter.LevelTopicDetailAdapter;
-import com.awizomtech.elearning.AppConfig.AppConfig;
 import com.awizomtech.elearning.Helper.UserHelper;
-import com.awizomtech.elearning.Model.LevelDetailTopicModel;
+import com.awizomtech.elearning.Model.LevelDetailModel;
 import com.awizomtech.elearning.R;
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,7 +35,7 @@ public class LevelSecDescriptionActivity extends AppCompatActivity {
     String result;
     LevelTopicDetailAdapter adapter;
     ProgressDialog progressDialog;
-    private List<LevelDetailTopicModel> levelDetailTopicModels;
+    private List<LevelDetailModel> levelDetailTopicModels;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,12 +115,11 @@ public class LevelSecDescriptionActivity extends AppCompatActivity {
             String levelid = getIntent().getExtras().getString("levelID");
             result = new UserHelper.GetLeveleDetalList().execute(cid.toString(),levelid.toString()).get();
             if (result.isEmpty()) {
-                progressDialog.dismiss();
+
             } else {
                 Gson gson = new Gson();
-                Type listType = new TypeToken<List<LevelDetailTopicModel>>() {
+                Type listType = new TypeToken<List<LevelDetailModel>>() {
                 }.getType();
-                progressDialog.dismiss();
                 levelDetailTopicModels = new Gson().fromJson(result, listType);
                 Log.d("Error", levelDetailTopicModels.toString());
                 adapter = new LevelTopicDetailAdapter(LevelSecDescriptionActivity.this, levelDetailTopicModels);
