@@ -51,10 +51,10 @@ public class HomeInstructorAdapter extends RecyclerView.Adapter<HomeInstructorAd
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final InstructorModel n = instructorModelList.get(position);
-        holder.Name.setText(n.getInsName().toString());
-        holder.Degree.setText(n.getInsdegreeOption().toString());
+        holder.Name.setText(n.getName().toString());
+        holder.Degree.setText(n.getDegreeOption().toString());
         try {
-            Glide.with(mCtx).load(AppConfig.BASE_URL + n.getInsImage().toString()).into(holder.imageView);
+            Glide.with(mCtx).load(AppConfig.BASE_URL + n.getImage().toString()).into(holder.imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,12 +63,12 @@ public class HomeInstructorAdapter extends RecyclerView.Adapter<HomeInstructorAd
         holder.Cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String InsName=n.getInsName().toString();
-                String InsImage = n.getInsImage();
-                String InsdegreeOption=n.getInsdegreeOption();
-                String InsPhone =n.getInsPhone();
-                String InsEmail = n.getInsEmail();
-                String InsDegreeText = n.getInsDegreeText();
+                String InsName=n.getName().toString();
+                String InsImage = n.getImage();
+                String InsdegreeOption=n.getDegreeOption();
+                String InsPhone =n.getPhone();
+                String InsEmail = n.getEmail();
+                String InsDegreeText = n.getDegreeText();
                 String Date = n.getCreatedOn();
                 Intent intent = new Intent(mCtx, InstructorDetailActivity.class);
                 intent.putExtra("InsName", InsName);

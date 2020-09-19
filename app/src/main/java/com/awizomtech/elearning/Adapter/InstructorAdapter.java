@@ -51,23 +51,23 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.My
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final InstructorModel n = instructorModelList.get(position);
-        holder.Name.setText("Name : "+n.getInsName().toString());
+        holder.Name.setText("Name : "+n.getName().toString());
         holder.Mobile.setVisibility(View.GONE);
         holder.Email.setVisibility(View.GONE);
-        holder.Mobile.setText("Phone : "+n.getInsPhone().toString());
-        holder.Email.setText("Email : "+n.getInsEmail().toString());
+        holder.Mobile.setText("Phone : "+n.getPhone().toString());
+        holder.Email.setText("Email : "+n.getEmail().toString());
         String date = n.getCreatedOn().split("T")[0];
         holder.Date.setText("Joining Date : "+date.toString());
-        holder.Degree.setText("Degree : "+n.getInsdegreeOption().toString());
-        holder.DegreeText.setText("Degree : "+n.getInsDegreeText().toString());
-        if(n.getInsdegreeOption().contains("OTHER")){
+        holder.Degree.setText("Degree : "+n.getDegreeOption().toString());
+        holder.DegreeText.setText("Degree : "+n.getDegreeText().toString());
+        if(n.getDegreeOption().contains("OTHER")){
             holder.DegreeText.setVisibility(View.VISIBLE);
         }else {
             holder.Degree.setVisibility(View.VISIBLE);
         }
 
         try {
-            Glide.with(mCtx).load(AppConfig.BASE_URL + n.getInsImage().toString()).into(holder.imageView);
+            Glide.with(mCtx).load(AppConfig.BASE_URL + n.getImage().toString()).into(holder.imageView);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -77,12 +77,12 @@ public class InstructorAdapter extends RecyclerView.Adapter<InstructorAdapter.My
             @Override
             public void onClick(View v) {
 
-                String InsName=n.getInsName().toString();
-                String InsImage = n.getInsImage();
-                String InsdegreeOption=n.getInsdegreeOption();
-                String InsPhone =n.getInsPhone();
-                String InsEmail = n.getInsEmail();
-                String InsDegreeText = n.getInsDegreeText();
+                String InsName=n.getName().toString();
+                String InsImage = n.getImage();
+                String InsdegreeOption=n.getDegreeOption();
+                String InsPhone =n.getPhone();
+                String InsEmail = n.getEmail();
+                String InsDegreeText = n.getDegreeText();
                 String Date = n.getCreatedOn();
                 Intent intent = new Intent(mCtx, InstructorDetailActivity.class);
                 intent.putExtra("InsName", InsName);

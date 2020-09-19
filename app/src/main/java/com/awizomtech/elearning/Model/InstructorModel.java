@@ -1,70 +1,65 @@
 package com.awizomtech.elearning.Model;
 
 public class InstructorModel {
-    public int InstructorID;
-    public String InsName ;
-    public String InsPhone ;
-    public String InsEmail ;
-    public String InsdegreeOption;
-    public String InsDegreeText;
-    public String InsImage;
-    public String Createdby ;
+    public int TeacherID ;
+    public String Name ;
+    public String Phone;
+    public String Email;
+    public String DegreeOption;
+    public String DegreeText;
+    public String Createdby;
+    public String Image ;
+    public String AboutText ;
+    public Boolean IsActive ;
     public String CreatedOn ;
+    public int ViewIndex ;
 
-    public int getInstructorID() {
-        return InstructorID;
+    public int getTeacherID() {
+        return TeacherID;
     }
 
-    public void setInstructorID(int instructorID) {
-        InstructorID = instructorID;
+    public void setTeacherID(int teacherID) {
+        TeacherID = teacherID;
     }
 
-    public String getInsName() {
-        return InsName;
+    public String getName() {
+        return Name;
     }
 
-    public void setInsName(String insName) {
-        InsName = insName;
+    public void setName(String name) {
+        Name = name;
     }
 
-    public String getInsPhone() {
-        return InsPhone;
+    public String getPhone() {
+        return Phone;
     }
 
-    public void setInsPhone(String insPhone) {
-        InsPhone = insPhone;
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 
-    public String getInsEmail() {
-        return InsEmail;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setInsEmail(String insEmail) {
-        InsEmail = insEmail;
+    public void setEmail(String email) {
+        Email = email;
     }
 
-    public String getInsdegreeOption() {
-        return InsdegreeOption;
+    public String getDegreeOption() {
+        return DegreeOption;
     }
 
-    public void setInsdegreeOption(String insdegreeOption) {
-        InsdegreeOption = insdegreeOption;
+    public void setDegreeOption(String degreeOption) {
+        DegreeOption = degreeOption;
     }
 
-    public String getInsDegreeText() {
-        return InsDegreeText;
+    public String getDegreeText() {
+        return DegreeText;
     }
 
-    public void setInsDegreeText(String insDegreeText) {
-        InsDegreeText = insDegreeText;
-    }
-
-    public String getInsImage() {
-        return InsImage;
-    }
-
-    public void setInsImage(String insImage) {
-        InsImage = insImage;
+    public void setDegreeText(String degreeText) {
+        DegreeText = degreeText;
     }
 
     public String getCreatedby() {
@@ -75,11 +70,43 @@ public class InstructorModel {
         Createdby = createdby;
     }
 
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getAboutText() {
+        return AboutText;
+    }
+
+    public void setAboutText(String aboutText) {
+        AboutText = aboutText;
+    }
+
+    public Boolean getActive() {
+        return IsActive;
+    }
+
+    public void setActive(Boolean active) {
+        IsActive = active;
+    }
+
     public String getCreatedOn() {
         return CreatedOn;
     }
 
     public void setCreatedOn(String createdOn) {
         CreatedOn = createdOn;
+    }
+
+    public int getViewIndex() {
+        return ViewIndex;
+    }
+
+    public void setViewIndex(int viewIndex) {
+        ViewIndex = viewIndex;
     }
 }
